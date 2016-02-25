@@ -1,0 +1,26 @@
+Important Functions in R
+“Astsa” Package (A package that contains data sets/scripts for the textbook Time Series and Its Applications):
+
+Installing Package commands: install.packages("astsa")
+require(astsa)
+#Once the package is installed in my computer the require function is needed or else when trying to run #scripts in R, an error message will come out
+ 
+ 
+ 
+ 
+Basic Time Series R functions (not in any packages):
+ 
+·         read.csv(“title.csv”, header= FALSE/TRUE, sep=”,” ,  dec=”.”, stringAsFactors=default.stringsAsFactors()) #reads csv files
+·         read.table(“…”) #reads basic grids can be used for .dat files
+·         read.delim(“…”) #Similar to read.table except it is convenient when reading tab-separated data
+header = FALSE/TRUE #Indicates whether or not the file contains names of the variables as its first line
+sep = “,” #Values on lines are separated by this character, in this case the values are separated by a comma
+dec = “.” #the character used to represent decimal points
+·         plot.ts(x, y) #Straight forward command that plots a time series in R
+e.g. plot.ts(M2.ts, xlab=”M2 money supply”, ylab=”Years”, main=”M2 Money Supply Time series”)
+                    	xlab/ylab=”…” #Labels your x and y axes respectively
+                    	main=”…” #Creates a main title for the plot once R creates it
+·         diff(x, lag=h) #Function used to calculate and transform the data with respect to the lagged differences, typically used to remove trends and seasonality
+·         log(x) #Logarithmic transformation is used when the variability is not constant for your data i.e. heteroscedasticity
+·          
+
