@@ -4,7 +4,7 @@
 
  - Clone this project in your machine using Github
 
-	You gotta google the "how to" for this one :)
+	- You gotta google the "how to" for this one :)
 
 --
 
@@ -20,9 +20,9 @@
 
  - Try R
 
- - Check out datacamp.com or google "R tutorial" to learn basic R commands
+	 - Check out datacamp.com or google "R tutorial" to learn basic R commands
 
- - You can also just enter the following
+	 - You can also just enter the following
 
 		2 + 2
 
@@ -34,11 +34,12 @@
 
  - Now test using testScript.R
 
-		cd to your working directory - google "basic linux terminal commands" if you don't know what I meant... you gotta learn to google shit
+	- cd to your working directory - google "basic linux terminal commands" if you don't know what I meant... 
+	 - you gotta learn to google shit
 
  - Rnter the following command to test sample R script:
 
-		> Rscript testScript.R
+	Rscript testScript.R
 
 --
 
@@ -48,15 +49,15 @@
 
 --
 
-Read the code. Open this file with sublime: 
+ - Read the code. Open this file with sublime: 
 
 	dataScience_stockMarket/script.R
 
-Read the code, write down questions, answer your questions from doing several google searches
+ - Read the code, write down questions, answer your questions from doing several google searches
 
 --
 
-Read the data. Open this file with sublime: 
+ - Read the data. Open this file with sublime: 
 
 	dataScience_stockMarket/data_1/data_master_1.csv
 
