@@ -2,68 +2,66 @@
 
 
 
-Clone this project in your machine using Github
+ - Clone this project in your machine using Github
 
 	You gotta google the "how to" for this one :)
 
 --
 
-Install R on Ubuntu 14.04. Open your terminal, and enter the following commands:
+ - Install R on Ubuntu 14.04. Open your terminal, and enter the following commands:
 
 		sudo add-apt-repository ppa:marutter/rrutter
 		sudo apt-get update
 		sudo apt-get install r-base r-base-dev
 
-source: http://askubuntu.com/questions/496788/you-have-held-broken-package-while-trying-to-install-r
-
---
---
-
-Try R
+ - source: http://askubuntu.com/questions/496788/you-have-held-broken-package-while-trying-to-install-r
 
 --
 
-Check out datacamp.com or google "R tutorial" to learn basic R commands
+ - Try R
 
-You can also just enter the following
+ - Check out datacamp.com or google "R tutorial" to learn basic R commands
+
+ - You can also just enter the following
 
 		2 + 2
 
 --
 
-Run test project 
-
-	General form to run a file directly from the terminal:
+ - Run test project. General form to run a file directly from the terminal:
 
 		> Rscript fileName.R
 
-	You can test using:
+ - Now test using testScript.R
 
-		cd to your working directory - google "basic linux terminal commands" if you don't know what I meant
+		cd to your working directory - google "basic linux terminal commands" if you don't know what I meant... you gotta learn to google shit
 
-		enter the following command to test sample R script:
+ - Rnter the following command to test sample R script:
 
 		> Rscript testScript.R
 
 --
 
-Now run the actual project 
+ - Now run the actual project 
 
 	Rscript script.R
 
 --
 
-Read the code 
+Read the code. Open this file with sublime: 
 
-	Open this file with sublime: dataScience_stockMarket/script.R
+	dataScience_stockMarket/script.R
 
-	Read the code, write down questions, answer your questions from doing several google searches
+Read the code, write down questions, answer your questions from doing several google searches
 
 --
 
-Read the data 
+Read the data. Open this file with sublime: 
 
-	Open this file with sublime: dataScience_stockMarket/data_1/data_master_1.csv
+	dataScience_stockMarket/data_1/data_master_1.csv
 
-	Read the data, write down questions, run your own R scripts to answer your own questions
+Read the data, write down questions, run your own R scripts to answer your own questions
 	
+--
+
+Make contributions to this project :)
