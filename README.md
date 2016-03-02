@@ -1,32 +1,26 @@
 # dataScience_stockMarket
 
 
----------------------------------
-Clone this project in your machine using Github
----------------------------------
 
+Clone this project in your machine using Github
 
 	You gotta google the "how to" for this one :)
 
+--
 
----------------------------------
-INSTALL R on Ubuntu 14.04
----------------------------------
+Install R on Ubuntu 14.04
 
+	Open your terminal, and enter the following commands:
 
-Open your terminal, and enter the following commands:
+		sudo add-apt-repository ppa:marutter/rrutter
+		sudo apt-get update
+		sudo apt-get install r-base r-base-dev
 
-	sudo add-apt-repository ppa:marutter/rrutter
-	sudo apt-get update
-	sudo apt-get install r-base r-base-dev
+	source: http://askubuntu.com/questions/496788/you-have-held-broken-package-while-trying-to-install-r
 
-source: http://askubuntu.com/questions/496788/you-have-held-broken-package-while-trying-to-install-r
+--
 
-
----------------------------------
 Try R
----------------------------------
-
 
 	Check out datacamp.com or google "R tutorial" to learn basic R commands
 
@@ -34,11 +28,9 @@ Try R
 
 		2 + 2
 
+--
 
----------------------------------
-Run test PROJECT 
----------------------------------
-
+Run test project 
 
 	General form to run a file directly from the terminal:
 
@@ -52,29 +44,23 @@ Run test PROJECT
 
 		> Rscript testScript.R
 
+--
 
----------------------------------
-Now run the actual PROJECT 
----------------------------------
-
+Now run the actual project 
 
 	Rscript script.R
 
+--
 
----------------------------------
 Read the code 
----------------------------------
-
 
 	Open this file with sublime: dataScience_stockMarket/script.R
 
 	Read the code, write down questions, answer your questions from doing several google searches
 
+--
 
----------------------------------
 Read the data 
----------------------------------
-	
 
 	Open this file with sublime: dataScience_stockMarket/data_1/data_master_1.csv
 
