@@ -1,8 +1,10 @@
 # dataScience_stockMarket
 
+
 ---------------------------------
 Clone this project in your machine using Github
 ---------------------------------
+
 
 	You gotta google the "how to" for this one :)
 
@@ -10,6 +12,7 @@ Clone this project in your machine using Github
 ---------------------------------
 INSTALL R on Ubuntu 14.04
 ---------------------------------
+
 
 Open your terminal, and enter the following commands:
 
@@ -24,6 +27,7 @@ source: http://askubuntu.com/questions/496788/you-have-held-broken-package-while
 Try R
 ---------------------------------
 
+
 	Check out datacamp.com or google "R tutorial" to learn basic R commands
 
 	You can also just enter the following
@@ -34,6 +38,7 @@ Try R
 ---------------------------------
 Run test PROJECT 
 ---------------------------------
+
 
 	General form to run a file directly from the terminal:
 
@@ -52,12 +57,14 @@ Run test PROJECT
 Now run the actual PROJECT 
 ---------------------------------
 
+
 	Rscript script.R
 
 
 ---------------------------------
 Read the code 
 ---------------------------------
+
 
 	Open this file with sublime: dataScience_stockMarket/script.R
 
@@ -68,6 +75,7 @@ Read the code
 Read the data 
 ---------------------------------
 	
+
 	Open this file with sublime: dataScience_stockMarket/data_1/data_master_1.csv
 
 	Read the data, write down questions, run your own R scripts to answer your own questions
