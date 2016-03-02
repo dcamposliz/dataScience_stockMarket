@@ -47,8 +47,28 @@ Run test PROJECT
 
 		> Rscript testScript.R
 
+
 ---------------------------------
 Now run the actual PROJECT 
 ---------------------------------
 
 	Rscript script.R
+
+
+---------------------------------
+Read the code 
+---------------------------------
+
+	Open this file with sublime: dataScience_stockMarket/script.R
+
+	Read the code, write down questions, answer your questions from doing several google searches
+
+
+---------------------------------
+Read the data 
+---------------------------------
+	
+	Open this file with sublime: dataScience_stockMarket/data_1/data_master_1.csv
+
+	Read the data, write down questions, run your own R scripts to answer your own questions
+	
