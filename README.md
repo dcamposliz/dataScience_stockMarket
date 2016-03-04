@@ -1,6 +1,17 @@
 # dataScience_stockMarket
 
 
+ - Before taking on this project, you should answer these questions for yourself:
+
+	- What is the mean?
+	- What is variance?
+	- What is standard error?
+	- What is a confidence interval?
+	- What is level?
+	- What is a quantile?
+	- What is a percentile?
+	- What is the central limit theorem?
+
 
  - Clone this project in your machine using Github
 
@@ -35,7 +46,7 @@
  - Now test using testScript.R
 
 	- cd to your working directory - google "basic linux terminal commands" if you don't know what I meant... 
-	 - you gotta learn to google shit
+	- you gotta learn to google shit
 
  - Rnter the following command to test sample R script:
 
