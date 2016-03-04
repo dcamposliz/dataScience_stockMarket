@@ -2,8 +2,21 @@
 	
 	dataMaster <- read.csv("/home/dc/myProjects/dataScience_stockMarket/data_1/data_master_1.csv")
 
+# install.packages() the following packages, run this on the terminal
+
+# install.packages("ggplot2")
+# install.packages("forecast")
+# install.packages("astsa")
+# install.packages("car")
+# install.packages("MTS")
+
+
+#what are the ones that kim has?
+
+
 # loading libraries
-	
+
+
 	require(forecast)
 	require(astsa)
 	require(ts)
@@ -46,6 +59,8 @@
 
 	str(dataMaster_df)
 
+#linear regression models on stock indices as a function of economic indicators
+
 	fit_nasdaq <- lm(nasdaq ~ m1 + m2 + consumerSentiment + inflation + imports + oilPrices + ppi + exports + cpi + unemploymentRate + fedFunds + capUtilization + gdp_us, data = dataMaster_df)
 	fit_nyse <- lm(nyse ~ m1 + m2 + consumerSentiment + inflation + imports + oilPrices + ppi + exports + cpi + unemploymentRate + fedFunds + capUtilization + gdp_us, data = dataMaster_df)
 	fit_sp_500 <- lm(sp_500 ~ m1 + m2 + consumerSentiment + inflation + imports + oilPrices + ppi + exports + cpi + unemploymentRate + fedFunds + capUtilization + gdp_us, data = dataMaster_df)
@@ -64,13 +79,28 @@
 	confint(fit_sp_500Dividends)
 
 # what is auto.arima? some witchcraft?
-
-
-	auto.arima(dataMaster$nasdaq)
-	auto.arima(dataMaster$nasdaq)
-	auto.arima(dataMaster$nasdaq)
-	auto.arima(dataMaster$nasdaq)
 	
+	# this is auto-regression integrating moving average
+
+	auto.arima(dataMaster$nasdaq)
+	auto.arima(dataMaster$nyse)
+	auto.arima(dataMaster$sp_500)
+	auto.arima(dataMaster$sp_500Dividends)
 
 # acf
 # pacf
+
+	sarima_nasdaq_model <- sarima(dataMaster$nasdaq, p = 1, q = 1, d = 2)
+
+		# p is autoregressive coefficient
+		# q is whether it's stationary or not
+		# d is moving average
+
+	# forecasting
+	sarima.for(dataMaster$nasdaq, n.ahead = 12, p = 1, q = 1, d = 2)
+
+	#multi-variate time-series is cool
+	
+# r-squared is to regression just as aic (akaine information criterion) is to time-series
+
+	apca(dataMaster_df)

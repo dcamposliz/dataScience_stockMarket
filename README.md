@@ -21,8 +21,11 @@
 	- What is auto-regressive?
 	- What is moving average?  https://en.wikipedia.org/wiki/Moving_average
 	- What is auto-correlation?  https://en.wikipedia.org/wiki/Autocorrelation
-	- W
-	-
+	- What is exponential smoothing?
+	- What is ACF?
+	- What is PACF?
+	- What is real analysis?  https://en.wikipedia.org/wiki/Real_analysis
+	- What is multi-variate time-series?
 
 
  - Clone this project in your machine using Github
