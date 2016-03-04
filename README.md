@@ -2,6 +2,8 @@
 
 
  - Before taking on this project, you should answer these questions for yourself:
+	- Do I like data, statistics, probability?
+	- Why?
 	- What is the mean?
 	- What is variance?
 	- What is standard error?
@@ -13,6 +15,8 @@
 	- What is a quantile?
 	- What is a percentile?
 	- What is the central limit theorem?
+	- What is R?
+
  - Clone this project in your machine using Github
 	- You gotta google the "how to" for this one :)
 
@@ -35,9 +39,11 @@
 
  - Run test project. General form to run a file directly from the terminal:
 		Rscript fileName.R
+
  - Now test using testScript.R
 	- cd to your working directory - google "basic linux terminal commands" if you don't know what I meant... 
 	- you gotta learn to google shit
+
  - Rnter the following command to test sample R script:
 		Rscript testScript.R
 
@@ -50,6 +56,7 @@
 
  - Read the code. Open this file with sublime: 
 		dataScience_stockMarket/script.R
+		
  - Read the code, write down questions, answer your questions from doing several google searches
 
 --
