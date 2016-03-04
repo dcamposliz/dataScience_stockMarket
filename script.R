@@ -56,6 +56,21 @@
 	summary(fit_sp_500)
 	summary(fit_sp_500Dividends)
 
-	confint_nasdaq <- confint(fit_nasdaq)
+#confidence intervals
 
-	plot(confint_nasdaq)
+	confint(fit_nasdaq)
+	confint(fit_nyse)
+	confint(fit_sp_500)
+	confint(fit_sp_500Dividends)
+
+# what is auto.arima? some witchcraft?
+
+
+	auto.arima(dataMaster$nasdaq)
+	auto.arima(dataMaster$nasdaq)
+	auto.arima(dataMaster$nasdaq)
+	auto.arima(dataMaster$nasdaq)
+	
+
+# acf
+# pacf

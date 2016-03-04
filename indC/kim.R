@@ -13,65 +13,68 @@ summary(fit.1)
 
     # OUTPUT
 
-    #   Call:
-    #   lm(formula = nasdaq ~ m1 + m2 + consumerSentiment + imports + 
-    #       inflation + oilPrices + ppi + exports + cpi + unemploymentRate + 
-    #       fedFunds + capUtilization + gdp_us, data = master)
-    #   
-    #   Residuals:
-    #       Min      1Q  Median      3Q     Max 
-    #   -999.03 -196.38  -40.68  158.67 1912.82 
-    #   
-    #   Coefficients:
-    #                       Estimate Std. Error t value Pr(>|t|)    
-    #   (Intercept)        1.479e+04  4.050e+03   3.652 0.000320 ***
-    #   m1                 9.518e-01  6.873e-01   1.385 0.167392    
-    #   m2                 1.261e-01  3.963e-01   0.318 0.750636    
-    #   consumerSentiment  2.638e+01  4.724e+00   5.584 6.40e-08 ***
-    #   imports           -2.989e-03  7.080e-03  -0.422 0.673263    
-    #   inflation          2.643e+02  6.889e+01   3.837 0.000160 ***
-    #   oilPrices         -5.056e+00  3.987e+00  -1.268 0.205955    
-    #   ppi                7.511e+00  1.380e+01   0.544 0.586709    
-    #   exports            6.622e-02  7.731e-03   8.566 1.36e-15 ***
-    #   cpi               -1.190e+02  3.178e+01  -3.746 0.000226 ***
-    #   unemploymentRate  -1.172e+04  3.637e+03  -3.222 0.001453 ** 
-    #   fedFunds           1.424e+04  2.899e+03   4.912 1.68e-06 ***
-    #   capUtilization    -1.560e+04  2.292e+03  -6.805 8.12e-11 ***
-    #   gdp_us             9.246e+02  2.250e+02   4.109 5.46e-05 ***
-    #   ---
-    #   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-    #   
-    #   Residual standard error: 344.3 on 238 degrees of freedom
-    #   Multiple R-squared:  0.8935,	Adjusted R-squared:  0.8876 
-    #   F-statistic: 153.5 on 13 and 238 DF,  p-value: < 2.2e-16
+        #   Call:
+        #   lm(formula = nasdaq ~ m1 + m2 + consumerSentiment + imports + 
+        #       inflation + oilPrices + ppi + exports + cpi + unemploymentRate + 
+        #       fedFunds + capUtilization + gdp_us, data = master)
+        #   
+        #   Residuals:
+        #       Min      1Q  Median      3Q     Max 
+        #   -999.03 -196.38  -40.68  158.67 1912.82 
+        #   
+        #   Coefficients:
+        #                       Estimate Std. Error t value Pr(>|t|)    
+        #   (Intercept)        1.479e+04  4.050e+03   3.652 0.000320 ***
+        #   m1                 9.518e-01  6.873e-01   1.385 0.167392    
+        #   m2                 1.261e-01  3.963e-01   0.318 0.750636    
+        #   consumerSentiment  2.638e+01  4.724e+00   5.584 6.40e-08 ***
+        #   imports           -2.989e-03  7.080e-03  -0.422 0.673263    
+        #   inflation          2.643e+02  6.889e+01   3.837 0.000160 ***
+        #   oilPrices         -5.056e+00  3.987e+00  -1.268 0.205955    
+        #   ppi                7.511e+00  1.380e+01   0.544 0.586709    
+        #   exports            6.622e-02  7.731e-03   8.566 1.36e-15 ***
+        #   cpi               -1.190e+02  3.178e+01  -3.746 0.000226 ***
+        #   unemploymentRate  -1.172e+04  3.637e+03  -3.222 0.001453 ** 
+        #   fedFunds           1.424e+04  2.899e+03   4.912 1.68e-06 ***
+        #   capUtilization    -1.560e+04  2.292e+03  -6.805 8.12e-11 ***
+        #   gdp_us             9.246e+02  2.250e+02   4.109 5.46e-05 ***
+        #   ---
+        #   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+        #   
+        #   Residual standard error: 344.3 on 238 degrees of freedom
+        #   Multiple R-squared:  0.8935,	Adjusted R-squared:  0.8876 
+        #   F-statistic: 153.5 on 13 and 238 DF,  p-value: < 2.2e-16
 
 #Drop variable with smallest |t-value| >> drop M2
 
 
 #BIC procedure
-> n <- nrow(master)
-> drop1(fit.1, k=log(n))
-Single term deletions
+n <- nrow(master)
+drop1(fit.1, k=log(n))
 
-Model:
-nasdaq ~ m1 + m2 + consumerSentiment + imports + inflation + 
-    oilPrices + ppi + exports + cpi + unemploymentRate + fedFunds + 
-    capUtilization + gdp_us
-                  Df Sum of Sq      RSS    AIC
-<none>                         28215373 3007.2
-m1                 1    227364 28442737 3003.6
-m2                 1     12001 28227374 3001.7
-consumerSentiment  1   3696364 31911737 3032.6
-imports            1     21132 28236505 3001.8
-inflation          1   1745107 29960480 3016.7
-oilPrices          1    190680 28406053 3003.3
-ppi                1     35129 28250502 3001.9
-exports            1   8697914 36913287 3069.3
-cpi                1   1663488 29878861 3016.1
-unemploymentRate   1   1230450 29445823 3012.4
-fedFunds           1   2859904 31075277 3025.9
-capUtilization     1   5490460 33705833 3046.4
-gdp_us             1   2002008 30217381 3018.9
+    # OUTPUT
+
+        #   Single term deletions
+        #   
+        #   Model:
+        #   nasdaq ~ m1 + m2 + consumerSentiment + imports + inflation + 
+        #       oilPrices + ppi + exports + cpi + unemploymentRate + fedFunds + 
+        #       capUtilization + gdp_us
+        #                     Df Sum of Sq      RSS    AIC
+        #   <none>                         28215373 3007.2
+        #   m1                 1    227364 28442737 3003.6
+        #   m2                 1     12001 28227374 3001.7
+        #   consumerSentiment  1   3696364 31911737 3032.6
+        #   imports            1     21132 28236505 3001.8
+        #   inflation          1   1745107 29960480 3016.7
+        #   oilPrices          1    190680 28406053 3003.3
+        #   ppi                1     35129 28250502 3001.9
+        #   exports            1   8697914 36913287 3069.3
+        #   cpi                1   1663488 29878861 3016.1
+        #   unemploymentRate   1   1230450 29445823 3012.4
+        #   fedFunds           1   2859904 31075277 3025.9
+        #   capUtilization     1   5490460 33705833 3046.4
+        #   gdp_us             1   2002008 30217381 3018.9
 
 #Drop variable with smallest AIC value >> Drop M2
 

@@ -12,10 +12,18 @@
 	- What is CHI-SQUARED value?
 	- What is a confidence interval?
 	- What is level?
-	- What is a quantile?
+	- What is a quantile?  https://en.wikipedia.org/wiki/Quantile
 	- What is a percentile?
 	- What is the central limit theorem?
 	- What is R?
+	- What is time-series?  https://en.wikipedia.org/wiki/Time_series
+	- What is distributed lag?  https://en.wikipedia.org/wiki/Distributed_lag
+	- What is auto-regressive?
+	- What is moving average?  https://en.wikipedia.org/wiki/Moving_average
+	- What is auto-correlation?  https://en.wikipedia.org/wiki/Autocorrelation
+	- W
+	-
+
 
  - Clone this project in your machine using Github
 	- You gotta google the "how to" for this one :)
@@ -56,7 +64,7 @@
 
  - Read the code. Open this file with sublime: 
 		dataScience_stockMarket/script.R
-		
+
  - Read the code, write down questions, answer your questions from doing several google searches
 
 --
