@@ -80,41 +80,43 @@ drop1(fit.1, k=log(n))
 
 
 #update model to drop M2
-> fit.1a <- update(fit.1,.~.-m2)
+fit.1a <- update(fit.1,.~.-m2)
 
 #Backwards Elimination
-> summary(fit.1a)
+summary(fit.1a)
 
-Call:
-lm(formula = nasdaq ~ m1 + consumerSentiment + imports + inflation + 
-    oilPrices + ppi + exports + cpi + unemploymentRate + fedFunds + 
-    capUtilization + gdp_us, data = master)
+    # OUTPUT
 
-Residuals:
-    Min      1Q  Median      3Q     Max 
--989.66 -199.00  -35.46  156.06 1913.10 
-
-Coefficients:
-                    Estimate Std. Error t value Pr(>|t|)    
-(Intercept)        1.389e+04  2.896e+03   4.797 2.84e-06 ***
-m1                 1.161e+00  1.998e-01   5.810 1.98e-08 ***
-consumerSentiment  2.588e+01  4.451e+00   5.815 1.93e-08 ***
-imports           -3.518e-03  6.869e-03  -0.512 0.608957    
-inflation          2.643e+02  6.877e+01   3.844 0.000155 ***
-oilPrices         -5.598e+00  3.598e+00  -1.556 0.121105    
-ppi                6.615e+00  1.348e+01   0.491 0.624122    
-exports            6.729e-02  6.943e-03   9.692  < 2e-16 ***
-cpi               -1.121e+02  2.316e+01  -4.841 2.32e-06 ***
-unemploymentRate  -1.151e+04  3.571e+03  -3.223 0.001446 ** 
-fedFunds           1.411e+04  2.867e+03   4.924 1.59e-06 ***
-capUtilization    -1.565e+04  2.280e+03  -6.866 5.66e-11 ***
-gdp_us             9.483e+02  2.119e+02   4.475 1.18e-05 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Residual standard error: 343.7 on 239 degrees of freedom
-Multiple R-squared:  0.8934,	Adjusted R-squared:  0.8881 
-F-statistic: 166.9 on 12 and 239 DF,  p-value: < 2.2e-16
+        #   Call:
+        #   lm(formula = nasdaq ~ m1 + consumerSentiment + imports + inflation + 
+        #       oilPrices + ppi + exports + cpi + unemploymentRate + fedFunds + 
+        #       capUtilization + gdp_us, data = master)
+        #   
+        #   Residuals:
+        #       Min      1Q  Median      3Q     Max 
+        #   -989.66 -199.00  -35.46  156.06 1913.10 
+        #   
+        #   Coefficients:
+        #                       Estimate Std. Error t value Pr(>|t|)    
+        #   (Intercept)        1.389e+04  2.896e+03   4.797 2.84e-06 ***
+        #   m1                 1.161e+00  1.998e-01   5.810 1.98e-08 ***
+        #   consumerSentiment  2.588e+01  4.451e+00   5.815 1.93e-08 ***
+        #   imports           -3.518e-03  6.869e-03  -0.512 0.608957    
+        #   inflation          2.643e+02  6.877e+01   3.844 0.000155 ***
+        #   oilPrices         -5.598e+00  3.598e+00  -1.556 0.121105    
+        #   ppi                6.615e+00  1.348e+01   0.491 0.624122    
+        #   exports            6.729e-02  6.943e-03   9.692  < 2e-16 ***
+        #   cpi               -1.121e+02  2.316e+01  -4.841 2.32e-06 ***
+        #   unemploymentRate  -1.151e+04  3.571e+03  -3.223 0.001446 ** 
+        #   fedFunds           1.411e+04  2.867e+03   4.924 1.59e-06 ***
+        #   capUtilization    -1.565e+04  2.280e+03  -6.866 5.66e-11 ***
+        #   gdp_us             9.483e+02  2.119e+02   4.475 1.18e-05 ***
+        #   ---
+        #   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+        #   
+        #   Residual standard error: 343.7 on 239 degrees of freedom
+        #   Multiple R-squared:  0.8934,	Adjusted R-squared:  0.8881 
+        #   F-statistic: 166.9 on 12 and 239 DF,  p-value: < 2.2e-16
 
 #PPI has smallest |t-value| >> drop
 
@@ -123,24 +125,26 @@ F-statistic: 166.9 on 12 and 239 DF,  p-value: < 2.2e-16
 > drop1(fit.1a, k=log(n))
 Single term deletions
 
-Model:
-nasdaq ~ m1 + consumerSentiment + imports + inflation + oilPrices + 
-    ppi + exports + cpi + unemploymentRate + fedFunds + capUtilization + 
-    gdp_us
-                  Df Sum of Sq      RSS    AIC
-<none>                         28227374 3001.7
-m1                 1   3987460 32214834 3029.5
-consumerSentiment  1   3994021 32221396 3029.6
-imports            1     30990 28258364 2996.5
-inflation          1   1744938 29972312 3011.3
-oilPrices          1    285838 28513212 2998.7
-ppi                1     28433 28255807 2996.4
-exports            1  11094475 39321849 3079.7
-cpi                1   2768296 30995670 3019.8
-unemploymentRate   1   1226760 29454134 3006.9
-fedFunds           1   2863101 31090475 3020.5
-capUtilization     1   5567563 33794937 3041.6
-gdp_us             1   2365516 30592891 3016.5
+
+    # OUTPUT
+        #   Model:
+        #   nasdaq ~ m1 + consumerSentiment + imports + inflation + oilPrices + 
+        #       ppi + exports + cpi + unemploymentRate + fedFunds + capUtilization + 
+        #       gdp_us
+        #                     Df Sum of Sq      RSS    AIC
+        #   <none>                         28227374 3001.7
+        #   m1                 1   3987460 32214834 3029.5
+        #   consumerSentiment  1   3994021 32221396 3029.6
+        #   imports            1     30990 28258364 2996.5
+        #   inflation          1   1744938 29972312 3011.3
+        #   oilPrices          1    285838 28513212 2998.7
+        #   ppi                1     28433 28255807 2996.4
+        #   exports            1  11094475 39321849 3079.7
+        #   cpi                1   2768296 30995670 3019.8
+        #   unemploymentRate   1   1226760 29454134 3006.9
+        #   fedFunds           1   2863101 31090475 3020.5
+        #   capUtilization     1   5567563 33794937 3041.6
+        #   gdp_us             1   2365516 30592891 3016.5
 # PPI has smallest AIC >> drop PPI
 
 #update model to drop PPI
@@ -149,35 +153,34 @@ gdp_us             1   2365516 30592891 3016.5
 #Backwards Elimination
 > summary(fit.1b)
 
-Call:
-lm(formula = nasdaq ~ m1 + consumerSentiment + imports + inflation + 
-    oilPrices + exports + cpi + unemploymentRate + fedFunds + 
-    capUtilization + gdp_us, data = master)
 
-Residuals:
-    Min      1Q  Median      3Q     Max 
--985.81 -197.27  -33.69  152.47 1901.02 
-
-Coefficients:
-                    Estimate Std. Error t value Pr(>|t|)    
-(Intercept)        1.364e+04  2.846e+03   4.792 2.89e-06 ***
-m1                 1.145e+00  1.967e-01   5.819 1.89e-08 ***
-consumerSentiment  2.539e+01  4.330e+00   5.864 1.49e-08 ***
-imports           -2.335e-03  6.421e-03  -0.364 0.716466    
-inflation          2.603e+02  6.817e+01   3.818 0.000171 ***
-oilPrices         -4.676e+00  3.064e+00  -1.526 0.128313    
-exports            6.734e-02  6.931e-03   9.716  < 2e-16 ***
-cpi               -1.040e+02  1.614e+01  -6.443 6.36e-10 ***
-unemploymentRate  -1.115e+04  3.491e+03  -3.195 0.001587 ** 
-fedFunds           1.432e+04  2.833e+03   5.054 8.57e-07 ***
-capUtilization    -1.521e+04  2.090e+03  -7.279 4.78e-12 ***
-gdp_us             8.893e+02  1.742e+02   5.104 6.77e-07 ***
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Residual standard error: 343.1 on 240 degrees of freedom
-Multiple R-squared:  0.8933,	Adjusted R-squared:  0.8884 
-F-statistic: 182.7 on 11 and 240 DF,  p-value: < 2.2e-16
+    # OUTPUT
+        #    Call:
+        #    lm(formula = nasdaq ~ m1 + consumerSentiment + imports + inflation + 
+        #        oilPrices + exports + cpi + unemploymentRate + fedFunds + 
+        #        capUtilization + gdp_us, data = master)
+        #     #    Residuals:
+        #        Min      1Q  Median      3Q     Max 
+        #    -985.81 -197.27  -33.69  152.47 1901.02 
+        #     #    Coefficients:
+        #                        Estimate Std. Error t value Pr(>|t|)    
+        #    (Intercept)        1.364e+04  2.846e+03   4.792 2.89e-06 ***
+        #    m1                 1.145e+00  1.967e-01   5.819 1.89e-08 ***
+        #    consumerSentiment  2.539e+01  4.330e+00   5.864 1.49e-08 ***
+        #    imports           -2.335e-03  6.421e-03  -0.364 0.716466    
+        #    inflation          2.603e+02  6.817e+01   3.818 0.000171 ***
+        #    oilPrices         -4.676e+00  3.064e+00  -1.526 0.128313    
+        #    exports            6.734e-02  6.931e-03   9.716  < 2e-16 ***
+        #    cpi               -1.040e+02  1.614e+01  -6.443 6.36e-10 ***
+        #    unemploymentRate  -1.115e+04  3.491e+03  -3.195 0.001587 ** 
+        #    fedFunds           1.432e+04  2.833e+03   5.054 8.57e-07 ***
+        #    capUtilization    -1.521e+04  2.090e+03  -7.279 4.78e-12 ***
+        #    gdp_us             8.893e+02  1.742e+02   5.104 6.77e-07 ***
+        #    ---
+        #    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+        #     #    Residual standard error: 343.1 on 240 degrees of freedom
+        #    Multiple R-squared:  0.8933,	Adjusted R-squared:  0.8884 
+        #    F-statistic: 182.7 on 11 and 240 DF,  p-value: < 2.2e-16
 
 #Imports has smallest |t-value| >> drop Imports
 

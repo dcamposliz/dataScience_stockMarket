@@ -26,7 +26,35 @@
 	- What is PACF?
 	- What is real analysis?  https://en.wikipedia.org/wiki/Real_analysis
 	- What is multi-variate time-series?
+	- What are multi-variate forecasting methods?
+		- http://homepage.univie.ac.at/robert.kunst/prognos4.pdf
+		- http://www.robots.ox.ac.uk/~sjrob/Pubs/TechReport_PARG0803.pdf
+		- https://cran.r-project.org/web/packages/MTS/MTS.pdf
 
+--
+
+PROCESS (more or less)
+
+	 - collect data
+	 - clean data
+
+	 STASTITICAL PROCESS
+
+	  - we are trying to fit a statistical model that best fits using four different statistical tools
+
+	  TOOLS
+
+	  	t-test significance
+
+	  	confidence interval selection
+
+	  	backwards elimination of insignificant variables
+
+	  	BIC Procedure
+
+	  	when the intercept value for AIC of the fit model is the smallest, you are done using drop1()
+
+--
 
  - Clone this project in your machine using Github
 	- You gotta google the "how to" for this one :)
@@ -80,3 +108,37 @@ Read the data, write down questions, run your own R scripts to answer your own q
 --
 
 Make contributions to this project :)
+
+--
+
+WHAT IS NEXT?
+
+ - LEARN STATISTICAL MODELS:
+ 	- https://www3.nd.edu/~steve/Rcourse/Lecture7v1.pdf
+ 	- http://arxiv.org/pdf/1302.6613.pdf
+ 	- 
+
+ - pulling stock data in "real-time"
+ 	- http://finance.yahoo.com/
+ 	- http://finance.yahoo.com/q?s=^ixic
+ 	- http://finance.yahoo.com/q?s=^nya
+ 	- http://finance.yahoo.com/q?s=^gspc
+ 	- https://www.youtube.com/watch?v=sXyXciMYZZw
+
+ - HOW TO DO IT:
+ 	- http://stackoverflow.com/questions/10040954/alternative-to-google-finance-api
+ 	- http://stackoverflow.com/questions/417453/best-most-comprehensive-api-for-stocks-financial-data
+ 	- https://www.quandl.com/blog/api-for-stock-data
+ 	- https://github.com/hongtaocai/googlefinance
+
+ 	Awesome:
+ 	- https://github.com/markitondemand/DataApis/blob/master/MarkitQuoteServiceSample.js#L46
+ 	- http://dev.markitondemand.com/MODApis/
+ 	- https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+
+ 	Visualizations:
+ 	- https://github.com/arnauddri/d3-stock
+
+ 	Plot to work on ubuntu:
+ 	- http://ubuntuforums.org/showthread.php?t=317490
+ 	- http://stackoverflow.com/questions/6838851/how-to-copy-plots-in-r-when-working-in-ubuntu

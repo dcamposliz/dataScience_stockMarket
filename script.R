@@ -2,7 +2,33 @@
 	
 	dataMaster <- read.csv("/home/dc/myProjects/dataScience_stockMarket/data_1/data_master_1.csv")
 
+	# here is a snapshot of our variables:
+
+		#	m1
+		#	m2
+		#	consumerSentiment
+		#	inflation
+		#	imports
+		#	oilPrices
+		#	ppi
+		#	exports
+		#	cpi
+		#	unemploymentRate
+		#	fedFunds
+		#	capUtilization
+		#	sp_500Dividends
+		#	nasdaq
+		#	nyse
+		#	sp_500
+		#	gdp_us
+
 # install.packages() the following packages, run this on the terminal
+	
+	# ggplot2
+	# forecast
+	# astsa
+	# car
+	# MTS
 
 # install.packages("ggplot2")
 # install.packages("forecast")
@@ -10,16 +36,13 @@
 # install.packages("car")
 # install.packages("MTS")
 
+# load the packages
 
-#what are the ones that kim has?
-
-
-# loading libraries
-
-
-	require(forecast)
-	require(astsa)
-	require(ts)
+require(ggplot2)
+require(forecast)
+require(astsa)
+require(car)
+require(MTS)
 
 # outputting data head and structure
 	
@@ -29,6 +52,7 @@
 # assigning data column to variable container
 	
 	gdp <- dataMaster$gdp_us
+	gdp
 
 # printing string and mean of gdp
 	
@@ -54,7 +78,15 @@
 	nyse <- ts(dataMaster$nyse, start=c(1995, 1), freq=12)
 	sp_500 <- ts(dataMaster$sp_500, start=c(1995, 1), freq=12)
 	gdp_us <- ts((dataMaster$gdp_us)*(dataMaster$trillion), start=c(1995, 1), freq=12)
+
+# printing some data	
+
+	print("Here are S&P 500s values for 1995-2015! ---------------------------------------------------")
+	sp_500
 	
+	print("Here are nasdaq values for 1995-2015! ---------------------------------------------------")
+	nasdaq
+
 	dataMaster_df <- data.frame(m1, m2, consumerSentiment, imports, inflation, oilPrices, ppi, exports, cpi, unemploymentRate, fedFunds, capUtilization , sp_500Dividends, nasdaq, nyse, sp_500, gdp_us)
 
 	str(dataMaster_df)
@@ -87,14 +119,20 @@
 	auto.arima(dataMaster$sp_500)
 	auto.arima(dataMaster$sp_500Dividends)
 
-# acf
-# pacf
+# what are these things and how are they relevant?
+
+	# acf
+	# pacf
+
+# LOOK UP: sarima()
 
 	sarima_nasdaq_model <- sarima(dataMaster$nasdaq, p = 1, q = 1, d = 2)
 
 		# p is autoregressive coefficient
 		# q is whether it's stationary or not
 		# d is moving average
+
+# LOOK UP: sarima.for()
 
 	# forecasting
 	sarima.for(dataMaster$nasdaq, n.ahead = 12, p = 1, q = 1, d = 2)
@@ -103,4 +141,14 @@
 	
 # r-squared is to regression just as aic (akaine information criterion) is to time-series
 
-	apca(dataMaster_df)
+print(" ")
+print("now we really don't know what the fuck we are doing")
+print(" ")
+
+	apca(dataMaster_df, m=3)
+
+	# what the hell is m=3?
+
+	# further action items
+	# learn ts(), lm(), summary(), arima(), 
+	# http://people.duke.edu/~rnau/411arim.htm
