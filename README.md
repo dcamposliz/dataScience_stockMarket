@@ -1,6 +1,8 @@
 # dataScience_stockMarket
 
-DATA IS F***G AWESOME
+DATA IS FUCKING AWESOME
+
+--
 
 This project studies the effect that economic indicators have on stock indices including the Nasdaq Composite Index, S&P 500 Index, and New York Stock Exchange Index.
 
@@ -10,7 +12,10 @@ This project uses R, HTML, CSS, and JavaScript.
 --
 --
 
+
 CONTEXT FOR THIS PROJECT
+
+--
 
 To understand this project, you should answer these questions for yourself:
 
@@ -133,6 +138,8 @@ https://cran.r-project.org/web/packages/MTS/MTS.pdf
 
 PROJECT PROCESS
 
+--
+
 - Finding similar existing projects to read & learn from
 
 - Collecing data
@@ -191,6 +198,27 @@ https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWf
 
 		- when the AIC value for the intercept is the smallest (with respect to other variables' AIC value), we stop dropping variables
 
+- Run a fuckload of models and do a bunch of tests until we find the best one
+
+- Do some kickass predictions and visualizations
+
+- Mount it all on the web
+
+
+--
+--
+
+
+MAYBE THIS IS OUR MODEL?
+
+--
+
+http://stackoverflow.com/questions/1714280/multivariate-time-series-modelling-in-r
+
+https://cran.r-project.org/web/views/TimeSeries.html
+
+https://cran.r-project.org/web/packages/MTS/MTS.pdf
+
 
 --
 --
@@ -198,6 +226,7 @@ https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWf
 
 GETTING THIS RUNNING ON YOUR SYSTEM
 
+--
 
 - Clone this project in your machine using Github
 
@@ -261,6 +290,8 @@ http://www.tecmint.com/useful-linux-commands-for-newbies/
 
 WHAT IS NEXT?
 
+--
+
 - Learn statistical models
 
 https://www3.nd.edu/~steve/Rcourse/Lecture7v1.pdf
@@ -298,16 +329,3 @@ https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
 - Visualizations:
 
 https://github.com/arnauddri/d3-stock
-
-
---
---
-
-
-MAYBE THIS IS OUR MODEL?
-
-http://stackoverflow.com/questions/1714280/multivariate-time-series-modelling-in-r
-
-https://cran.r-project.org/web/views/TimeSeries.html
-
-https://cran.r-project.org/web/packages/MTS/MTS.pdf
