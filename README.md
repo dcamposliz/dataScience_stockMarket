@@ -70,7 +70,9 @@ https://en.wikipedia.org/wiki/Real_analysis
 - What are multi variate forecasting methods?
 
 http://homepage.univie.ac.at/robert.kunst/prognos4.pdf
+
 http://www.robots.ox.ac.uk/~sjrob/Pubs/TechReport_PARG0803.pdf
+
 https://cran.r-project.org/web/packages/MTS/MTS.pdf
 
 
@@ -78,15 +80,24 @@ https://cran.r-project.org/web/packages/MTS/MTS.pdf
 
 The process to yield this project includes:
 
-	- Collecing data
-	- Cleaning / formatting data
-	- Fitting dependent and independent variables (data) into statistic models, using statistical tools with R
-		- T-test significance
-		- Confidence interval selection
-		- Backwards elimination of insignificant variables
-			- - when the p-value for the intercept is the largest (with respect to other variables' p-value), we stop dropping variables
-		- BIC Procedure
-			- when the AIC value for the intercept is the smallest (with respect to other variables' AIC value), we stop dropping variables
+- Collecing data
+
+- Cleaning / formatting data
+
+- Fitting dependent and independent variables (data) into statistic models, using statistical tools with R
+
+	- T test significance
+
+	- Confidence interval selection
+
+	- Backwards elimination of insignificant variables
+
+		- when the p-value for the intercept is the largest (with respect to other variables' p value), we stop dropping variables
+
+	- BIC Procedure
+
+		- when the AIC value for the intercept is the smallest (with respect to other variables' AIC value), we stop dropping variables
+
 
 --
 
