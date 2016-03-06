@@ -42,7 +42,7 @@ summary(fit.1)
         #   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
         #   
         #   Residual standard error: 344.3 on 238 degrees of freedom
-        #   Multiple R-squared:  0.8935,	Adjusted R-squared:  0.8876 
+        #   Multiple R-squared:  0.8935,    Adjusted R-squared:  0.8876 
         #   F-statistic: 153.5 on 13 and 238 DF,  p-value: < 2.2e-16
 
 #Drop variable with smallest |t-value| >> drop M2
@@ -115,7 +115,7 @@ summary(fit.1a)
         #   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
         #   
         #   Residual standard error: 343.7 on 239 degrees of freedom
-        #   Multiple R-squared:  0.8934,	Adjusted R-squared:  0.8881 
+        #   Multiple R-squared:  0.8934,    Adjusted R-squared:  0.8881 
         #   F-statistic: 166.9 on 12 and 239 DF,  p-value: < 2.2e-16
 
 #PPI has smallest |t-value| >> drop
@@ -179,7 +179,7 @@ Single term deletions
         #    ---
         #    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
         #     #    Residual standard error: 343.1 on 240 degrees of freedom
-        #    Multiple R-squared:  0.8933,	Adjusted R-squared:  0.8884 
+        #    Multiple R-squared:  0.8933,   Adjusted R-squared:  0.8884 
         #    F-statistic: 182.7 on 11 and 240 DF,  p-value: < 2.2e-16
 
 #Imports has smallest |t-value| >> drop Imports
@@ -240,7 +240,7 @@ gdp_us             8.512e+02  1.390e+02   6.126 3.65e-09 ***
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 342.5 on 241 degrees of freedom
-Multiple R-squared:  0.8932,	Adjusted R-squared:  0.8888 
+Multiple R-squared:  0.8932,    Adjusted R-squared:  0.8888 
 F-statistic: 201.6 on 10 and 241 DF,  p-value: < 2.2e-16
 
 #Oil Prices has smallest |t-value| >> drop Oil Prices
@@ -297,7 +297,7 @@ gdp_us             8.770e+02  1.391e+02   6.306 1.35e-09 ***
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 344.4 on 242 degrees of freedom
-Multiple R-squared:  0.8916,	Adjusted R-squared:  0.8876 
+Multiple R-squared:  0.8916,    Adjusted R-squared:  0.8876 
 F-statistic: 221.1 on 9 and 242 DF,  p-value: < 2.2e-16
 
 #All p-values are < 0.01 so all terms are significant, do not need to drop anymore

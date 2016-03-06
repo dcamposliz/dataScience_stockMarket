@@ -1,7 +1,12 @@
 # dataScience_stockMarket
 
+This project studies the effect that economic indicators have on stock indices including the Nasdaq Composite Index, S&P 500 Index, and New York Stock Exchange Index.
 
- - Before taking on this project, you should answer these questions for yourself:
+This project uses R, HTML, CSS, and JavaScript.
+
+
+To understand this project, you should answer these questions for yourself:
+
 	- Do I like data, statistics, probability?
 	- Why?
 	- What is the mean?
@@ -12,19 +17,25 @@
 	- What is CHI-SQUARED value?
 	- What is a confidence interval?
 	- What is level?
-	- What is a quantile?  https://en.wikipedia.org/wiki/Quantile
+	- What is a quantile?  
+		- https://en.wikipedia.org/wiki/Quantile
 	- What is a percentile?
 	- What is the central limit theorem?
 	- What is R?
-	- What is time-series?  https://en.wikipedia.org/wiki/Time_series
-	- What is distributed lag?  https://en.wikipedia.org/wiki/Distributed_lag
+	- What is time-series?  
+		- https://en.wikipedia.org/wiki/Time_series
+	- What is distributed lag?  
+	 	- https://en.wikipedia.org/wiki/Distributed_lag
 	- What is auto-regressive?
-	- What is moving average?  https://en.wikipedia.org/wiki/Moving_average
-	- What is auto-correlation?  https://en.wikipedia.org/wiki/Autocorrelation
+	- What is moving average?  
+		- https://en.wikipedia.org/wiki/Moving_average
+	- What is auto-correlation?  
+	 	- https://en.wikipedia.org/wiki/Autocorrelation
 	- What is exponential smoothing?
 	- What is ACF?
 	- What is PACF?
-	- What is real analysis?  https://en.wikipedia.org/wiki/Real_analysis
+	- What is real analysis?  
+		- https://en.wikipedia.org/wiki/Real_analysis
 	- What is multi-variate time-series?
 	- What are multi-variate forecasting methods?
 		- http://homepage.univie.ac.at/robert.kunst/prognos4.pdf
@@ -33,26 +44,17 @@
 
 --
 
-PROCESS (more or less)
+The process to yield this project includes:
 
-	 - collect data
-	 - clean data
-
-	 STASTITICAL PROCESS
-
-	  - we are trying to fit a statistical model that best fits using four different statistical tools
-
-	  TOOLS
-
-	  	t-test significance
-
-	  	confidence interval selection
-
-	  	backwards elimination of insignificant variables
-
-	  	BIC Procedure
-
-	  	when the intercept value for AIC of the fit model is the smallest, you are done using drop1()
+	- Collecing data
+	- Cleaning / formatting data
+	- Fitting dependent and independent variables (data) into statistic models, using statistical tools with R
+		- T-test significance
+		- Confidence interval selection
+		- Backwards elimination of insignificant variables
+			- - when the p-value for the intercept is the largest (with respect to other variables' p-value), we stop dropping variables
+		- BIC Procedure
+			- when the AIC value for the intercept is the smallest (with respect to other variables' AIC value), we stop dropping variables
 
 --
 

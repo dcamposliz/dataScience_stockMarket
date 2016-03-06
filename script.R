@@ -29,6 +29,7 @@
 	# astsa
 	# car
 	# MTS
+	# plm
 
 # install.packages("ggplot2")
 # install.packages("forecast")
@@ -43,6 +44,7 @@ require(forecast)
 require(astsa)
 require(car)
 require(MTS)
+require(plm)
 
 # outputting data head and structure
 	
@@ -56,7 +58,6 @@ require(MTS)
 
 # printing string and mean of gdp
 	
-	print("This is the average GDP of the US from years 1995 to 2015 ---------------------------------------------------")
 	mean(gdp)
 
 # running ts function on data column, with start paramenter, and frequency
@@ -152,11 +153,118 @@ require(MTS)
 
 	fit_nasdaq <- fit_nasdaq_7
 
+	# let's get the confidence intervals for fit_nasdaq
+
 	confint(fit_nasdaq)
 
-# NOW WE ARE DEVELOPING A MODEL FOR THE sp_500
+#####
+	
+	# we're plotting to 
 
-	fit_sp_500_1 <- lm(sp_500 ~ ., data = dataMaster_df)
-	summary(fit_sp_500_1)
-	drop1(fit_sp_500_1, k=log(n))
+	plot(fit_nasdaq)
+
+	### if we check our Rplot.pdf file, we see a bunch of residual things :D
+
+	# LEARN RESIDUAL DIAGNOSTICS
+
+	# we should be able to explain these to people w little to no understanding of stats
+
+#####
+
+	# Next we will do the linear fit for the S & P 500
+	# This time we will use the BIC Method
+	# We will also be using dot notation for the initial fit
+	# The dot represents every variable in the file
+
+		fit_sp_500_1 <- lm(sp_500 ~ ., data = dataMaster_df)
+		summary(fit_sp_500_1)
+
+	# BIC Method
+		
+		n <- nrow(dataMaster_df)
+		drop1(fit_sp_500_1, k=log(n))
+
+	# Using the BIC method, we will find and eliminate the variable with the lowest AIC value 
+	
+	# cpi has the lowest AIC value, cpi will be dropped
+		fit_sp_500_2 <- lm(sp_500 ~ . - cpi,  data = dataMaster_df)
+		summary(fit_sp_500_2)
+		drop1(fit_sp_500_2, k=log(n))
+
+	# m2 has the lowest AIC value and will be dropped
+		fit_sp_500_3 <- lm(sp_500 ~ . - cpi - m2, data = dataMaster_df)
+		summary(fit_sp_500_3)
+		drop1(fit_sp_500_3, k=log(n))
+
+	# ppi has the lowest AIC value and will be dropped
+		fit_sp_500_4 <- lm(sp_500 ~ . - cpi - m2 - ppi, data = dataMaster_df)
+		summary(fit_sp_500_4)
+		drop1(fit_sp_500_4, k=log(n))
+
+	# customerSentiment has the lowest AIC value and will be dropped
+		fit_sp_500_5 <- lm(sp_500 ~ . - cpi - m2 - ppi - consumerSentiment, data = dataMaster_df)
+		summary(fit_sp_500_5)
+		drop1(fit_sp_500_5, k=log(n))
+
+	# inflation is the next variable with the lowest AIC value, so it will be dropped
+		fit_sp_500_6 <- lm(sp_500 ~ . - cpi - m2 - ppi - consumerSentiment - inflation, data = dataMaster_df)
+		summary(fit_sp_500_6)
+		drop1(fit_sp_500_6, k=log(n))
+
+	# then we drop the gdp_us
+		fit_sp_500_7 <- lm(sp_500 ~ . - cpi - m2 - ppi - consumerSentiment - inflation - gdp_us, data = dataMaster_df)
+		summary(fit_sp_500_7)
+		drop1(fit_sp_500_7, k=log(n))
+
+
+	# it looks like we have a model for nasdaq, as far as ml() is concerned
+
+	fit_sp_500 <- fit_sp_500_7
+	confint(fit_sp_500)
+	plot(fit_sp_500)
+
+
+# Last we will analyze the nyse 
+# linear model on nyse as function of every economic indicator
+
+		fit_nyse_1 <- lm(nyse ~ ., data = dataMaster_df)
+		summary(fit_nyse_1)
+
+	# We will use backwards elimination for the nyse
+	# According to the summary, cpi has the highest p value
+	# cpi will be dropped
+
+		fit_nyse_2<- lm(nyse ~ . - cpi, data = dataMaster_df)
+		summary(fit_nyse_2)
+
+	# According to the summary, consumerSentiment has the highest p value and will be dropped
+
+		fit_nyse_3<- lm(nyse ~ . - cpi - consumerSentiment, data = dataMaster_df)
+		summary(fit_nyse_3)
+
+	# According to the summary, sp_500 dividends have the highest p value and will be dropped
+
+		fit_nyse_4<- lm(nyse ~ . - cpi - consumerSentiment - sp_500Dividends, data = dataMaster_df)
+		summary(fit_nyse_4)
+
+	# According to the summary, imports have the highest p value and will be dropped
+
+		fit_nyse_5<- lm(nyse ~ . - cpi - consumerSentiment - sp_500Dividends - imports, data = dataMaster_df)
+		summary(fit_nyse_5)
+
+	# According to the summary, US GDP has the highest p value and will be removed
+
+		fit_nyse_6<- lm(nyse ~ . - cpi - consumerSentiment - sp_500Dividends - imports - gdp_us, data = dataMaster_df)
+		summary(fit_nyse_6)
+
+	# According to the summary, inflation has the highest p value and will be dropped
+
+		fit_nyse_7<- lm(nyse ~ . - cpi - consumerSentiment - sp_500Dividends - imports - gdp_us - inflation, data = dataMaster_df)
+		summary(fit_nyse_7)
+
+	# it looks like we have a model for nyse, as far as ml() is concerned
+
+	fit_nyse <- fit_nyse_7
+	confint(fit_nyse)
+	plot(fit_nyse)
 	

@@ -1,0 +1,27 @@
+what is 
+
+	time series
+
+		sequence of data points made:
+
+			1) over continuos time interval
+			2) out of successive measurements across that interval
+			3) using equal spacing between every two consecutive measurements
+			4) with each time unit having at most one data point
+
+		examples include:
+			ocean tides
+			counts of sunspots
+			daily closing value of the Dow Jones Industrial Average
+
+		time series forecasting is the use of a model to predict future values based on previously observed values - while regression analysis is often employed in such a way as to test theories that the current 
+
+	ts()
+		used to create time-series objects.
+	
+	lm()
+
+	summary()
+
+___
+
