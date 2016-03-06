@@ -7,73 +7,71 @@ This project uses R, HTML, CSS, and JavaScript.
 
 To understand this project, you should answer these questions for yourself:
 
-	- Do I like data, statistics, probability?
+- Do I like data, statistics, probability?
 
-	- Why?
+- Why?
 
-	- What is the mean?
+- What is the mean?
 
-	- What is variance?
+- What is variance?
 
-	- What is standard error?
+- What is standard error?
 
-	- What is T value?
+- What is T value?
 
-	- What is Z value?
+- What is Z value?
 
-	- What is CHI-SQUARED value?
+- What is CHI SQUARED value?
 
-	- What is a confidence interval?
+- What is a confidence interval?
 
-	- What is level?
+- What is level?
 
-	- What is a quantile?  
+- What is a quantile?  
 
 https://en.wikipedia.org/wiki/Quantile
 
-	- What is a percentile?
+- What is a percentile?
 
-	- What is the central limit theorem?
+- What is the central limit theorem?
 
-	- What is R?
+- What is R?
 
-	- What is time-series?  
+- What is time series?  
 
-		https://en.wikipedia.org/wiki/Time_series
+https://en.wikipedia.org/wiki/Time_series
 
-	- What is distributed lag?  
+- What is distributed lag?  
 
-	 	https://en.wikipedia.org/wiki/Distributed_lag
+https://en.wikipedia.org/wiki/Distributed_lag
 
-	- What is auto-regressive?
+- What is auto regressive?
 
-	- What is moving average?  
+- What is moving average?  
 
-		https://en.wikipedia.org/wiki/Moving_average
+https://en.wikipedia.org/wiki/Moving_average
 
-	- What is auto-correlation?  
+- What is auto correlation?  
 
-	 	https://en.wikipedia.org/wiki/Autocorrelation
+https://en.wikipedia.org/wiki/Autocorrelation
 
-	- What is exponential smoothing?
+- What is exponential smoothing?
 
-	- What is ACF?
+- What is ACF?
 
-	- What is PACF?
+- What is PACF?
 
-	- What is real analysis?  
+- What is real analysis?  
 
-		https://en.wikipedia.org/wiki/Real_analysis
+https://en.wikipedia.org/wiki/Real_analysis
 
-	- What is multi-variate time-series?
+- What is multi variate time series?
 
-	- What are multi-variate forecasting methods?
+- What are multi variate forecasting methods?
 
-		- http://homepage.univie.ac.at/robert.kunst/prognos4.pdf
-
-		- http://www.robots.ox.ac.uk/~sjrob/Pubs/TechReport_PARG0803.pdf
-
-		https://cran.r-project.org/web/packages/MTS/MTS.pdf
+http://homepage.univie.ac.at/robert.kunst/prognos4.pdf
+http://www.robots.ox.ac.uk/~sjrob/Pubs/TechReport_PARG0803.pdf
+https://cran.r-project.org/web/packages/MTS/MTS.pdf
 
 
 --
