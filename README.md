@@ -78,13 +78,53 @@ https://cran.r-project.org/web/packages/MTS/MTS.pdf
 
 --
 
-The process to yield this project includes:
+The process to this project includes:
+
+- Finding similar existing projects to read & learn from
 
 - Collecing data
 
+- Selecting variables to play with
+
+	- m1
+
+	- m2
+
+	- consumerSentiment
+
+	- inflation
+
+	- imports
+
+	- oilPrices
+
+	- ppi
+
+	- exports
+
+	- cpi
+
+	- unemploymentRate
+
+	- fedFunds
+
+	- capUtilization
+
+	- sp_500Dividends
+
+	- nasdaq
+
+	- nyse
+
+	- sp_500
+
+	- gdp_us
+
 - Cleaning / formatting data
 
-- Fitting dependent and independent variables (data) into statistic models, using statistical tools with R
+https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWfolM/edit?usp=sharing
+
+- Fitting dependent and independent variables (data) into statistic models, using statistical tools in R
 
 	- T test significance
 
@@ -101,16 +141,19 @@ The process to yield this project includes:
 
 --
 
- - Clone this project in your machine using Github
-	- You gotta google the "how to" for this one :)
+Clone this project in your machine using Github
+
+- You gotta google the "how to" for this one :)
 
 --
 
- - Install R on Ubuntu 14.04. Open your terminal, and enter the following commands:
-		sudo add-apt-repository ppa:marutter/rrutter
-		sudo apt-get update
-		sudo apt-get install r-base r-base-dev
- - source: http://askubuntu.com/questions/496788/you-have-held-broken-package-while-trying-to-install-r
+- Install R on Ubuntu 14.04. Open your terminal, and enter the following commands:
+		
+	sudo add-apt-repository ppa:marutter/rrutter
+	sudo apt-get update
+	sudo apt-get install r-base r-base-dev
+
+- source: http://askubuntu.com/questions/496788/you-have-held-broken-package-while-trying-to-install-r
 
 --
 
@@ -158,32 +201,47 @@ Make contributions to this project :)
 
 WHAT IS NEXT?
 
- - LEARN STATISTICAL MODELS:
- 	- https://www3.nd.edu/~steve/Rcourse/Lecture7v1.pdf
- 	- http://arxiv.org/pdf/1302.6613.pdf
- 	- 
+- Learn statistical models
 
- - pulling stock data in "real-time"
- 	- http://finance.yahoo.com/
- 	- http://finance.yahoo.com/q?s=^ixic
- 	- http://finance.yahoo.com/q?s=^nya
- 	- http://finance.yahoo.com/q?s=^gspc
- 	- https://www.youtube.com/watch?v=sXyXciMYZZw
+https://www3.nd.edu/~steve/Rcourse/Lecture7v1.pdf
 
- - HOW TO DO IT:
- 	- http://stackoverflow.com/questions/10040954/alternative-to-google-finance-api
- 	- http://stackoverflow.com/questions/417453/best-most-comprehensive-api-for-stocks-financial-data
- 	- https://www.quandl.com/blog/api-for-stock-data
- 	- https://github.com/hongtaocai/googlefinance
+http://arxiv.org/pdf/1302.6613.pdf
 
- 	Awesome:
- 	- https://github.com/markitondemand/DataApis/blob/master/MarkitQuoteServiceSample.js#L46
- 	- http://dev.markitondemand.com/MODApis/
- 	- https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+- Pull stock data in "real-time"
 
- 	Visualizations:
- 	- https://github.com/arnauddri/d3-stock
+http://finance.yahoo.com/
 
- 	Plot to work on ubuntu:
- 	- http://ubuntuforums.org/showthread.php?t=317490
- 	- http://stackoverflow.com/questions/6838851/how-to-copy-plots-in-r-when-working-in-ubuntu
+http://finance.yahoo.com/q?s=^ixic
+
+http://finance.yahoo.com/q?s=^nya
+
+http://finance.yahoo.com/q?s=^gspc
+
+https://www.youtube.com/watch?v=sXyXciMYZZw
+
+http://stackoverflow.com/questions/10040954/alternative-to-google-finance-api
+
+http://stackoverflow.com/questions/417453/best-most-comprehensive-api-for-stocks-financial-data
+
+https://www.quandl.com/blog/api-for-stock-data
+
+https://github.com/hongtaocai/googlefinance
+
+- awesome shit
+
+https://github.com/markitondemand/DataApis/blob/master/MarkitQuoteServiceSample.js#L46
+
+http://dev.markitondemand.com/MODApis/
+
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+
+- Visualizations:
+
+https://github.com/arnauddri/d3-stock
+
+-Plot to work on ubuntu:
+
+http://ubuntuforums.org/showthread.php?t=317490
+
+http://stackoverflow.com/questions/6838851/how-to-copy-plots-in-r-when-working-in-ubuntu
+
