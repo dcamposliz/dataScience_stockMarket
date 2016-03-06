@@ -29,7 +29,7 @@ To understand this project, you should answer these questions for yourself:
 
 	- What is a quantile?  
 
-	https://en.wikipedia.org/wiki/Quantile
+https://en.wikipedia.org/wiki/Quantile
 
 	- What is a percentile?
 
