@@ -8,39 +8,73 @@ This project uses R, HTML, CSS, and JavaScript.
 To understand this project, you should answer these questions for yourself:
 
 	- Do I like data, statistics, probability?
+	
 	- Why?
+	
 	- What is the mean?
+	
 	- What is variance?
+	
 	- What is standard error?
+	
 	- What is T value?
+	
 	- What is Z value?
+	
 	- What is CHI-SQUARED value?
+	
 	- What is a confidence interval?
+	
 	- What is level?
+	
 	- What is a quantile?  
+	
 		- https://en.wikipedia.org/wiki/Quantile
+		
 	- What is a percentile?
+	
 	- What is the central limit theorem?
+	
 	- What is R?
+	
 	- What is time-series?  
+	
 		- https://en.wikipedia.org/wiki/Time_series
+		
 	- What is distributed lag?  
+	
 	 	- https://en.wikipedia.org/wiki/Distributed_lag
+	 	
 	- What is auto-regressive?
+	
 	- What is moving average?  
+	
 		- https://en.wikipedia.org/wiki/Moving_average
+		
 	- What is auto-correlation?  
+	
 	 	- https://en.wikipedia.org/wiki/Autocorrelation
+	 	
 	- What is exponential smoothing?
+	
 	- What is ACF?
+	
 	- What is PACF?
+	
 	- What is real analysis?  
+	
 		- https://en.wikipedia.org/wiki/Real_analysis
+		
 	- What is multi-variate time-series?
+	
 	- What are multi-variate forecasting methods?
+	
 		- http://homepage.univie.ac.at/robert.kunst/prognos4.pdf
+		
 		- http://www.robots.ox.ac.uk/~sjrob/Pubs/TechReport_PARG0803.pdf
+		
 		- https://cran.r-project.org/web/packages/MTS/MTS.pdf
+		
 
 --
 
