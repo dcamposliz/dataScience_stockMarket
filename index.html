@@ -2,101 +2,242 @@
 <meta charset="utf-8">
 
 <head>
-    <style> /* set the CSS */
-        body { font: 12px Arial;}
-
-        path { 
-            stroke: steelblue;
-            stroke-width: 2;
-            fill: none;
-        }
-
-        .axis path,
-        .axis line {
-            fill: none;
-            stroke: grey;
-            stroke-width: 1;
-            shape-rendering: crispEdges;
-        }
-    </style>
+    <title>dataScience_stockMarket</title>
+    <link rel="stylesheet" href="styles.css">
     <!-- load the d3.js library -->    
     <script src="http://d3js.org/d3.v3.min.js"></script>
 </head>
 
 <body align="center">
+<!-- nasdaq index -->
+    <div>
+        <h1>
+            nasdaq composite index
+        </h1>
+        <h4>
+            1995-2015
+        </h4>
 
-    <h1>
-        nasdaq composite index index
-    </h1>
-    <h4>
-        1995-2015
-    </h4>
+        <script>
+            // Set the dimensions of the canvas / graph
+            var margin = {top: 30, right: 20, bottom: 30, left: 50},
+                width = 600 - margin.left - margin.right,
+                height = 270 - margin.top - margin.bottom;
 
-    <script>
-        // Set the dimensions of the canvas / graph
-        var margin = {top: 30, right: 20, bottom: 30, left: 50},
-            width = 600 - margin.left - margin.right,
-            height = 270 - margin.top - margin.bottom;
+            // Parse the date / time
+            var parseDate = d3.time.format("%d-%b-%y").parse;
 
-        // Parse the date / time
-        var parseDate = d3.time.format("%d-%b-%y").parse;
+            // Set the ranges
+            var x = d3.time.scale().range([0, width]);
+            var y = d3.scale.linear().range([height, 0]);
 
-        // Set the ranges
-        var x = d3.time.scale().range([0, width]);
-        var y = d3.scale.linear().range([height, 0]);
+            // Define the axes
+            var xAxis = d3.svg.axis().scale(x)
+                .orient("bottom").ticks(5);
 
-        // Define the axes
-        var xAxis = d3.svg.axis().scale(x)
-            .orient("bottom").ticks(5);
+            var yAxis = d3.svg.axis().scale(y)
+                .orient("left").ticks(5);
 
-        var yAxis = d3.svg.axis().scale(y)
-            .orient("left").ticks(5);
+            // Define the line
+            var valueline = d3.svg.line()
+                .x(function(d) { return x(d.date); })
+                .y(function(d) { return y(d.close); });
+                
+            // Adds the svg canvas
+            var svg = d3.select("body")
+                .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                    .attr("transform", 
+                          "translate(" + margin.left + "," + margin.top + ")");
 
-        // Define the line
-        var valueline = d3.svg.line()
-            .x(function(d) { return x(d.date); })
-            .y(function(d) { return y(d.close); });
-            
-        // Adds the svg canvas
-        var svg = d3.select("body")
-            .append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-                .attr("transform", 
-                      "translate(" + margin.left + "," + margin.top + ")");
+            // Get the data
+            d3.csv("data_d3js/nasdaq_d3js.csv", function(error, data) {
+                data.forEach(function(d) {
+                    d.date = parseDate(d.date);
+                    d.close = +d.close;
+                });
 
-        // Get the data
-        d3.csv("data_d3js/nasdaq_d3js.csv", function(error, data) {
-            data.forEach(function(d) {
-                d.date = parseDate(d.date);
-                d.close = +d.close;
+                // Scale the range of the data
+                x.domain(d3.extent(data, function(d) { return d.date; }));
+                y.domain([0, d3.max(data, function(d) { return d.close; })]);
+
+                // Add the valueline path.
+                svg.append("path")
+                    .attr("class", "line")
+                    .attr("d", valueline(data));
+
+                // Add the X Axis
+                svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis);
+
+                // Add the Y Axis
+                svg.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis);
             });
-
-            // Scale the range of the data
-            x.domain(d3.extent(data, function(d) { return d.date; }));
-            y.domain([0, d3.max(data, function(d) { return d.close; })]);
-
-            // Add the valueline path.
-            svg.append("path")
-                .attr("class", "line")
-                .attr("d", valueline(data));
-
-            // Add the X Axis
-            svg.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis);
-
-            // Add the Y Axis
-            svg.append("g")
-                .attr("class", "y axis")
-                .call(yAxis);
-
-        });
-    </script>
+        </script>
+    </div>
 
     <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+<!-- s&p 500 index -->
+    <div>
+        <h1>
+            s&amp;p 500 index
+        </h1>
+        <h4>
+            1995-2015
+        </h4>
+
+        <script>
+            // Set the dimensions of the canvas / graph
+            var margin_2 = {top: 30, right: 20, bottom: 30, left: 50},
+                width_2 = 600 - margin_2.left - margin_2.right,
+                height_2 = 270 - margin_2.top - margin_2.bottom;
+
+            // Parse the date / time
+            var parseDate_2 = d3.time.format("%d-%b-%y").parse;
+
+            // Set the ranges
+            var x_2 = d3.time.scale().range([0, width_2]);
+            var y_2 = d3.scale.linear().range([height_2, 0]);
+
+            // Define the axes
+            var xAxis_2 = d3.svg.axis().scale(x_2)
+                .orient("bottom").ticks(5);
+
+            var yAxis_2 = d3.svg.axis().scale(y_2)
+                .orient("left").ticks(5);
+
+            // Define the line
+            var valueline_2 = d3.svg.line()
+                .x(function(d) { return x(d.date); })
+                .y(function(d) { return y(d.close); });
+                
+            // Adds the svg canvas
+            var svg_2 = d3.select("body")
+                .append("svg")
+                    .attr("width", width_2 + margin_2.left + margin_2.right)
+                    .attr("height", height_2 + margin_2.top + margin_2.bottom)
+                .append("g")
+                    .attr("transform", 
+                          "translate(" + margin_2.left + "," + margin_2.top + ")");
+
+            // Get the data
+            d3.csv("data_d3js/sp_500_d3js.csv", function(error, data_2) {
+                data_2.forEach(function(d) {
+                    d.date = parseDate(d.date);
+                    d.close = +d.close;
+                });
+
+                // Scale the range of the data
+                x_2.domain(d3.extent(data_2, function(d) { return d.date; }));
+                y_2.domain([0, d3.max(data_2, function(d) { return d.close; })]);
+
+                // Add the valueline path.
+                svg_2.append("path")
+                    .attr("class", "line")
+                    .attr("d", valueline(data_2));
+
+                // Add the X Axis
+                svg_2.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height_2 + ")")
+                    .call(xAxis_2);
+
+                // Add the Y Axis
+                svg_2.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis_2);
+
+            });
+        </script>
+    </div>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+<!-- nyse index -->
+    <div>
+        <h1>
+            nyse index
+        </h1>
+        <h4>
+            1995-2015
+        </h4>
+
+        <script>
+            // Set the dimensions of the canvas / graph
+            var margin_3 = {top: 30, right: 20, bottom: 30, left: 50},
+                width_3 = 600 - margin_3.left - margin_3.right,
+                height_3 = 270 - margin_3.top - margin_3.bottom;
+
+            // Parse the date / time
+            var parseDate_3 = d3.time.format("%d-%b-%y").parse;
+
+            // Set the ranges
+            var x_3 = d3.time.scale().range([0, width_3]);
+            var y_3 = d3.scale.linear().range([height_3, 0]);
+
+            // Define the axes
+            var xAxis_3 = d3.svg.axis().scale(x_3)
+                .orient("bottom").ticks(5);
+
+            var yAxis_3 = d3.svg.axis().scale(y_3)
+                .orient("left").ticks(5);
+
+            // Define the line
+            var valueline_3 = d3.svg.line()
+                .x(function(d) { return x(d.date); })
+                .y(function(d) { return y(d.close); });
+                
+            // Adds the svg canvas
+            var svg_3 = d3.select("body")
+                .append("svg")
+                    .attr("width", width_3 + margin_3.left + margin_3.right)
+                    .attr("height", height_3 + margin_3.top + margin_3.bottom)
+                .append("g")
+                    .attr("transform", 
+                          "translate(" + margin_3.left + "," + margin_3.top + ")");
+
+            // Get the data
+            d3.csv("data_d3js/nyse_d3js.csv", function(error, data_3) {
+                data_3.forEach(function(d) {
+                    d.date = parseDate(d.date);
+                    d.close = +d.close;
+                });
+
+                // Scale the range of the data
+                x_3.domain(d3.extent(data_3, function(d) { return d.date; }));
+                y_3.domain([0, d3.max(data_3, function(d) { return d.close; })]);
+
+                // Add the valueline path.
+                svg_3.append("path")
+                    .attr("class", "line")
+                    .attr("d", valueline(data_3));
+
+                // Add the X Axis
+                svg_3.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height_3 + ")")
+                    .call(xAxis);
+
+                // Add the Y Axis
+                svg_3.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis_3);
+            });
+        </script>
+    </div>
 
     <p>yay, motherfuckers</p>
 </body>

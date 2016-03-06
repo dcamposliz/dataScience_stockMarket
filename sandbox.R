@@ -1,101 +1,212 @@
-# running ts function on data column, with start paramenter, and frequency
-	
-	m1 <- ts((dataMaster$m1)*(dataMaster$billion), start=c(1995, 1), freq=12)
-	m2 <- ts((dataMaster$m2)*(dataMaster$billion), start=c(1995, 1), freq=12)
-	consumerSentiment <- ts(dataMaster$consumerSentiment, start=c(1995, 1), freq=12)
-	imports <- ts(dataMaster$imports, start=c(1995, 1), freq=12)
-	inflation <- ts(dataMaster$inflation, start=c(1995, 1), freq=12)
-	oilPrices <- ts(dataMaster$oilPrices, start=c(1995, 1), freq=12)
-	ppi <- ts(dataMaster$ppi, start=c(1995, 1), freq=12)
-	exports <- ts(dataMaster$exports, start=c(1995, 1), freq=12)
-	cpi <- ts(dataMaster$cpi, start=c(1995, 1), freq=12)
-	unemploymentRate <- ts(dataMaster$unemploymentRate, start=c(1995, 1), freq=12)
-	fedFunds <- ts(dataMaster$fedFunds, start=c(1995, 1), freq=12)
-	capUtilization <- ts(dataMaster$capUtilization, start=c(1995, 1), freq=12)
-	sp_500Dividends <- ts(dataMaster$sp_500Dividends, start=c(1995, 1), freq=12)
-	nasdaq <- ts(dataMaster$nasdaq, start=c(1995, 1), freq=12)
-	nyse <- ts(dataMaster$nyse, start=c(1995, 1), freq=12)
-	sp_500 <- ts(dataMaster$sp_500, start=c(1995, 1), freq=12)
-	gdp_us <- ts((dataMaster$gdp_us)*(dataMaster$trillion), start=c(1995, 1), freq=12)
 
-	plot.ts(nasdaq)
+		# what is auto.arima? some witchcraft?
+			
+			# this is auto-regression integrating moving average
 
-# printing some data	
+			auto.arima(dataMaster$nasdaq)
+			auto.arima(dataMaster$nyse)
+			auto.arima(dataMaster$sp_500)
+			auto.arima(dataMaster$sp_500Dividends)
 
-	print("Here are S&P 500s values for 1995-2015! ---------------------------------------------------")
-	sp_500
-	
-	print("Here are nasdaq values for 1995-2015! ---------------------------------------------------")
-	nasdaq
+		# what are these things and how are they relevant?
 
-	dataMaster_df <- data.frame(m1, m2, consumerSentiment, imports, inflation, oilPrices, ppi, exports, cpi, unemploymentRate, fedFunds, capUtilization , sp_500Dividends, nasdaq, nyse, sp_500, gdp_us)
+			# acf
+			# pacf
 
-	str(dataMaster_df)
+		# LOOK UP: sarima()
 
-#linear regression models on stock indices as a function of economic indicators
+			sarima_nasdaq_model <- sarima(dataMaster$nasdaq, p = 1, q = 1, d = 2)
 
-	fit_nasdaq_0 <- lm(nasdaq ~ ., data = dataMaster_df)
+				# p is autoregressive coefficient
+				# q is whether it's stationary or not
+				# d is moving average
+
+		# LOOK UP: sarima.for()
+
+			# forecasting
+			sarima.for(dataMaster$nasdaq, n.ahead = 12, p = 1, q = 1, d = 2)
+
+			#multi-variate time-series is cool
+			
+		# r-squared is to regression just as aic (akaine information criterion) is to time-series
+
+		print(" ")
+		print("now we really don't know what the fuck we are doing")
+		print(" ")
+
+			apca(dataMaster_df, m=3)
+
+			# what the hell is m=3?
+
+			# further action items
+			# learn ts(), lm(), summary(), arima(), 
+			# http://people.duke.edu/~rnau/411arim.htm
+			
+			print("some quick summary")
+			summary(fit_nasdaq_0)
 
 
-	fit_nasdaq <- lm(nasdaq ~ m1 + m2 + consumerSentiment + inflation + imports + oilPrices + ppi + exports + cpi + unemploymentRate + fedFunds + capUtilization + gdp_us, data = dataMaster_df)
-	fit_nyse <- lm(nyse ~ m1 + m2 + consumerSentiment + inflation + imports + oilPrices + ppi + exports + cpi + unemploymentRate + fedFunds + capUtilization + gdp_us, data = dataMaster_df)
-	fit_sp_500 <- lm(sp_500 ~ m1 + m2 + consumerSentiment + inflation + imports + oilPrices + ppi + exports + cpi + unemploymentRate + fedFunds + capUtilization + gdp_us, data = dataMaster_df)
-	fit_sp_500Dividends <- lm(nasdaq ~ m1 + m2 + consumerSentiment + inflation + imports + oilPrices + ppi + exports + cpi + unemploymentRate + fedFunds + capUtilization + gdp_us + sp_500, data = dataMaster_df)
+#####################
+#####################
+#####################
+#####################
+#####################
+#####################
+#####################
+#####################
+#####################
+#####################
+#####################
+#####################
+#####################
 
-	summary(fit_nasdaq)
-	summary(fit_nyse)
-	summary(fit_sp_500)
-	summary(fit_sp_500Dividends)
 
-#confidence intervals
+	fit_nasdaq_2 <- lm(nasdaq ~ . - consumerSentiment, data = dataMaster_df)
+	summary(fit_nasdaq_2)
+		drop1(fit_nasdaq_2, k=log(n))
+		#gdp_us has smallest AIC so we drop it
+
+	fit_nasdaq_3 <- lm(nasdaq ~ . - consumerSentiment - gdp_us, data = dataMaster_df)
+	summary(fit_nasdaq_3)
+		drop1(fit_nasdaq_3, k=log(n))
+		#we drop ppi as it has smallest AIC
+
+	fit_nasdaq_4 <- lm(nasdaq ~ . - consumerSentiment - gdp_us - ppi, data = dataMaster_df)
+	summary(fit_nasdaq_4)
+		drop1(fit_nasdaq_4, k=log(n))
+		#we drop cpi as it has smallest AIC
+
+	fit_nasdaq_5 <- lm(nasdaq ~ . - consumerSentiment - gdp_us - ppi - cpi, data = dataMaster_df)	
+	summary(fit_nasdaq_5)
+		drop1(fit_nasdaq_5, k=log(n))
+		#we drop m2 as it has smallest AIC
+
+	fit_nasdaq_6 <- lm(nasdaq ~ . - consumerSentiment - gdp_us - ppi - cpi - m2, data = dataMaster_df)	
+	summary(fit_nasdaq_6)
+		drop1(fit_nasdaq_6, k=log(n))
+		#we drop inflation as it has smallest AIC
+
+	fit_nasdaq_7 <- lm(nasdaq ~ . - consumerSentiment - gdp_us - ppi - cpi - m2 - inflation, data = dataMaster_df)	
+	summary(fit_nasdaq_7)
+		drop1(fit_nasdaq_7, k=log(n))
+		#we drop inflation as it has smallest AIC
+
+	# it looks like we have a model for nasdaq, as far as ml() is concerned
+
+	fit_nasdaq <- fit_nasdaq_7
+
+	# let's get the confidence intervals for fit_nasdaq
 
 	confint(fit_nasdaq)
-	confint(fit_nyse)
+
+#####
+	
+	# we're plotting to 
+
+	plot(fit_nasdaq)
+
+	### if we check our Rplot.pdf file, we see a bunch of residual things :D
+
+	# LEARN RESIDUAL DIAGNOSTICS
+
+	# we should be able to explain these to people w little to no understanding of stats
+
+
+#####
+
+	# Next we will do the linear fit for the S & P 500
+	# This time we will use the BIC Method
+	# We will also be using dot notation for the initial fit
+	# The dot represents every variable in the file
+
+		fit_sp_500_1 <- lm(sp_500 ~ ., data = dataMaster_df)
+		summary(fit_sp_500_1)
+
+	# BIC Method
+		
+		n <- nrow(dataMaster_df)
+		drop1(fit_sp_500_1, k=log(n))
+
+	# Using the BIC method, we will find and eliminate the variable with the lowest AIC value 
+	
+	# cpi has the lowest AIC value, cpi will be dropped
+		fit_sp_500_2 <- lm(sp_500 ~ . - cpi,  data = dataMaster_df)
+		summary(fit_sp_500_2)
+		drop1(fit_sp_500_2, k=log(n))
+
+	# m2 has the lowest AIC value and will be dropped
+		fit_sp_500_3 <- lm(sp_500 ~ . - cpi - m2, data = dataMaster_df)
+		summary(fit_sp_500_3)
+		drop1(fit_sp_500_3, k=log(n))
+
+	# ppi has the lowest AIC value and will be dropped
+		fit_sp_500_4 <- lm(sp_500 ~ . - cpi - m2 - ppi, data = dataMaster_df)
+		summary(fit_sp_500_4)
+		drop1(fit_sp_500_4, k=log(n))
+
+	# customerSentiment has the lowest AIC value and will be dropped
+		fit_sp_500_5 <- lm(sp_500 ~ . - cpi - m2 - ppi - consumerSentiment, data = dataMaster_df)
+		summary(fit_sp_500_5)
+		drop1(fit_sp_500_5, k=log(n))
+
+	# inflation is the next variable with the lowest AIC value, so it will be dropped
+		fit_sp_500_6 <- lm(sp_500 ~ . - cpi - m2 - ppi - consumerSentiment - inflation, data = dataMaster_df)
+		summary(fit_sp_500_6)
+		drop1(fit_sp_500_6, k=log(n))
+
+	# then we drop the gdp_us
+		fit_sp_500_7 <- lm(sp_500 ~ . - cpi - m2 - ppi - consumerSentiment - inflation - gdp_us, data = dataMaster_df)
+		summary(fit_sp_500_7)
+		drop1(fit_sp_500_7, k=log(n))
+
+
+	# it looks like we have a model for nasdaq, as far as ml() is concerned
+
+	fit_sp_500 <- fit_sp_500_7
 	confint(fit_sp_500)
-	confint(fit_sp_500Dividends)
+	plot(fit_sp_500)
 
-# what is auto.arima? some witchcraft?
-	
-	# this is auto-regression integrating moving average
 
-	auto.arima(dataMaster$nasdaq)
-	auto.arima(dataMaster$nyse)
-	auto.arima(dataMaster$sp_500)
-	auto.arima(dataMaster$sp_500Dividends)
+# Last we will analyze the nyse 
+# linear model on nyse as function of every economic indicator
 
-# what are these things and how are they relevant?
+		fit_nyse_1 <- lm(nyse ~ ., data = dataMaster_df)
+		summary(fit_nyse_1)
 
-	# acf
-	# pacf
+	# We will use backwards elimination for the nyse
+	# According to the summary, cpi has the highest p value
+	# cpi will be dropped
 
-# LOOK UP: sarima()
+		fit_nyse_2<- lm(nyse ~ . - cpi, data = dataMaster_df)
+		summary(fit_nyse_2)
 
-	sarima_nasdaq_model <- sarima(dataMaster$nasdaq, p = 1, q = 1, d = 2)
+	# According to the summary, consumerSentiment has the highest p value and will be dropped
 
-		# p is autoregressive coefficient
-		# q is whether it's stationary or not
-		# d is moving average
+		fit_nyse_3<- lm(nyse ~ . - cpi - consumerSentiment, data = dataMaster_df)
+		summary(fit_nyse_3)
 
-# LOOK UP: sarima.for()
+	# According to the summary, sp_500 dividends have the highest p value and will be dropped
 
-	# forecasting
-	sarima.for(dataMaster$nasdaq, n.ahead = 12, p = 1, q = 1, d = 2)
+		fit_nyse_4<- lm(nyse ~ . - cpi - consumerSentiment - sp_500Dividends, data = dataMaster_df)
+		summary(fit_nyse_4)
 
-	#multi-variate time-series is cool
-	
-# r-squared is to regression just as aic (akaine information criterion) is to time-series
+	# According to the summary, imports have the highest p value and will be dropped
 
-print(" ")
-print("now we really don't know what the fuck we are doing")
-print(" ")
+		fit_nyse_5<- lm(nyse ~ . - cpi - consumerSentiment - sp_500Dividends - imports, data = dataMaster_df)
+		summary(fit_nyse_5)
 
-	apca(dataMaster_df, m=3)
+	# According to the summary, US GDP has the highest p value and will be removed
 
-	# what the hell is m=3?
+		fit_nyse_6<- lm(nyse ~ . - cpi - consumerSentiment - sp_500Dividends - imports - gdp_us, data = dataMaster_df)
+		summary(fit_nyse_6)
 
-	# further action items
-	# learn ts(), lm(), summary(), arima(), 
-	# http://people.duke.edu/~rnau/411arim.htm
-	
-	print("some quick summary")
-	summary(fit_nasdaq_0)
+	# According to the summary, inflation has the highest p value and will be dropped
+
+		fit_nyse_7<- lm(nyse ~ . - cpi - consumerSentiment - sp_500Dividends - imports - gdp_us - inflation, data = dataMaster_df)
+		summary(fit_nyse_7)
+
+	# it looks like we have a model for nyse, as far as ml() is concerned
+
+	fit_nyse <- fit_nyse_7
+	confint(fit_nyse)
+	plot(fit_nyse)

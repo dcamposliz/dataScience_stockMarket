@@ -195,6 +195,7 @@ https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWf
 --
 --
 
+
 GETTING THIS RUNNING ON YOUR SYSTEM
 
 
@@ -253,7 +254,10 @@ http://www.tecmint.com/useful-linux-commands-for-newbies/
 
 - Make contributions to this project :)
 
+
 --
+--
+
 
 WHAT IS NEXT?
 
@@ -283,7 +287,7 @@ https://www.quandl.com/blog/api-for-stock-data
 
 https://github.com/hongtaocai/googlefinance
 
-- awesome shit
+- Awesome shit
 
 https://github.com/markitondemand/DataApis/blob/master/MarkitQuoteServiceSample.js#L46
 
@@ -295,3 +299,15 @@ https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
 
 https://github.com/arnauddri/d3-stock
 
+
+--
+--
+
+
+MAYBE THIS IS OUR MODEL?
+
+http://stackoverflow.com/questions/1714280/multivariate-time-series-modelling-in-r
+
+https://cran.r-project.org/web/views/TimeSeries.html
+
+https://cran.r-project.org/web/packages/MTS/MTS.pdf
