@@ -5,11 +5,15 @@ This project studies the effect that economic indicators have on stock indices i
 This project uses R, HTML, CSS, and JavaScript.
 
 
+--
+--
+
+
 To understand this project, you should answer these questions for yourself:
 
-- Do I like data, statistics, probability?
+- Do I love data? Why?
 
-- Why?
+- Do I have a basic understanding of statistics? programming?
 
 - What is the mean?
 
@@ -77,8 +81,10 @@ https://cran.r-project.org/web/packages/MTS/MTS.pdf
 
 
 --
+--
 
-The process to this project includes:
+
+PROJECT PROCESS
 
 - Finding similar existing projects to read & learn from
 
@@ -132,7 +138,7 @@ https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWf
 
 	- Backwards elimination of insignificant variables
 
-		- when the p-value for the intercept is the largest (with respect to other variables' p value), we stop dropping variables
+		- when the p value for the intercept is the largest (with respect to other variables' p value), we stop dropping variables
 
 	- BIC Procedure
 
@@ -140,62 +146,65 @@ https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWf
 
 
 --
-
-Clone this project in your machine using Github
-
-- You gotta google the "how to" for this one :)
-
 --
+
+GETTING THIS RUNNING ON YOUR SYSTEM
+
+
+- Clone this project in your machine using Github
+
+https://help.github.com/articles/cloning-a-repository/
 
 - Install R on Ubuntu 14.04. Open your terminal, and enter the following commands:
 		
-	sudo add-apt-repository ppa:marutter/rrutter
-	sudo apt-get update
-	sudo apt-get install r-base r-base-dev
+		sudo add-apt-repository ppa:marutter/rrutter
 
-- source: http://askubuntu.com/questions/496788/you-have-held-broken-package-while-trying-to-install-r
+		sudo apt-get update
 
---
+		sudo apt-get install r-base r-base-dev
 
- - Try R
-	 - Check out datacamp.com or google "R tutorial" to learn basic R commands
-	 - You can also just enter the following
+http://askubuntu.com/questions/496788/you-have-held-broken-package-while-trying-to-install-r
+
+- Try R
+
+	- Check out datacamp.com or google "R tutorial" to learn basic R commands
+
+	- You can also just enter the following
+
 		2 + 2
 
---
-
- - Run test project. General form to run a file directly from the terminal:
+- Run test project. General form to run a file directly from the terminal:
+		
 		Rscript fileName.R
 
- - Now test using testScript.R
-	- cd to your working directory - google "basic linux terminal commands" if you don't know what I meant... 
-	- you gotta learn to google shit
+- Now test using testScript.R
 
- - Rnter the following command to test sample R script:
+	- cd to your working directory - google "basic linux terminal commands" if you don't know what I meant... here is a link anyway
+
+http://www.tecmint.com/useful-linux-commands-for-newbies/
+
+
+- Enter this command to test sample R script:
+
 		Rscript testScript.R
 
---
+- Now run the actual project:
 
- - Now run the actual project 
 		Rscript script.R
 
---
+- Read the code. Open this file with sublime:
 
- - Read the code. Open this file with sublime: 
 		dataScience_stockMarket/script.R
 
- - Read the code, write down questions, answer your questions from doing several google searches
+- Read the code, write down questions, answer your questions from doing several google searches
 
---
+- Read the data. Open this file with sublime:
 
- - Read the data. Open this file with sublime: 
 		dataScience_stockMarket/data_1/data_master_1.csv
 
-Read the data, write down questions, run your own R scripts to answer your own questions
-	
---
+	- Read the data, write down questions, run your own R scripts to answer your own questions
 
-Make contributions to this project :)
+- Make contributions to this project :)
 
 --
 
