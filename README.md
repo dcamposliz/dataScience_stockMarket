@@ -16,23 +16,51 @@ To understand this project, you should answer these questions for yourself:
 
 - Do I love data? Why?
 
-- Do I have a basic understanding of statistics? programming?
+- Do I have a basic understanding of probability? statistics? programming? finance?
+
+https://en.wikipedia.org/wiki/Probability
+
+https://en.wikipedia.org/wiki/Statistics
+
+https://en.wikipedia.org/wiki/Computer_programming
+
+https://en.wikipedia.org/wiki/Finance
 
 - What is the mean?
 
+https://en.wikipedia.org/wiki/Mean
+
+- What is probability distribution?
+
+https://en.wikipedia.org/wiki/Probability_distribution
+
 - What is variance?
 
-- What is standard error?
+https://en.wikipedia.org/wiki/Variance
 
-- What is T value?
+- What is standard deviation?
 
-- What is Z value?
+https://en.wikipedia.org/wiki/Standard_deviation
 
-- What is CHI SQUARED value?
+- What is T statistic?
+
+https://en.wikipedia.org/wiki/Test_statistic
+
+- What is standard score?
+
+https://en.wikipedia.org/w/index.php?title=Standard_score&redirect=no
+
+- What is CHI SQUARED test?
+
+https://en.wikipedia.org/wiki/Chi-squared_test
 
 - What is a confidence interval?
 
-- What is level?
+https://en.wikipedia.org/wiki/Confidence_interval
+
+- What is factor analysis?
+
+https://en.wikipedia.org/wiki/Factor_analysis
 
 - What is a quantile?  
 
@@ -40,9 +68,15 @@ https://en.wikipedia.org/wiki/Quantile
 
 - What is a percentile?
 
+https://en.wikipedia.org/wiki/Percentile
+
 - What is the central limit theorem?
 
+https://en.wikipedia.org/wiki/Central_limit_theorem
+
 - What is R?
+
+https://www.r-project.org/
 
 - What is time series?  
 
@@ -52,7 +86,9 @@ https://en.wikipedia.org/wiki/Time_series
 
 https://en.wikipedia.org/wiki/Distributed_lag
 
-- What is auto regressive?
+- What is auto regressive model?
+
+https://en.wikipedia.org/wiki/Autoregressive_model
 
 - What is moving average?  
 
@@ -64,15 +100,23 @@ https://en.wikipedia.org/wiki/Autocorrelation
 
 - What is exponential smoothing?
 
+https://en.wikipedia.org/wiki/Exponential_smoothing
+
 - What is ACF?
+
+http://www.inside-r.org/r-doc/stats/acf
 
 - What is PACF?
 
-- What is real analysis?  
-
-https://en.wikipedia.org/wiki/Real_analysis
+https://onlinecourses.science.psu.edu/stat510/node/62
 
 - What is multi variate time series?
+
+http://www.itl.nist.gov/div898/handbook/pmc/section4/pmc451.htm
+
+http://faculty.washington.edu/ezivot/econ584/notes/multivariatetimeseries.pdf
+
+http://lipas.uwasa.fi/~bepa/Multivariate.pdf
 
 - What are multi variate forecasting methods?
 
@@ -250,10 +294,4 @@ https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
 - Visualizations:
 
 https://github.com/arnauddri/d3-stock
-
--Plot to work on ubuntu:
-
-http://ubuntuforums.org/showthread.php?t=317490
-
-http://stackoverflow.com/questions/6838851/how-to-copy-plots-in-r-when-working-in-ubuntu
 
