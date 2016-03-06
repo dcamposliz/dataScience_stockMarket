@@ -1,5 +1,7 @@
 # dataScience_stockMarket
 
+DATA IS F***G AWESOME
+
 This project studies the effect that economic indicators have on stock indices including the Nasdaq Composite Index, S&P 500 Index, and New York Stock Exchange Index.
 
 This project uses R, HTML, CSS, and JavaScript.
@@ -8,6 +10,7 @@ This project uses R, HTML, CSS, and JavaScript.
 --
 --
 
+CONTEXT FOR THIS PROJECT
 
 To understand this project, you should answer these questions for yourself:
 
