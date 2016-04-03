@@ -1,0 +1,50 @@
+
+STEP 1:
+MODEL:
+find the best model
+
+	linear regression model
+		backwards elimination
+		confidence intervals
+		BIC method (uses AIC)
+
+	univariate time-series model with transformations
+
+	panel or multi-variate time series model (VAR)
+	
+	predict with each model and compare results
+	___
+	
+
+	we want high correlation across these models
+
+	split - training / testing
+
+		how do we split, and test
+
+	correlation plot matrix
+
+		pairs / scatterplot matrix
+
+		correlation across variables?
+STEP 2:
+VISUALIZATION:
+	d3 or ggplots
+
+STEP 3:
+WRITE UP:
+
+		assumptions
+
+			we don't a shit when data was released, we treat data as integers
+
+			there is intrinsic error in the model
+
+			weekly stationary for time-series
+
+				we transform the data because of this
+
+VAR - multivariate time series
+
+		conclusions
+
