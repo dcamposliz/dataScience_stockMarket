@@ -41,6 +41,7 @@
 	# MTS
 	# plm
 
+
 	# install.packages("ggplot2")
 	# install.packages("forecast")
 	# install.packages("astsa")
@@ -191,42 +192,42 @@ print(" ")
 		# sp_500Dividends has smallest AIC so we drop it
 
 		fit_nasdaq_2 <- lm(nasdaq ~ . - sp_500Dividends, data = dataMaster_df)
-		summary(fit_nasdaq_2)
+		# summary(fit_nasdaq_2)
 		drop1(fit_nasdaq_2, k=log(n))
 		# ppi has smallest AIC so we drop it
 
 		fit_nasdaq_3 <- lm(nasdaq ~ . - sp_500Dividends - ppi, data = dataMaster_df)
-		summary(fit_nasdaq_3)
+		# summary(fit_nasdaq_3)
 		drop1(fit_nasdaq_3, k=log(n))
 		# consumerSentiment has smallest AIC so we drop it
 
 		fit_nasdaq_4 <- lm(nasdaq ~ . - sp_500Dividends - ppi - consumerSentiment, data = dataMaster_df)
-		summary(fit_nasdaq_4)
+		# summary(fit_nasdaq_4)
 		drop1(fit_nasdaq_4, k=log(n))
 		# imports has smallest AIC so we drop it
 
 		fit_nasdaq_5 <- lm(nasdaq ~ . - sp_500Dividends - ppi - consumerSentiment - imports, data = dataMaster_df)
-		summary(fit_nasdaq_5)
+		# summary(fit_nasdaq_5)
 		drop1(fit_nasdaq_5, k=log(n))
 		# exports has smallest AIC so we drop it
 
 		fit_nasdaq_6 <- lm(nasdaq ~ . - sp_500Dividends - ppi - consumerSentiment - imports - exports, data = dataMaster_df)
-		summary(fit_nasdaq_6)
+		# summary(fit_nasdaq_6)
 		drop1(fit_nasdaq_6, k=log(n))
 		# cpi has smallest AIC so we drop it
 
 		fit_nasdaq_7 <- lm(nasdaq ~ . - sp_500Dividends - ppi - consumerSentiment - imports - exports - cpi, data = dataMaster_df)
-		summary(fit_nasdaq_7)
+		# summary(fit_nasdaq_7)
 		drop1(fit_nasdaq_7, k=log(n))
 		# inflation has smallest AIC so we drop it
 
 		fit_nasdaq_8 <- lm(nasdaq ~ . - sp_500Dividends - ppi - consumerSentiment - imports - exports - cpi - inflation, data = dataMaster_df)
-		summary(fit_nasdaq_8)
+		# summary(fit_nasdaq_8)
 		drop1(fit_nasdaq_8, k=log(n))
 		# fedFunds has smallest AIC so we drop it
 
 		fit_nasdaq_9 <- lm(nasdaq ~ . - sp_500Dividends - ppi - consumerSentiment - imports - exports - cpi - inflation - fedFunds, data = dataMaster_df)
-		summary(fit_nasdaq_9)
+		# summary(fit_nasdaq_9)
 		drop1(fit_nasdaq_9, k=log(n))
 
 	# looks like we found a model !
@@ -260,32 +261,32 @@ print(" ")
 		# consumerSentiment and ppi have smallest AIC so we drop them
 
 		fit_sp_500_2 <- lm(sp_500 ~ . - consumerSentiment - ppi, data = dataMaster_df)
-		summary(fit_sp_500_2)
+		# summary(fit_sp_500_2)
 		drop1(fit_sp_500_2, k=log(n))
 		# imports has smallest AIC so we drop it
 
 		fit_sp_500_3 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports, data = dataMaster_df)
-		summary(fit_sp_500_3)
+		# summary(fit_sp_500_3)
 		drop1(fit_sp_500_3, k=log(n))
 		# cpi has smallest AIC so we drop it
 
 		fit_sp_500_4 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports - cpi, data = dataMaster_df)
-		summary(fit_sp_500_4)
+		# summary(fit_sp_500_4)
 		drop1(fit_sp_500_4, k=log(n))
 		# inflation has smallest AIC so we drop it
 
 		fit_sp_500_5 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports - cpi - inflation, data = dataMaster_df)
-		summary(fit_sp_500_5)
+		# summary(fit_sp_500_5)
 		drop1(fit_sp_500_5, k=log(n))
 		# sp_500Dividends has smallest AIC so we drop it
 
 		fit_sp_500_6 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports - cpi - inflation - sp_500Dividends, data = dataMaster_df)
-		summary(fit_sp_500_6)
+		# summary(fit_sp_500_6)
 		drop1(fit_sp_500_6, k=log(n))
 		# m2 has smallest AIC so we drop it
 
 		fit_sp_500_7 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports - cpi - inflation - sp_500Dividends - m2, data = dataMaster_df)
-		summary(fit_sp_500_7)
+		# summary(fit_sp_500_7)
 		drop1(fit_sp_500_7, k=log(n))
 
 	# looks like we found a model !
@@ -319,27 +320,27 @@ print(" ")
 		# ppi has smallest AIC so we drop it
 
 		fit_nyse_2 <- lm(nyse ~ . - consumerSentiment - ppi, data = dataMaster_df)
-		summary(fit_nyse_2)
+		# summary(fit_nyse_2)
 		drop1(fit_nyse_2, k=log(n))
 		# fedFunds has smallest AIC so we drop it
 
 		fit_nyse_3 <- lm(nyse ~ . - consumerSentiment - ppi - fedFunds, data = dataMaster_df)
-		summary(fit_nyse_3)
+		# summary(fit_nyse_3)
 		drop1(fit_nyse_3, k=log(n))
 		# imports has smallest AIC so we drop it
 
 		fit_nyse_4 <- lm(nyse ~ . - consumerSentiment - ppi - fedFunds - imports, data = dataMaster_df)
-		summary(fit_nyse_4)
+		# summary(fit_nyse_4)
 		drop1(fit_nyse_4, k=log(n))
 		# inflation has smallest AIC so we drop it
 
 		fit_nyse_5 <- lm(nyse ~ . - consumerSentiment - ppi - fedFunds - imports - inflation, data = dataMaster_df)
-		summary(fit_nyse_5)
+		# summary(fit_nyse_5)
 		drop1(fit_nyse_5, k=log(n))
 		# cpi has smallest AIC so we drop it
 
 		fit_nyse_6 <- lm(nyse ~ . - consumerSentiment - ppi - fedFunds - imports - inflation - cpi, data = dataMaster_df)
-		summary(fit_nyse_6)
+		# summary(fit_nyse_6)
 		drop1(fit_nyse_6, k=log(n))
 
 	# looks like we found a model !
@@ -359,12 +360,8 @@ library(caret)
 generalizedLinearModel <- glm(fit_nasdaq, family = gaussian)
 generalizedLinearModel
 
-# data, weights, subset,
-#    na.action, start = NULL, etastart, mustart, offset,
-#    control = list(...), model = TRUE, method = "glm.fit",
-#    x = FALSE, y = TRUE, contrasts = NULL,
+generalizedLinearModel <- glm(fit_sp_500, family = gaussian)
+generalizedLinearModel
 
-
-################
-
-print("what the fuck is happening?")
+generalizedLinearModel <- glm(fit_nyse, family = gaussian)
+generalizedLinearModel
