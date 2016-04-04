@@ -5,7 +5,7 @@
 ######
 ####
 ##
-	print("hello!!")
+	print("hello, this is some linear model stuff!!")
 
 	dataMaster <- read.csv("/home/dxc/myProjects/dataScience_stockMarket/data_1/data_master_1.csv")
 
@@ -55,6 +55,7 @@
 	require(car)
 	require(MTS)
 	require(plm)
+	library(caret)
 
 
 ###########################################################
@@ -346,165 +347,24 @@ print(" ")
 	# let's get the confidence intervals for fit_nyse
 		confint(fit_nyse)
 	# let's plot our model
-		plot(fit_nyse)	
+		plot(fit_nyse)
 
 
+#######
+##		GENERALIZED LINEAR MODELS & caret()
+#######
 
-###########################################################
-print(" ")
-print(" ")
-print(" ")
-###########################################################
+library(caret)
 
-##
-####
-######
-# 		PLAYING WITH PANEL DATA MODELS
-######
-####
-##
-	
-# bragging rights :)
-	print("playing with panel data models")
+generalizedLinearModel <- glm(fit_nasdaq, family = gaussian)
+generalizedLinearModel
 
-# assigning variables
-	Y <- cbind(nasdaq)
-	X <- cbind(m1, m2, consumerSentiment, imports, inflation, oilPrices, ppi, exports, cpi, unemploymentRate, fedFunds, capUtilization, sp_500Dividends, nyse, sp_500, gdp_us, housingIndex)
-
-# set data as panel data
-	pdata <- plm.data(dataMaster, index=c("year", "month"))
-
-# descriptive statistics
-	summary(Y)
-	summary(X)
-
-# pooled OLS estimator
-	pooling <- plm(Y ~ X, data = pdata, model = "pooling")
-	summary(pooling)
-
-# between estimator
-	between <- plm(Y ~ X, data = pdata, model = "between")
-	summary(between)
-
-# first differences estimator
-	firstDiff <- plm(Y ~ X, data = pdata, model = "fd")
-	summary(firstDiff)
-
-# fixed effects or within estimator
-	fixed <- plm(Y ~ X, data = pdata, model = "within")
-	summary(fixed)
-
-# random effects estimator
-	random <- plm(Y ~ X, data = pdata, model = "random")
-	summary(random)
-
-# LM test for random effects versus OLD
-	plmtest(pooling)
-
-# LM test for fixed effects versus OLD
-	pFtest(fixed, pooling)
-
-#	THIS ONE DOES NOT WORK	# Hausman test for fixed effects versus OLD
-#	THIS ONE DOES NOT WORK		phtest(random, fixed)
+# data, weights, subset,
+#    na.action, start = NULL, etastart, mustart, offset,
+#    control = list(...), model = TRUE, method = "glm.fit",
+#    x = FALSE, y = TRUE, contrasts = NULL,
 
 
-##############################################################################################################################################################
-########## ITERATE
-##############################################################################################################################################################
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-##############################################################################################################################################################
-##############################################################################################################################################################
+################
 
-
-###########################################################
-print(" ")
-print(" ")
-print(" ")
-###########################################################
-
-##
-####
-######
-# 		PLAYING WITH ARIMA MODELS
-######
-####
-##
-
-# what is auto.arima? some witchcraft?
-
-	print(" ")
-	print("running auto.arima() -- on the nasdaq, sp_500, nyse, housingIndex")
-	print(" ")
-	
-	# this is auto-regression integrating moving average
-
-	auto.arima(dataMaster$nasdaq)
-	auto.arima(dataMaster$sp_500)
-	auto.arima(dataMaster$nyse)
-	auto.arima(dataMaster$housingIndex)
-
-# what are these things and how are they relevant?
-
-	# acf
-	# pacf
-
-# LOOK UP: sarima()
-
-	print(" ")
-	print("running sarima() -- on the nasdaq")
-	print(" ")
-
-	sarima_nasdaq_model <- sarima(dataMaster$nasdaq, p = 1, q = 1, d = 2)
-	sarima_sp_500_model <- sarima(dataMaster$sp_500, p = 1, q = 1, d = 2)
-	sarima_nyse_model <- sarima(dataMaster$nyse, p = 1, q = 1, d = 2)
-	sarima_housingIndex_model <- sarima(dataMaster$housingIndex, p = 1, q = 1, d = 2)
-
-		# p is autoregressive coefficient
-		# q is whether it's stationary or not
-		# d is moving average
-
-# LOOK UP: sarima.for()
-
-	print(" ")
-	print("running sarima.for() -- on the nasdaq")
-	print("we are predicting the value of nasdaq based on itself")
-	print(" ")
-
-	# forecasting
-	sarima.for(dataMaster$nasdaq, n.ahead = 12, p = 1, q = 1, d = 2)
-	sarima.for(dataMaster$sp_500, n.ahead = 12, p = 1, q = 1, d = 2)
-	sarima.for(dataMaster$nyse, n.ahead = 12, p = 1, q = 1, d = 2)
-	sarima.for(dataMaster$housingIndex, n.ahead = 12, p = 1, q = 1, d = 2)
-
-	#multi-variate time-series is cool
-	
-# r-squared is to regression just as aic (akaine information criterion) is to time-series
-
-print(" ")
-print("running apca() -- we really don't know what we are doing now!!")
-print(" ")
-
-	apca(dataMaster_df, m=3)
-
-	# what the hell is m=3?
-
-	# further action items
-	# learn ts(), lm(), summary(), arima(), 
-	# http://people.duke.edu/~rnau/411arim.htm
-
-
-# TRIED THESE BUT NEED TO LEARN MORE ON Package ‘MTS’:
-
-#	https://cran.r-project.org/web/packages/MTS/MTS.pdf
-
-	#	nasdaq_exogeouns <- c(m1, m2, consumerSentiment, inflation, imports, oilPrices, ppi, exports, cpi, unemploymentRate, fedFunds, capUtilization, sp_500Dividends, nyse, sp_500, gdp_us, housingIndex)
-	#	
-	#	Mlm(nasdaq, nasdaq_exogeouns, constant=TRUE, output=TRUE)
-	#	 
-	#	MTSplot(dataMaster_df, caltime = NULL)
+print("what the fuck is happening?")

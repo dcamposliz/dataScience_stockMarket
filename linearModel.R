@@ -55,6 +55,7 @@
 	require(car)
 	require(MTS)
 	require(plm)
+	library(caret)
 
 
 ###########################################################
@@ -347,3 +348,23 @@ print(" ")
 		confint(fit_nyse)
 	# let's plot our model
 		plot(fit_nyse)
+
+
+#######
+##		GENERALIZED LINEAR MODELS & caret()
+#######
+
+library(caret)
+
+generalizedLinearModel <- glm(fit_nasdaq, family = gaussian)
+generalizedLinearModel
+
+# data, weights, subset,
+#    na.action, start = NULL, etastart, mustart, offset,
+#    control = list(...), model = TRUE, method = "glm.fit",
+#    x = FALSE, y = TRUE, contrasts = NULL,
+
+
+################
+
+print("what the fuck is happening?")
