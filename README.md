@@ -14,6 +14,7 @@ HOW:
 
 This project uses R, HTML, CSS, and JavaScript.
 
+Using tons of data, linear models, time series models, and other random stuff!
 
 --
 --

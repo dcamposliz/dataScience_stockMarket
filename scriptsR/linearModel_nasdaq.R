@@ -58,6 +58,9 @@
 	require(MTS)
 	require(plm)
 	library(caret)
+	# required for cross-validation
+	require(caret)
+	require(DAAG)
 
 # outputting work
 
@@ -300,9 +303,6 @@ print(" ")
 ####
 ##
 
-	require(caret)
-	require(DAAG)
-
 		n8_CV <- CVlm (data = dataMaster_df, form.lm = formula(fit_nasdaq_8), m = 3, dots = FALSE, seed = 29, plotit = c("Observed", "Residual"), main="Cross-validation for fit_nasdaq_8", legend.pos="topleft", printit=TRUE)
 		summary(n8_CV)
 		attributes(n8_CV)
@@ -360,18 +360,26 @@ print(" ")
 	# running the prediction model
 	predict_nasdaq_2015
 
-
+	# turning prediction vector into time series object
 	predict_nasdaq_2015_ts <- ts(predict_nasdaq_2015, start=c(2015,1), freq=12)
+	# outputting the prediction vector to terminal
 	predict_nasdaq_2015_ts
 
+	# plotting ts prediction vector to pdf 
 	plot(predict_nasdaq_2015_ts)
 
+	# declaring actual_nasdaq_2015 vector with actual nasdaq values for year 2015, for comparison purposes
 	actual_nasdaq_2015 <- dataMaster_TS$nasdaq
+	# turning this vector into ts object
 	actual_nasdaq_2015_ts <- ts(actual_nasdaq_2015, start=c(2015, 1), freq=12)
 
+	# plotting vector into pdf
 	plot(actual_nasdaq_2015_ts)
 
+	# creating dataframe with both predicted and actual ts nasdaq objects
 	predicted_and_actual_nasdaq <- data.frame(predict_nasdaq_2015_ts, actual_nasdaq_2015_ts, date = seq.Date(as.Date("2015-01-01"), by="1 month", length.out=12))
 
+	# yaaaay -- outputting this shaaait
+	# prediction graph to pdf with dataframe predictions and actual values :)
 	ggplot(predicted_and_actual_nasdaq, aes(date)) + geom_line(aes(y = predict_nasdaq_2015_ts, colour = "Predicted Values")) + geom_line(aes(y = actual_nasdaq_2015_ts, colour = "Actual Values"))
 
