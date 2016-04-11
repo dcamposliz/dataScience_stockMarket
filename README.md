@@ -1,10 +1,16 @@
 # dataScience_stockMarket
 
-DATA IS FUCKING AWESOME
+WHY:
 
---
+Data is awesome stuff. We like playing with data, models, and more stuff.
+
+We want to prefict things.
+
+WHAT:
 
 This project studies the effect that economic indicators have on stock indices including the Nasdaq Composite Index, S&P 500 Index, and New York Stock Exchange Index.
+
+HOW:
 
 This project uses R, HTML, CSS, and JavaScript.
 

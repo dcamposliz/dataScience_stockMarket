@@ -59,8 +59,13 @@
 	require(plm)
 	library(caret)
 
+# outputting work
+
+	pdf("linearModel_nasdaq.pdf")
+
 
 ###########################################################
+print(" ")
 print(" ")
 print(" ")
 ###########################################################
@@ -87,6 +92,7 @@ print(" ")
 
 
 ###########################################################
+print(" ")
 print(" ")
 print(" ")
 ###########################################################
@@ -120,6 +126,7 @@ print(" ")
 
 
 ###########################################################
+print(" ")
 print(" ")
 print(" ")
 ###########################################################
@@ -167,6 +174,7 @@ print(" ")
 
 
 ###########################################################
+print(" ")
 print(" ")
 print(" ")
 ###########################################################
@@ -232,7 +240,52 @@ print(" ")
 	# let's get the confidence intervals for fit_nasdaq
 		confint(fit_nasdaq)
 	# let's plot our model
-		plot(fit_nasdaq)	
+		plot(fit_nasdaq)
+	#summary of model
+		summary(fit_nasdaq)
+
+	#scatterplot matrix for fit_nasdaq_9
+
+		panel.cor <- function(x, y, digits=2, prefix="", cex.cor, ...)
+		{
+		usr <- par("usr"); on.exit(par(usr))
+		par(usr = c(0, 1, 0, 1))
+		r <- abs(cor(x, y))
+		txt <- format(c(r, 0.123456789), digits=digits)[1]
+		txt <- paste(prefix, txt, sep="")
+		if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+		text(0.5, 0.5, txt, cex = cex.cor * r)
+		}
+		pairs(~nasdaq+m1+m2+oilPrices+unemploymentRate+capUtilization+sp_500Dividends+nyse+sp_500+gdp_us+housingIndex, data=dataMaster_df,
+		lower.panel=panel.smooth, upper.panel=panel.cor, 
+		pch=20, main="NASDAQ Scatter Plot Matrix for fit_nasdaq_9")
+
+	# in this model, we remove m2 for shits and giggles
+
+		fit_nasdaq_10 <- lm(nasdaq ~ . - m2 - sp_500Dividends - ppi - consumerSentiment - imports - exports - cpi - inflation - fedFunds, data = dataMaster_df)
+
+		# let's get the confidence intervals for fit_nasdaq
+			confint(fit_nasdaq_10)
+		# let's plot our model
+			plot(fit_nasdaq_10)
+		#summary of model
+			summary(fit_nasdaq_10)
+
+	#scatterplot matrix for fit_nasdaq_10
+
+		panel.cor <- function(x, y, digits=2, prefix="", cex.cor, ...)
+		{
+		usr <- par("usr"); on.exit(par(usr))
+		par(usr = c(0, 1, 0, 1))
+		r <- abs(cor(x, y))
+		txt <- format(c(r, 0.123456789), digits=digits)[1]
+		txt <- paste(prefix, txt, sep="")
+		if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+		text(0.5, 0.5, txt, cex = cex.cor * r)
+		}
+		pairs(~nasdaq+m1+oilPrices+unemploymentRate+capUtilization+sp_500Dividends+nyse+sp_500+gdp_us+housingIndex, data=dataMaster_df,
+		lower.panel=panel.smooth, upper.panel=panel.cor, 
+		pch=20, main="NASDAQ Scatter Plot Matrix for fit_nasdaq_10")
 
 ###########################################################
 print(" ")
@@ -242,55 +295,31 @@ print(" ")
 ##
 ####
 ######
-# 		DEVELOPING MODEL FOR SP_500 ---- linear regression model on nasdaq as a function of economic indicators
+# 		CROSS-VALIDATION
 ######
 ####
 ##
 
-	fit_sp_500_1 <- lm(sp_500 ~ ., data = dataMaster_df)
-	summary(fit_sp_500_1)
+	require(caret)
+	require(DAAG)
 
-	# eliminating non-significant variables using BIC procedure
+		n8_CV <- CVlm (data = dataMaster_df, form.lm = formula(fit_nasdaq_8), m = 3, dots = FALSE, seed = 29, plotit = c("Observed", "Residual"), main="Cross-validation for fit_nasdaq_8", legend.pos="topleft", printit=TRUE)
+		summary(n8_CV)
+		attributes(n8_CV)
+		# mean squared: 27066
 
-		n <- nrow(dataMaster_df)		
-		drop1(fit_sp_500_1, k=log(n))		
-		# consumerSentiment and ppi have smallest AIC so we drop them
+		n9_CV <- CVlm (data = dataMaster_df, form.lm = formula(fit_nasdaq_9), m = 3, dots = FALSE, seed = 29, plotit = c("Observed", "Residual"), main="Cross-validation for fit_nasdaq_9, the WINNER", legend.pos="topleft", printit=TRUE)
+		summary(n9_CV)
+		attributes(n9_CV)
+		# mean squared: 26519
 
-		fit_sp_500_2 <- lm(sp_500 ~ . - consumerSentiment - ppi, data = dataMaster_df)
-		# summary(fit_sp_500_2)
-		drop1(fit_sp_500_2, k=log(n))
-		# imports has smallest AIC so we drop it
+		n10_CV <- CVlm (data = dataMaster_df, form.lm = formula(fit_nasdaq_10), m = 3, dots = FALSE, seed = 29, plotit = c("Observed", "Residual"), main="Cross-validation for fit_nasdaq_10", legend.pos="topleft", printit=TRUE)
+		summary(n10_CV)
+		attributes(n10_CV)
+		# mean squared: 29205
 
-		fit_sp_500_3 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports, data = dataMaster_df)
-		# summary(fit_sp_500_3)
-		drop1(fit_sp_500_3, k=log(n))
-		# cpi has smallest AIC so we drop it
+	# cross-validation confirms that fit_nasdaq_9 is the best model, out of all the models listed in this file
 
-		fit_sp_500_4 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports - cpi, data = dataMaster_df)
-		# summary(fit_sp_500_4)
-		drop1(fit_sp_500_4, k=log(n))
-		# inflation has smallest AIC so we drop it
-
-		fit_sp_500_5 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports - cpi - inflation, data = dataMaster_df)
-		# summary(fit_sp_500_5)
-		drop1(fit_sp_500_5, k=log(n))
-		# sp_500Dividends has smallest AIC so we drop it
-
-		fit_sp_500_6 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports - cpi - inflation - sp_500Dividends, data = dataMaster_df)
-		# summary(fit_sp_500_6)
-		drop1(fit_sp_500_6, k=log(n))
-		# m2 has smallest AIC so we drop it
-
-		fit_sp_500_7 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports - cpi - inflation - sp_500Dividends - m2, data = dataMaster_df)
-		# summary(fit_sp_500_7)
-		drop1(fit_sp_500_7, k=log(n))
-
-	# looks like we found a model !
-		fit_sp_500 <- fit_sp_500_7
-	# let's get the confidence intervals for fit_sp_500
-		confint(fit_sp_500)
-	# let's plot our model
-		plot(fit_sp_500)	
 
 ###########################################################
 print(" ")
@@ -300,61 +329,49 @@ print(" ")
 ##
 ####
 ######
-# 		DEVELOPING MODEL FOR NYSE ---- linear regression model on nyse as a function of economic indicators
+# 		NOW PREDICTING 2015 BASED ON 1995-2014 WITH model: fit_nasdaq_9
 ######
 ####
 ##
 
-	fit_nyse_1 <- lm(nyse ~ ., data = dataMaster_df)
-	summary(fit_nyse_1)
+	# reducing our dataset to the significant variables we found for model fit_nasdaq_9
+	dataMaster_fitData <- subset(dataMaster_df, select = c(nasdaq, m1, m2, oilPrices, unemploymentRate, capUtilization, sp_500Dividends, nyse, sp_500, gdp_us, housingIndex))
+	# outputting the attributes of our new dataset to confirm we are using the desired variables
+	attributes(dataMaster_fitData)
 
-	# eliminating non-significant variables using BIC procedure
-
-		n <- nrow(dataMaster_df)		
-		drop1(fit_nyse_1, k=log(n))		
-		# ppi has smallest AIC so we drop it
-
-		fit_nyse_2 <- lm(nyse ~ . - consumerSentiment - ppi, data = dataMaster_df)
-		# summary(fit_nyse_2)
-		drop1(fit_nyse_2, k=log(n))
-		# fedFunds has smallest AIC so we drop it
-
-		fit_nyse_3 <- lm(nyse ~ . - consumerSentiment - ppi - fedFunds, data = dataMaster_df)
-		# summary(fit_nyse_3)
-		drop1(fit_nyse_3, k=log(n))
-		# imports has smallest AIC so we drop it
-
-		fit_nyse_4 <- lm(nyse ~ . - consumerSentiment - ppi - fedFunds - imports, data = dataMaster_df)
-		# summary(fit_nyse_4)
-		drop1(fit_nyse_4, k=log(n))
-		# inflation has smallest AIC so we drop it
-
-		fit_nyse_5 <- lm(nyse ~ . - consumerSentiment - ppi - fedFunds - imports - inflation, data = dataMaster_df)
-		# summary(fit_nyse_5)
-		drop1(fit_nyse_5, k=log(n))
-		# cpi has smallest AIC so we drop it
-
-		fit_nyse_6 <- lm(nyse ~ . - consumerSentiment - ppi - fedFunds - imports - inflation - cpi, data = dataMaster_df)
-		# summary(fit_nyse_6)
-		drop1(fit_nyse_6, k=log(n))
-
-	# looks like we found a model !
-		fit_nyse <- fit_nyse_6
-	# let's get the confidence intervals for fit_nyse
-		confint(fit_nyse)
-	# let's plot our model
-		plot(fit_nyse)
+	# cutting out dataset into training and testing datasets
+	dataMaster_TR <- dataMaster_fitData[-c(241:252),]
+	# dataMaster_TR
+	dataMaster_TS <- dataMaster_fitData[-c(1:240),]
+	# dataMaster_TS
 
 
-#######
-##		GENERALIZED LINEAR MODELS & caret()
-#######
+	# removing nasdaq variable from testing dataset
+	dataMaster_TS_wo_nasdaq <- dataMaster_TS
+	dataMaster_TS_wo_nasdaq$nasdaq <- NULL
+	# confirming that nasdaq variable is not in the testing dataset
+	attributes(dataMaster_TS_wo_nasdaq)
 
-generalizedLinearModel <- glm(fit_nasdaq, family = gaussian)
-generalizedLinearModel
+	# developing fit_nasdaq_9_2 with new training dataset
+	fit_nasdaq_9_2 <- lm(nasdaq ~ ., data = dataMaster_TR)
 
-generalizedLinearModel <- glm(fit_sp_500, family = gaussian)
-generalizedLinearModel
+	# linear prediction model predict_nasdaq_2015 with fit_nasdaq_9_2 and testing dataMaster_TS_wo_nasdaq dataset
+	predict_nasdaq_2015 <- predict.lm(fit_nasdaq_9_2, dataMaster_TS_wo_nasdaq)  
+	# running the prediction model
+	predict_nasdaq_2015
 
-generalizedLinearModel <- glm(fit_nyse, family = gaussian)
-generalizedLinearModel
+
+	predict_nasdaq_2015_ts <- ts(predict_nasdaq_2015, start=c(2015,1), freq=12)
+	predict_nasdaq_2015_ts
+
+	plot(predict_nasdaq_2015_ts)
+
+	actual_nasdaq_2015 <- dataMaster_TS$nasdaq
+	actual_nasdaq_2015_ts <- ts(actual_nasdaq_2015, start=c(2015, 1), freq=12)
+
+	plot(actual_nasdaq_2015_ts)
+
+	predicted_and_actual_nasdaq <- data.frame(predict_nasdaq_2015_ts, actual_nasdaq_2015_ts, date = seq.Date(as.Date("2015-01-01"), by="1 month", length.out=12))
+
+	ggplot(predicted_and_actual_nasdaq, aes(date)) + geom_line(aes(y = predict_nasdaq_2015_ts, colour = "Predicted Values")) + geom_line(aes(y = actual_nasdaq_2015_ts, colour = "Actual Values"))
+
