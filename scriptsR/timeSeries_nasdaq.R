@@ -25,7 +25,8 @@
 ##
 print("Time Series Model for NASDAQ")
 
-dataMaster <- read.csv("/home/dxc/myProjects/dataScience_stockMarket/data_1/data_master_1.csv")
+#dataMaster <- read.csv("/home/dxc/myProjects/dataScience_stockMarket/data_1/data_master_1.csv")
+dataMaster <- read.csv("/home/dc/myProjects/learn/learnCode/dataScience_stockMarket/data_1/data_master_1.csv")
 attach(dataMaster)
 
 # here is a snapshot of our variables
