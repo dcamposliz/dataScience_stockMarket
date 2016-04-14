@@ -1,0 +1,22 @@
+acf2() function plots the ACF (auto-correlation function) and PACF (partial auto-correlation function) to find out what kind of model we wanted to use. Since we found that the data has seasonality (meaning that the mean is non-stationary) we decided to not use the AR (auto-regressive) model nor MA (moving average) model because these rely on the assumption that the data is stationary.
+
+auto-regressive is ...
+
+moving-average is ...
+
+What we did instead was to run the auto.arima function, which is R's estimation of the best model for data using the AIC value.
+
+ARIMA(1,1,2)(0,0,1)[12] with drift
+
+this means 
+
+ARIMA(p = 1, d = 1, q = 2, P = 0, D = 0, Q = 1, S = 12)
+
+where
+p = ,
+q = ,
+d = ,
+P = ,
+Q = ,
+D = ,
+S = 

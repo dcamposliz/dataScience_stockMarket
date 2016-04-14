@@ -5,11 +5,12 @@
 ######
 ####
 ##
-	print("hello!!")
+	print("hello, this is some linear model stuff!!")
 
 	dataMaster <- read.csv("/home/dc/myProjects/learn/learnCode/dataScience_stockMarket/data_1/data_master_1.csv")
 
 	attach(dataMaster)
+
 # here is a snapshot of our variables
 # tons of financial data:
 
@@ -41,6 +42,7 @@
 	# MTS
 	# plm
 
+
 	# install.packages("ggplot2")
 	# install.packages("forecast")
 	# install.packages("astsa")
@@ -55,10 +57,10 @@
 	require(car)
 	require(MTS)
 	require(plm)
+	library(caret)
 
 
 ###########################################################
-print(" ")
 print(" ")
 print(" ")
 ###########################################################
@@ -85,7 +87,6 @@ print(" ")
 
 
 ###########################################################
-print(" ")
 print(" ")
 print(" ")
 ###########################################################
@@ -119,7 +120,6 @@ print(" ")
 
 
 ###########################################################
-print(" ")
 print(" ")
 print(" ")
 ###########################################################
@@ -169,7 +169,6 @@ print(" ")
 ###########################################################
 print(" ")
 print(" ")
-print(" ")
 ###########################################################
 
 ##
@@ -190,42 +189,42 @@ print(" ")
 		# sp_500Dividends has smallest AIC so we drop it
 
 		fit_nasdaq_2 <- lm(nasdaq ~ . - sp_500Dividends, data = dataMaster_df)
-		summary(fit_nasdaq_2)
+		# summary(fit_nasdaq_2)
 		drop1(fit_nasdaq_2, k=log(n))
 		# ppi has smallest AIC so we drop it
 
 		fit_nasdaq_3 <- lm(nasdaq ~ . - sp_500Dividends - ppi, data = dataMaster_df)
-		summary(fit_nasdaq_3)
+		# summary(fit_nasdaq_3)
 		drop1(fit_nasdaq_3, k=log(n))
 		# consumerSentiment has smallest AIC so we drop it
 
 		fit_nasdaq_4 <- lm(nasdaq ~ . - sp_500Dividends - ppi - consumerSentiment, data = dataMaster_df)
-		summary(fit_nasdaq_4)
+		# summary(fit_nasdaq_4)
 		drop1(fit_nasdaq_4, k=log(n))
 		# imports has smallest AIC so we drop it
 
 		fit_nasdaq_5 <- lm(nasdaq ~ . - sp_500Dividends - ppi - consumerSentiment - imports, data = dataMaster_df)
-		summary(fit_nasdaq_5)
+		# summary(fit_nasdaq_5)
 		drop1(fit_nasdaq_5, k=log(n))
 		# exports has smallest AIC so we drop it
 
 		fit_nasdaq_6 <- lm(nasdaq ~ . - sp_500Dividends - ppi - consumerSentiment - imports - exports, data = dataMaster_df)
-		summary(fit_nasdaq_6)
+		# summary(fit_nasdaq_6)
 		drop1(fit_nasdaq_6, k=log(n))
 		# cpi has smallest AIC so we drop it
 
 		fit_nasdaq_7 <- lm(nasdaq ~ . - sp_500Dividends - ppi - consumerSentiment - imports - exports - cpi, data = dataMaster_df)
-		summary(fit_nasdaq_7)
+		# summary(fit_nasdaq_7)
 		drop1(fit_nasdaq_7, k=log(n))
 		# inflation has smallest AIC so we drop it
 
 		fit_nasdaq_8 <- lm(nasdaq ~ . - sp_500Dividends - ppi - consumerSentiment - imports - exports - cpi - inflation, data = dataMaster_df)
-		summary(fit_nasdaq_8)
+		# summary(fit_nasdaq_8)
 		drop1(fit_nasdaq_8, k=log(n))
 		# fedFunds has smallest AIC so we drop it
 
 		fit_nasdaq_9 <- lm(nasdaq ~ . - sp_500Dividends - ppi - consumerSentiment - imports - exports - cpi - inflation - fedFunds, data = dataMaster_df)
-		summary(fit_nasdaq_9)
+		# summary(fit_nasdaq_9)
 		drop1(fit_nasdaq_9, k=log(n))
 
 	# looks like we found a model !
@@ -236,7 +235,6 @@ print(" ")
 		plot(fit_nasdaq)	
 
 ###########################################################
-print(" ")
 print(" ")
 print(" ")
 ###########################################################
@@ -259,32 +257,32 @@ print(" ")
 		# consumerSentiment and ppi have smallest AIC so we drop them
 
 		fit_sp_500_2 <- lm(sp_500 ~ . - consumerSentiment - ppi, data = dataMaster_df)
-		summary(fit_sp_500_2)
+		# summary(fit_sp_500_2)
 		drop1(fit_sp_500_2, k=log(n))
 		# imports has smallest AIC so we drop it
 
 		fit_sp_500_3 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports, data = dataMaster_df)
-		summary(fit_sp_500_3)
+		# summary(fit_sp_500_3)
 		drop1(fit_sp_500_3, k=log(n))
 		# cpi has smallest AIC so we drop it
 
 		fit_sp_500_4 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports - cpi, data = dataMaster_df)
-		summary(fit_sp_500_4)
+		# summary(fit_sp_500_4)
 		drop1(fit_sp_500_4, k=log(n))
 		# inflation has smallest AIC so we drop it
 
 		fit_sp_500_5 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports - cpi - inflation, data = dataMaster_df)
-		summary(fit_sp_500_5)
+		# summary(fit_sp_500_5)
 		drop1(fit_sp_500_5, k=log(n))
 		# sp_500Dividends has smallest AIC so we drop it
 
 		fit_sp_500_6 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports - cpi - inflation - sp_500Dividends, data = dataMaster_df)
-		summary(fit_sp_500_6)
+		# summary(fit_sp_500_6)
 		drop1(fit_sp_500_6, k=log(n))
 		# m2 has smallest AIC so we drop it
 
 		fit_sp_500_7 <- lm(sp_500 ~ . - consumerSentiment - ppi - imports - cpi - inflation - sp_500Dividends - m2, data = dataMaster_df)
-		summary(fit_sp_500_7)
+		# summary(fit_sp_500_7)
 		drop1(fit_sp_500_7, k=log(n))
 
 	# looks like we found a model !
@@ -295,7 +293,6 @@ print(" ")
 		plot(fit_sp_500)	
 
 ###########################################################
-print(" ")
 print(" ")
 print(" ")
 ###########################################################
@@ -318,27 +315,27 @@ print(" ")
 		# ppi has smallest AIC so we drop it
 
 		fit_nyse_2 <- lm(nyse ~ . - consumerSentiment - ppi, data = dataMaster_df)
-		summary(fit_nyse_2)
+		# summary(fit_nyse_2)
 		drop1(fit_nyse_2, k=log(n))
 		# fedFunds has smallest AIC so we drop it
 
 		fit_nyse_3 <- lm(nyse ~ . - consumerSentiment - ppi - fedFunds, data = dataMaster_df)
-		summary(fit_nyse_3)
+		# summary(fit_nyse_3)
 		drop1(fit_nyse_3, k=log(n))
 		# imports has smallest AIC so we drop it
 
 		fit_nyse_4 <- lm(nyse ~ . - consumerSentiment - ppi - fedFunds - imports, data = dataMaster_df)
-		summary(fit_nyse_4)
+		# summary(fit_nyse_4)
 		drop1(fit_nyse_4, k=log(n))
 		# inflation has smallest AIC so we drop it
 
 		fit_nyse_5 <- lm(nyse ~ . - consumerSentiment - ppi - fedFunds - imports - inflation, data = dataMaster_df)
-		summary(fit_nyse_5)
+		# summary(fit_nyse_5)
 		drop1(fit_nyse_5, k=log(n))
 		# cpi has smallest AIC so we drop it
 
 		fit_nyse_6 <- lm(nyse ~ . - consumerSentiment - ppi - fedFunds - imports - inflation - cpi, data = dataMaster_df)
-		summary(fit_nyse_6)
+		# summary(fit_nyse_6)
 		drop1(fit_nyse_6, k=log(n))
 
 	# looks like we found a model !
@@ -346,165 +343,18 @@ print(" ")
 	# let's get the confidence intervals for fit_nyse
 		confint(fit_nyse)
 	# let's plot our model
-		plot(fit_nyse)	
+		plot(fit_nyse)
 
 
+#######
+##		GENERALIZED LINEAR MODELS & caret()
+#######
 
-###########################################################
-print(" ")
-print(" ")
-print(" ")
-###########################################################
+generalizedLinearModel <- glm(fit_nasdaq, family = gaussian)
+generalizedLinearModel
 
-##
-####
-######
-# 		PLAYING WITH PANEL DATA MODELS
-######
-####
-##
-	
-# bragging rights :)
-	print("playing with panel data models")
+generalizedLinearModel <- glm(fit_sp_500, family = gaussian)
+generalizedLinearModel
 
-# assigning variables
-	Y <- cbind(nasdaq)
-	X <- cbind(m1, m2, consumerSentiment, imports, inflation, oilPrices, ppi, exports, cpi, unemploymentRate, fedFunds, capUtilization, sp_500Dividends, nyse, sp_500, gdp_us, housingIndex)
-
-# set data as panel data
-	pdata <- plm.data(dataMaster, index=c("year", "month"))
-
-# descriptive statistics
-	summary(Y)
-	summary(X)
-
-# pooled OLS estimator
-	pooling <- plm(Y ~ X, data = pdata, model = "pooling")
-	summary(pooling)
-
-# between estimator
-	between <- plm(Y ~ X, data = pdata, model = "between")
-	summary(between)
-
-# first differences estimator
-	firstDiff <- plm(Y ~ X, data = pdata, model = "fd")
-	summary(firstDiff)
-
-# fixed effects or within estimator
-	fixed <- plm(Y ~ X, data = pdata, model = "within")
-	summary(fixed)
-
-# random effects estimator
-	random <- plm(Y ~ X, data = pdata, model = "random")
-	summary(random)
-
-# LM test for random effects versus OLD
-	plmtest(pooling)
-
-# LM test for fixed effects versus OLD
-	pFtest(fixed, pooling)
-
-#	THIS ONE DOES NOT WORK	# Hausman test for fixed effects versus OLD
-#	THIS ONE DOES NOT WORK		phtest(random, fixed)
-
-
-##############################################################################################################################################################
-########## ITERATE
-##############################################################################################################################################################
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-		####	MAYBE ITERATE ON TIME FORMAT FOR PANEL DATA THINGS :)
-##############################################################################################################################################################
-##############################################################################################################################################################
-
-
-###########################################################
-print(" ")
-print(" ")
-print(" ")
-###########################################################
-
-##
-####
-######
-# 		PLAYING WITH ARIMA MODELS
-######
-####
-##
-
-# what is auto.arima? some witchcraft?
-
-	print(" ")
-	print("running auto.arima() -- on the nasdaq, sp_500, nyse, housingIndex")
-	print(" ")
-	
-	# this is auto-regression integrating moving average
-
-	auto.arima(dataMaster$nasdaq)
-	auto.arima(dataMaster$sp_500)
-	auto.arima(dataMaster$nyse)
-	auto.arima(dataMaster$housingIndex)
-
-# what are these things and how are they relevant?
-
-	# acf
-	# pacf
-
-# LOOK UP: sarima()
-
-	print(" ")
-	print("running sarima() -- on the nasdaq")
-	print(" ")
-
-	sarima_nasdaq_model <- sarima(dataMaster$nasdaq, p = 1, q = 1, d = 2)
-	sarima_sp_500_model <- sarima(dataMaster$sp_500, p = 1, q = 1, d = 2)
-	sarima_nyse_model <- sarima(dataMaster$nyse, p = 1, q = 1, d = 2)
-	sarima_housingIndex_model <- sarima(dataMaster$housingIndex, p = 1, q = 1, d = 2)
-
-		# p is autoregressive coefficient
-		# q is whether it's stationary or not
-		# d is moving average
-
-# LOOK UP: sarima.for()
-
-	print(" ")
-	print("running sarima.for() -- on the nasdaq")
-	print("we are predicting the value of nasdaq based on itself")
-	print(" ")
-
-	# forecasting
-	sarima.for(dataMaster$nasdaq, n.ahead = 12, p = 1, q = 1, d = 2)
-	sarima.for(dataMaster$sp_500, n.ahead = 12, p = 1, q = 1, d = 2)
-	sarima.for(dataMaster$nyse, n.ahead = 12, p = 1, q = 1, d = 2)
-	sarima.for(dataMaster$housingIndex, n.ahead = 12, p = 1, q = 1, d = 2)
-
-	#multi-variate time-series is cool
-	
-# r-squared is to regression just as aic (akaine information criterion) is to time-series
-
-print(" ")
-print("running apca() -- we really don't know what we are doing now!!")
-print(" ")
-
-	apca(dataMaster_df, m=3)
-
-	# what the hell is m=3?
-
-	# further action items
-	# learn ts(), lm(), summary(), arima(), 
-	# http://people.duke.edu/~rnau/411arim.htm
-
-
-# TRIED THESE BUT NEED TO LEARN MORE ON Package ‘MTS’:
-
-#	https://cran.r-project.org/web/packages/MTS/MTS.pdf
-
-	#	nasdaq_exogeouns <- c(m1, m2, consumerSentiment, inflation, imports, oilPrices, ppi, exports, cpi, unemploymentRate, fedFunds, capUtilization, sp_500Dividends, nyse, sp_500, gdp_us, housingIndex)
-	#	
-	#	Mlm(nasdaq, nasdaq_exogeouns, constant=TRUE, output=TRUE)
-	#	 
-	#	MTSplot(dataMaster_df, caltime = NULL)
+generalizedLinearModel <- glm(fit_nyse, family = gaussian)
+generalizedLinearModel
