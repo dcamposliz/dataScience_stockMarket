@@ -1,107 +1,57 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-
-body {
-  font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke-width: 1;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-}
-
-.area {
-    fill: lightsteelblue;
-    stroke-width: 0;
-}
-
-</style>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Inertia7</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
 <body>
-<script src="//d3js.org/d3.v3.min.js"></script>
-<script>
+  <h1>
+    Inertia7
+  </h1>
 
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+  <script src="//d3js.org/d3.v3.min.js"></script>
+  <script src="d3.js"></script>
 
-var formatDate = d3.time.format("%d-%b-%y");
+  <script>
+    d3.csv("nasdaq_d3js.csv", type, function(error, data) {
+      if (error) throw error;
 
-var x = d3.time.scale()
-    .range([0, width]);
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+      y.domain(d3.extent(data, function(d) { return d.close; }));
+      svg.append("path")
+            .datum(data)
+            .attr("class", "area")
+            .attr("d", area);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis);
 
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis)
+        .append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Close");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
+      svg.append("path")
+          .datum(data)
+          .attr("class", "line")
+          .attr("d", line);
+    });
 
-var area = d3.svg.area()
-    .x(function(d) { return x(d.date); })
-    .y0(height)
-    .y1(function(d) { return y(d.close); });
+    function type(d) {
+      d.date = formatDate.parse(d.date);
+      d.close = +d.close;
+      return d;
+    }
+    console.log(cock);
+  </script>
+</html>
 
-var line = d3.svg.line()
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.close); });
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-d3.csv("nasdaq_d3js.csv", type, function(error, data) {
-  if (error) throw error;
-
-  x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain(d3.extent(data, function(d) { return d.close; }));
-  svg.append("path")
-        .datum(data)
-        .attr("class", "area")
-        .attr("d", area);
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Close");
-
-  svg.append("path")
-      .datum(data)
-      .attr("class", "line")
-      .attr("d", line);
-});
-
-function type(d) {
-  d.date = formatDate.parse(d.date);
-  d.close = +d.close;
-  return d;
-}
-
-</script>
 
