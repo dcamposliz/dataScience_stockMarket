@@ -58,7 +58,13 @@
   require(MTS)
   require(plm)
   library(caret)
+  # required for cross-validation
+  require(caret)
+  require(DAAG)
 
+  # outputting work
+
+  pdf("linearModel_sp_500.pdf")
 
 ###########################################################
 print(" ")
@@ -292,12 +298,13 @@ print(" ")
   # outputting the attributes of our new dataset to confirm we are using the desired variables
   attributes(dataMaster_fitData)
 
+
+
   # cutting out dataset into training and testing datasets
   dataMaster_TR <- dataMaster_fitData[-c(241:252),]
   # dataMaster_TR
   dataMaster_TS <- dataMaster_fitData[-c(1:240),]
   # dataMaster_TS
-
 
   # removing nasdaq variable from testing dataset
   dataMaster_TS_wo_sp_500 <- dataMaster_TS
