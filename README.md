@@ -21,10 +21,8 @@ This project uses R, HTML, CSS, and JavaScript.
 Using tons of data, linear models, time series models, and other random stuff!
 
 --
---
 
-
-GET AN UNDERSTANDING OF THE FOLLOWING TERMS & CONCEPTS IN ORDER TO BETTER UNDERSTAND THIS PROJECT :)
+TERMINOLOGY & CONCEPTS
 
 --
 
@@ -136,12 +134,11 @@ http://www.robots.ox.ac.uk/~sjrob/Pubs/TechReport_PARG0803.pdf
 
 https://cran.r-project.org/web/packages/MTS/MTS.pdf
 
-
---
 --
 
-
-GETTING ENVIRONMENT RUNNING ON YOUR SYSTEM (specific instructions for UBUNTU 14.04)
+RUN THIS YOURSELF
+	
+	(specific instructions for UBUNTU 14.04)
 
 --
 
@@ -192,10 +189,8 @@ http://www.tecmint.com/useful-linux-commands-for-newbies/
 
 
 --
---
 
-
-PROJECT PROCESS
+PROCESS, ANALYSIS, & SOME THEORY
 
 --
 
@@ -237,21 +232,35 @@ PROJECT PROCESS
 
 	- gdp_us
 
-- Cleaning / formatting data
+- Then we cleaned and formatted our data. Check data_1 directory to see the data files used in the analysis
 
 https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWfolM/edit?usp=sharing
 
-- Fitting statistical models using our data and a variety of tests
+- Then we fit various statistical models and ran several tests
 
 	- LINEAR MODEL
 
-		- T test significance
+		- T STATISTIC
 
-		- Confidence interval selection
+			- we use the t-statistic to test the significance of our variables in the model. 
 
-		- Backwards elimination (of non-significant variables)
+			- the t-statistic is a ratio of the departure of an estimated parameter from its notional value and its standard error. it is used in hypothesis testing, for example, in the Student's t-test, in the augmented Dickey-Fuller test, and in bootstrapping.
 
-			- when the p value for the intercept is the largest (with respect to other variables' p value), we stop dropping variables
+		- CONFIDENCE INTERVAL
+
+			- we used confidence interval selection to further test the signficance of our variables in the models.
+
+			- in statistics, a confidence interval (CI) is a type of interval estimate of a population parameter. It is an observed interval (i.e. it is calculated from the observations), in principle different from sample to sample, that frequently includes the value of an unobserved parameter of interest if the experiment is repeated.
+
+			- confidence intervals consist of a range of values (interval) that act as good estimates of the unknown population parameter; however, the interval computed from a particular sample does not necessarily include the true parameter. 
+
+			- when we say "we are 99% confident that the true value of the parameter is in our confidence interval", we express that the 99% of the hypothetically observed confidence intervals will hold the true value of the parameter.
+
+			- confidence intervals were introduced to statistics by Jerzy Neyman in a paper published in 1937.
+
+		- BACKWARDS ELIMINATION (of non-significant variables)
+
+			- basically, we include all the variables in the available data set and drop variables until P VALUE for the intercept coefficient is the largest (with respect to other variables' p value)
 
 		- BIC Procedure
 
@@ -265,6 +274,23 @@ https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWf
 
 	- TIME SERIES MODEL
 
+		- a time series is a sequence of data points made:
+
+			- over a continuous time interval.
+
+			- out of successive measurements over an interval.
+
+			- using equal spacing between every two consecutive measurements.
+
+			- with each time unit within the time interal having at most one data point.
+
+		- examples include ocean tides, counts of sunspots, and the daily closing value of the Dow Jones Industrial Average.
+
+		- panel data is the general class, a multidimensional data set, whereas a time series data set is a one-dimensional panel (as is a cross-sectional dataset).
+
+		- time series analysis comprises methods for analysing time series data in order to extract meaningful statistics and other characteristics of the data. time series forecasting is the use of a model to predict future values based on previously observed values. while regression analysis is often employed in such a way to test theories tha the current values of one of more independent time series affect the current value of another time series, this type of analysis of time series is not called "time series analysis", which focuses on comparing values of a single time series or multiple dependent time series at different points in time.
+
+		- methods for time series analyses may be divided into two classes: frequency domain methods (which includes spectral analysis and wavelet analysis) and time domain methods (which includes auto-correlation and cross-correlation analysis). time series analysis techniques may be divided into parametric (which assume that underlying stationary stochastic process has a certain strcucture which can be explained using a small number of parameters (e.g. autoregressive or moving average model)) and non-parametric methods (which explicitly estimate the covariance or the spectrum of the process without assuming that the process has any particular structure). methods of time series may also be divided into linear and non-linear, univariate and multivariate.
 
 		- auto.arima method
 
@@ -289,13 +315,20 @@ http://onlinestatbook.com/2/transformations/box-cox.html
 
 https://www.isixsigma.com/tools-templates/normality/making-data-normal-using-box-cox-power-transformation/
 
-- Run a ton of models and do a bunch of tests until we find the best one
+- Then we made some predictions with both models, outputting relevant plots and other graphics to PDF files
 
-- Do some cool predictions and visualizations
-
-- Mount it all on the web
-
-
+- Finally, we wrote some basic d3.js code to visualize our data
 
 --
+
+We listened to some of this music, we thought you might like it :)
+
+	- lost in music by cosmic gate
+	- SOL by solar fiends
+	- concept 1 by komodo
+	- monday paracetemol by ukrich schnauss
+	- feeling good by nina simone
+	- the prudence of evolution by ernest gonzales
+	- trophies by GANZ
+
 --
