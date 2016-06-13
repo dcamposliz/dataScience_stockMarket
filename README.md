@@ -18,7 +18,19 @@ HOW:
 
 This project uses R, HTML, CSS, and JavaScript.
 
-Using tons of data, linear models, time series models, and other random stuff!
+Using tons of data, linear models, time series models, and other stuff!
+
+--
+
+WHO:
+
+ - David Campos
+
+ - Raul Eulogio
+
+ - Kim Specht
+
+ - Nathan Fritter
 
 --
 
@@ -290,8 +302,6 @@ https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWf
 
 			- returns best ARIMA model according to either AIC, AICc or BIC value. The function conducts a search over possible model within the order constraints provided. ARIMA stands for autoregressive integrated moving average, and it is a generalization of the ARMA model. These models are fitted to time series data either to understand the data or to predict future points (forecasting).
 
-https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average
-
 		- box cox transformation
 
 			- normally distributed data is needed to use a number of statistical analysis tools, such as individuals control charts, Cp/Cpk analysis, t-tests and analysis of variance (ANOVA). When data is not normally distributedm the cause for non-normality should be determined and appropriate remedial actions should be taken. 
@@ -301,6 +311,9 @@ https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average
 			- data transformation, and particularly, the Box-Cox power transformation, is one of those remedial actions that may help to make data normal.
 
 			- the statisticians George Box and David Cox developed a procedure to identify an appropriate exponent (Lambda = l) to use to transform data into a "normal shape". The Lambda value indicates the power to which all data should be raised. In order to do this, the Box-Cox power transformation searches from Lambda =-5 to Lambda = 5 until the best value is found.
+
+
+https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average
 
 https://en.wikipedia.org/wiki/Power_transform
 
