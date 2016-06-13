@@ -24,8 +24,6 @@ Using tons of data, linear models, time series models, and other random stuff!
 
 TERMINOLOGY & CONCEPTS
 
---
-
 https://en.wikipedia.org/wiki/Probability
 
 https://en.wikipedia.org/wiki/Statistics
@@ -136,11 +134,7 @@ https://cran.r-project.org/web/packages/MTS/MTS.pdf
 
 --
 
-RUN THIS YOURSELF
-	
-	(specific instructions for UBUNTU 14.04)
-
---
+RUN THIS YOURSELF (specific instructions for UBUNTU 14.04)
 
 - Clone this project in your machine using Github
 
@@ -298,7 +292,6 @@ https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWf
 
 https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average
 
-
 		- box cox transformation
 
 			- normally distributed data is needed to use a number of statistical analysis tools, such as individuals control charts, Cp/Cpk analysis, t-tests and analysis of variance (ANOVA). When data is not normally distributedm the cause for non-normality should be determined and appropriate remedial actions should be taken. 
@@ -323,12 +316,18 @@ https://www.isixsigma.com/tools-templates/normality/making-data-normal-using-box
 
 We listened to some of this music, we thought you might like it :)
 
-	- lost in music by cosmic gate
-	- SOL by solar fiends
-	- concept 1 by komodo
-	- monday paracetemol by ukrich schnauss
-	- feeling good by nina simone
-	- the prudence of evolution by ernest gonzales
-	- trophies by GANZ
+ - lost in music by cosmic gate
+
+ - SOL by solar fiends
+
+ - concept 1 by komodo
+
+ - monday paracetemol by ukrich schnauss
+
+ - feeling good by nina simone
+
+ - the prudence of evolution by ernest gonzales
+
+ - trophies by GANZ
 
 --
