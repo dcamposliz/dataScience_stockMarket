@@ -1,0 +1,59 @@
+--
+--
+
+
+MAYBE THIS IS OUR MODEL?
+
+--
+
+http://stackoverflow.com/questions/1714280/multivariate-time-series-modelling-in-r
+
+https://cran.r-project.org/web/views/TimeSeries.html
+
+https://cran.r-project.org/web/packages/MTS/MTS.pdf
+
+
+--------------------------------------------------
+
+
+WHAT IS NEXT?
+
+--
+
+- Learn statistical models
+
+https://www3.nd.edu/~steve/Rcourse/Lecture7v1.pdf
+
+http://arxiv.org/pdf/1302.6613.pdf
+
+- Pull stock data in "real-time"
+
+http://finance.yahoo.com/
+
+http://finance.yahoo.com/q?s=^ixic
+
+http://finance.yahoo.com/q?s=^nya
+
+http://finance.yahoo.com/q?s=^gspc
+
+https://www.youtube.com/watch?v=sXyXciMYZZw
+
+http://stackoverflow.com/questions/10040954/alternative-to-google-finance-api
+
+http://stackoverflow.com/questions/417453/best-most-comprehensive-api-for-stocks-financial-data
+
+https://www.quandl.com/blog/api-for-stock-data
+
+https://github.com/hongtaocai/googlefinance
+
+- Other awesome stuff
+
+https://github.com/markitondemand/DataApis/blob/master/MarkitQuoteServiceSample.js#L46
+
+http://dev.markitondemand.com/MODApis/
+
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+
+- Visualizations:
+
+https://github.com/arnauddri/d3-stock
