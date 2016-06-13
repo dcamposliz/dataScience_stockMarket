@@ -2,7 +2,7 @@
 
 WHY:
 
-Data is awesome stuff. We like playing with data, models, and more stuff.
+Data is awesome stuff. We love playing with data, stats, models...
 
 We want to prefict things.
 
@@ -20,15 +20,9 @@ Using tons of data, linear models, time series models, and other random stuff!
 --
 
 
-CONTEXT FOR THIS PROJECT
+MAKE SURE YOU HAVE AN UNDERSTANDING OF THE FOLLOWING TERMS & CONCEPTS IN ORDER TO UNDERSTAND THIS PROJECT
 
 --
-
-To understand this project, you should answer these questions for yourself:
-
-- Do I love data? Why?
-
-- Do I have a basic understanding of probability? statistics? programming? finance?
 
 https://en.wikipedia.org/wiki/Probability
 
@@ -205,26 +199,12 @@ https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWf
 
 		- when the AIC value for the intercept is the smallest (with respect to other variables' AIC value), we stop dropping variables
 
-- Run a fuckload of models and do a bunch of tests until we find the best one
+- Run a ton of models and do a bunch of tests until we find the best one
 
-- Do some kickass predictions and visualizations
+- Do some cool predictions and visualizations
 
 - Mount it all on the web
 
-
---
---
-
-
-MAYBE THIS IS OUR MODEL?
-
---
-
-http://stackoverflow.com/questions/1714280/multivariate-time-series-modelling-in-r
-
-https://cran.r-project.org/web/views/TimeSeries.html
-
-https://cran.r-project.org/web/packages/MTS/MTS.pdf
 
 
 --
@@ -272,23 +252,13 @@ http://www.tecmint.com/useful-linux-commands-for-newbies/
 
 		Rscript testScript.R
 
-- Now run the actual project:
+- Now run the actual project, for this, go to the scriptsR directory and run the linear and time series models
 
-		Rscript script.R
+- Explore the data in data_1 directory
 
-- Read the code. Open this file with sublime:
+- Explore the other directories
 
-		dataScience_stockMarket/script.R
-
-- Read the code, write down questions, answer your questions from doing several google searches
-
-- Read the data. Open this file with sublime:
-
-		dataScience_stockMarket/data_1/data_master_1.csv
-
-	- Read the data, write down questions, run your own R scripts to answer your own questions
-
-- Make contributions to this project :)
+- We would love your feedback and contributions to this project :)
 
 
 --
@@ -325,7 +295,7 @@ https://www.quandl.com/blog/api-for-stock-data
 
 https://github.com/hongtaocai/googlefinance
 
-- Awesome shit
+- Other awesome stuff
 
 https://github.com/markitondemand/DataApis/blob/master/MarkitQuoteServiceSample.js#L46
 
