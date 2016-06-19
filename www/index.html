@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, maximum-scale=1">
 
 <title>Inertia7: Data Science Projects</title>
-<link rel="icon" href="favicon.png" type="image/png">
-<link rel="shortcut icon" href="favicon.ico" type="img/x-icon">
+<link rel="icon" href="favicon2.png" type="image/png">
+<link rel="shortcut icon" href="favicon2.ico" type="img/x-icon">
 
 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
@@ -47,7 +47,7 @@
         <ul class="we-create animated fadeInUp delay-1s">
             <li>We code <strong>data science</strong> projects, and publish them so you can learn too!</li>
         </ul>
-            <a class="link animated fadeInUp delay-1s" href="#">LEARN NOW</a>
+            <a class="link animated fadeInUp delay-1s" href="#projects">LEARN NOW</a>
     </div>
 </div>
 </header><!--header-end-->
@@ -56,237 +56,70 @@
 <nav class="main-nav-outer" id="test"><!--main-nav-start-->
     <div class="container">
         <ul class="main-nav">
-            <li><a href="#header">Home</a></li>
-            <li><a href="#focus">Focus</a></li>
-            <li><a href="#Portfolio">Projects</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#purpose">Purpose</a></li>
             <li class="small-logo"><a href="#header"><img src="img/data_logo.png" alt="" width="150px"></a></li>
-            <li><a href="#dream">Dream</a></li>
-            <li><a href="#crew">Crew</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#sayHi">Say Hi</a></li>
         </ul>
         <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
     </div>
 </nav><!--main-nav-end-->
 
 
+<!--  -->
 
-<section class="main-section" id="focus"><!--main-section-start-->
-    <div class="container">
-        <h2>Why Learn Data Science?</h2>
-        <h6>Because you can do awesome things by understanding data.</h6>
-        <div class="row">
-            <div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
-                <div class="service-list">
-                    <div class="service-list-col1">
-                        <i class="fa-paw"></i>
-                    </div>
-                    <div class="service-list-col2">
-                        <h3>Understand correlations</h3>
-                        <p>Linear Regression.</p>
-                        <p>Time Series.</p>
-                    </div>
-                </div>
-                <div class="service-list">
-                    <div class="service-list-col1">
-                        <i class="fa-gear"></i>
-                    </div>
-                    <div class="service-list-col2">
-                        <h3>Predict the future</h3>
-                        <p>K-Clustering.</p>
-                    </div>
-                </div>
-                <div class="service-list">
-                    <div class="service-list-col1">
-                        <i class="fa-apple"></i>
-                    </div>
-                    <div class="service-list-col2">
-                        <h3>sql</h3>
-                        <p>querying data in real-time for analysis.</p>
-                    </div>
-                </div>
-                <div class="service-list">
-                    <div class="service-list-col1">
-                        <i class="fa-medkit"></i>
-                    </div>
-                    <div class="service-list-col2">
-                        <h3>d3js</h3>
-                        <p>Output gorgeous visualizations of meaninful data.</p>
-                    </div>
-                </div>
-            </div>
-            <figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
-            <div id="fucking-graph" style="margin-left: auto; margin-right: auto; width: 50vw;">     
-                <script src="http://d3js.org/d3.v3.min.js"></script>
-                <script src="js/d3.js"></script>
-                <script>
-                    d3.csv("nasdaq_d3js.csv", type, function(error, data) {
-                      if (error) throw error;
-
-                      x.domain(d3.extent(data, function(d) { return d.date; }));
-                      y.domain(d3.extent(data, function(d) { return d.close; }));
-                      svg.append("path")
-                            .datum(data)
-                            .attr("class", "area")
-                            .attr("d", area);
-
-                      svg.append("g")
-                          .attr("class", "x axis")
-                          .attr("transform", "translate(0," + height + ")")
-                          .call(xAxis);
-
-                      svg.append("g")
-                          .attr("class", "y axis")
-                          .call(yAxis)
-                        .append("text")
-                          .attr("transform", "rotate(-90)")
-                          .attr("y", 6)
-                          .attr("dy", ".71em")
-                          .style("text-anchor", "end")
-                          .text("Close");
-
-                      svg.append("path")
-                          .datum(data)
-                          .attr("class", "line")
-                          .attr("d", line);
-                    });
-
-                    function type(d) {
-                      d.date = formatDate.parse(d.date);
-                      d.close = +d.close;
-                      return d;
-                    }
-                    console.log(cock);
-                  </script>
-            </div>
-            </figure>
-        
-        </div>
-    </div>
-</section><!--main-section-end-->
-
-<section class="main-section alabaster"><!--main-section alabaster-start-->
-    <div class="container">
-        <div class="row">
-			<figure class="col-lg-5 col-sm-4 wow fadeInLeft">
-            	<img  src="img/iphone.png" alt="">
-            </figure>
-        	<div class="col-lg-7 col-sm-8 featured-work">
-            	<h2>featured work</h2>
-            	<P class="padding-b">Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit aenean rhoncus posuere odio in tincidunt. Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit.</P>
-            	<div class="featured-box">
-                	<div class="featured-box-col1 wow fadeInRight delay-02s">
-                    	<i class="fa-magic"></i>
-                    </div>	
-                	<div class="featured-box-col2 wow fadeInRight delay-02s">
-                        <h3>magic of theme development</h3>
-                        <p>Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit aenean rhoncus posuere odio in tincidunt. </p>
-                    </div>    
-                </div>
-                <div class="featured-box">
-                	<div class="featured-box-col1 wow fadeInRight delay-04s">
-                    	<i class="fa-gift"></i>
-                    </div>	
-                	<div class="featured-box-col2 wow fadeInRight delay-04s">
-                        <h3>neatly packaged</h3>
-                        <p>Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit aenean rhoncus posuere odio in tincidunt. </p>
-                    </div>    
-                </div>
-                <div class="featured-box">
-                	<div class="featured-box-col1 wow fadeInRight delay-06s">
-                    	<i class="fa-dashboard"></i>
-                    </div>	
-                	<div class="featured-box-col2 wow fadeInRight delay-06s">
-                        <h3>SEO optimized</h3>
-                        <p>Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit aenean rhoncus posuere odio in tincidunt. </p>
-                    </div>    
-                </div>
-                <a class="Learn-More" href="#">Learn More</a>
-            </div>
-        </div>
-	</div>
-</section><!--main-section alabaster-end-->
-
-
-
-<section class="main-section paddind" id="Portfolio"><!--main-section-start-->
+<section class="main-section paddind" id="projects"><!--main-section-start-->
 	<div class="container">
-    	<h2>Portfolio</h2>
-    	<h6>Fresh portfolio of designs that will keep you wanting more.</h6>
-      <div class="portfolioFilter">  
-        <ul class="Portfolio-nav wow fadeIn delay-02s">
-        	<li><a href="#" data-filter="*" class="current" >All</a></li>
-            <li><a href="#" data-filter=".branding" >Branding</a></li>
-            <li><a href="#" data-filter=".webdesign" >Web design</a></li>
-            <li><a href="#" data-filter=".printdesign" >Print design</a></li>
-            <li><a href="#" data-filter=".photography" >Photography</a></li>
-        </ul>
-       </div> 
+    	<h2>Projects</h2>
+    	<h6>Explore data science projects written in R and Python!</h6>
+      
+                    <!--
+                          <div class="portfolioFilter">  
+                            <ul class="Portfolio-nav wow fadeIn delay-02s">
+                                <li><a href="#" data-filter="*" class="current" >All</a></li>
+                                <li><a href="#" data-filter=".branding" >Branding</a></li>
+                                <li><a href="#" data-filter=".webdesign" >Web design</a></li>
+                                <li><a href="#" data-filter=".printdesign" >Print design</a></li>
+                                <li><a href="#" data-filter=".photography" >Photography</a></li>
+                            </ul>
+                           </div> 
+                    -->
         
 	</div>
     <div class="portfolioContainer wow fadeInUp delay-04s">
-            	<div class=" Portfolio-box printdesign">
-                	<a href="#"><img src="img/Portfolio-pic1.jpg" alt=""></a>	
-                	<h3>Foto Album</h3>
-                    <p>Print Design</p>
+            	<div class="Portfolio-box printdesign">
+                	<a href="projects/timeSeries_stockMarket.html"><img src="img/wallStreet.jpg" alt=""></a>	
+                	<h3>Predicting the Stock Market</h3>
+                    <p>TIME SERIES ANALYSIS OF THE S&amp;P 500s WITH <strong>R</strong></p>
                 </div>
+                <!--
                 <div class="Portfolio-box webdesign">
-                	<a href="#"><img src="img/Portfolio-pic2.jpg" alt=""></a>	
-                	<h3>Luca Theme</h3>
+                    <a href="#"><img src="img/Portfolio-pic2.jpg" alt=""></a>   
+                    <h3>Luca Theme</h3>
                     <p>Web Design</p>
                 </div>
                 <div class=" Portfolio-box branding">
-                	<a href="#"><img src="img/Portfolio-pic3.jpg" alt=""></a>	
-                	<h3>Uni Sans</h3>
+                    <a href="#"><img src="img/Portfolio-pic3.jpg" alt=""></a>   
+                    <h3>Uni Sans</h3>
                     <p>Branding</p>
                 </div>
-                <div class=" Portfolio-box photography" >
-                	<a href="#"><img src="img/Portfolio-pic4.jpg" alt=""></a>	
-                	<h3>Vinyl Record</h3>
-                    <p>Photography</p>
-                </div>
-                <div class=" Portfolio-box branding">
-                	<a href="#"><img src="img/Portfolio-pic5.jpg" alt=""></a>	
-                	<h3>Hipster</h3>
-                    <p>Branding</p>
-                </div>
-                <div class=" Portfolio-box photography">
-                	<a href="#"><img src="img/Portfolio-pic6.jpg" alt=""></a>	
-                	<h3>Windmills</h3>
-                    <p>Photography</p>
-                </div>
+                -->
     </div>
 </section><!--main-section-end-->
 
 
-<section class="main-section client-part" id="client"><!--main-section client-part-start-->
+<section class="main-section client-part" id="purpose"><!--main-section client-part-start-->
 	<div class="container">
-		<b class="quote-right wow fadeInDown delay-03"><i class="fa-quote-right"></i></b>
-    	<div class="row">
-        	<div class="col-lg-12">
-            	<p class="client-part-haead wow fadeInDown delay-05">It was a pleasure to work with the guys at Knight Studio. They made sure 
-we were well fed and drunk all the time!</p>
-            </div>
-        </div>
-    	<ul class="client wow fadeIn delay-05s">
-        	<li><a href="#">
-            	<img src="img/client-pic1.jpg" alt="">
-                <h3>James Bond</h3>
-                <span>License To Drink Inc.</span>
-            </a></li>
+
+        <h1 class="animated fadeInDown delay-07s">WHY LEARN DATA SCIENCE?</h1>
+        <ul class="we-create animated fadeInUp delay-1s">
+            <li>Make inferences and predictions about the world around you, using data and powerful software.</li>
         </ul>
+
     </div>
 </section><!--main-section client-part-end-->
-<div class="c-logo-part"><!--c-logo-part-start-->
-	<div class="container">
-    	<ul>
-        	<li><a href="#"><img src="img/c-liogo1.png" alt=""></a></li>
-            <li><a href="#"><img src="img/c-liogo2.png" alt=""></a></li>
-            <li><a href="#"><img src="img/c-liogo3.png" alt=""></a></li>
-            <li><a href="#"><img src="img/c-liogo4.png" alt=""></a></li>
-            <li><a href="#"><img src="img/c-liogo5.png" alt=""></a></li>
-    	</ul>
-	</div>
-</div><!--c-logo-part-end-->
+
 <section class="main-section team" id="team"><!--main-section team-start-->
 	<div class="container">
         <h2>team</h2>
@@ -295,7 +128,7 @@ we were well fed and drunk all the time!</p>
             <div class="team-leader-box">
                 <div class="team-leader wow fadeInDown delay-03s"> 
                     <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="img/team-leader-pic1.jpg" alt="">
+                    <img src="img/david.png" alt="">
                     <ul>
                         <li><a href="#" class="fa-twitter"></a></li>
                         <li><a href="#" class="fa-facebook"></a></li>
@@ -303,14 +136,14 @@ we were well fed and drunk all the time!</p>
                         <li><a href="#" class="fa-google-plus"></a></li>
                     </ul>
                 </div>
-                <h3 class="wow fadeInDown delay-03s">Walter White</h3>
+                <h3 class="wow fadeInDown delay-03s">David Campos</h3>
                 <span class="wow fadeInDown delay-03s">Chief Executive Officer</span>
                 <p class="wow fadeInDown delay-03s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
             </div>
             <div class="team-leader-box">
                 <div class="team-leader  wow fadeInDown delay-06s"> 
                     <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="img/team-leader-pic2.jpg" alt="">
+                    <img src="img/ravi.png" alt="">
                     <ul>
                         <li><a href="#" class="fa-twitter"></a></li>
                         <li><a href="#" class="fa-facebook"></a></li>
@@ -318,24 +151,9 @@ we were well fed and drunk all the time!</p>
                         <li><a href="#" class="fa-google-plus"></a></li>
                     </ul>
                 </div>
-                <h3 class="wow fadeInDown delay-06s">Jesse Pinkman</h3>
+                <h3 class="wow fadeInDown delay-06s">Raul Eulogio</h3>
                 <span class="wow fadeInDown delay-06s">Product Manager</span>
                 <p class="wow fadeInDown delay-06s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
-            </div>
-            <div class="team-leader-box">
-                <div class="team-leader wow fadeInDown delay-09s"> 
-                    <div class="team-leader-shadow"><a href="#"></a></div>
-                    <img src="img/team-leader-pic3.jpg" alt="">
-                    <ul>
-                        <li><a href="#" class="fa-twitter"></a></li>
-                        <li><a href="#" class="fa-facebook"></a></li>
-                        <li><a href="#" class="fa-pinterest"></a></li>
-                        <li><a href="#" class="fa-google-plus"></a></li>
-                    </ul>
-                </div>
-                <h3 class="wow fadeInDown delay-09s">Skyler white</h3>
-                <span class="wow fadeInDown delay-09s">Accountant</span>
-                <p class="wow fadeInDown delay-09s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
             </div>
         </div>
     </div>
@@ -343,19 +161,19 @@ we were well fed and drunk all the time!</p>
 
 
 
-<section class="business-talking"><!--business-talking-start-->
+<section class="business-talking" id="sayHi"><!--business-talking-start-->
 	<div class="container">
-        <h2>Let’s Talk Business.</h2>
+        <h2>Say Hi!</h2>
     </div>
 </section><!--business-talking-end-->
 <div class="container">
-<section class="main-section contact" id="contact">
+<section class="main-section contact" >
 	
         <div class="row">
         	<div class="col-lg-6 col-sm-7 wow fadeInLeft">
             	<div class="contact-info-box address clearfix">
                 	<h3><i class=" icon-map-marker"></i>Address:</h3>
-                	<span>308 Negra Arroyo Lane<br>Albuquerque, New Mexico, 87111.</span>
+                	<span>Santa Barbara, California, 93103</span>
                 </div>
                 <div class="contact-info-box phone clearfix">
                 	<h3><i class="fa-phone"></i>Phone:</h3>
@@ -390,8 +208,8 @@ we were well fed and drunk all the time!</p>
 </div>
 <footer class="footer">
     <div class="container">
-        <div class="footer-logo"><a href="#"><img src="img/footer-logo.png" alt=""></a></div>
-        <span class="copyright">Copyright © 2015 | <a href="http://bootstraptaste.com/">Bootstrap Themes</a> by BootstrapTaste</span>
+        <div class="footer-logo"><a href="#"><img src="img/data_logo.png" alt=""></a></div>
+        <span class="copyright">Copyright © 2016 | <a href="#">Inertia7</a></span>
     </div>
     <!-- 
         All links in the footer should remain intact. 
