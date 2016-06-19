@@ -25,7 +25,7 @@
 ##
 print("Time Series Model for S&P 500")
 
-dataMaster <- read.csv("/home/dc/myProjects/learn/learnCode/dataScience_stockMarket/data_1/data_master_1.csv")
+dataMaster <- read.csv("/home/rxe/myProjects/dataScience/timeSeries/data_master_1.csv")
 
 attach(dataMaster)
 
@@ -73,8 +73,6 @@ require(ggplot2)
 require(forecast)
 require(astsa)
 require(car)
-require(MTS)
-require(plm)
 library(caret)
 # required for cross-validation
 require(caret)
@@ -211,6 +209,16 @@ print(" ")
 sp_500
 # First we plot the time series plot to get an understanding of the necessary modeling
 plot.ts(sp_500)
+acf2(sp_500)
+
+# Next we created some plots to get a "feel" for our data 
+# This next plot takes a closer look at the seasonal components of our time series
+seasonplot(sp_500,ylab="S&P Closing Values", xlab="Year",
+           main="Seasonal plot: S&P Monthly Closing Values",
+           year.labels=TRUE, year.labels.left=TRUE, col=1:20, pch=19)
+
+# the plot following plot decomposes the time series into its seasonal, trend and irregular components!
+plot(stl(sp_500, s.window = "periodic"))
 
 # Notice that this plot is not stationary so an appropriate transformation must be made
 # The variability can not be seen at first glance but one the transformation is made, we can see if the model
@@ -238,14 +246,18 @@ act_sp500_2015_ts
 #  attributes(for_nasdaq_mod) 
 for_sp500_all <- forecast(auto.arima(sp500_TR), 12)
 for_sp500_all
+# Here we do some residual diagnostics to make sure we have white noise!
+plot(for_sp500_all$residuals, main = "Residual Plots for Forecast")
+acf(for_sp500_all$residuals, main = "ACF plot for Residuals")
+# From these two plots we see that the residuals look like white noise so we're good to go on forecasting
+
+# Here we extract the forecast information to create better visual demonstration of the forecast vs actual values!
 for_sp500_df <- data.frame(for_sp500_all)
 for_sp500_vals <- for_sp500_df$Point.Forecast
 for_sp500_2015_ts <- ts(for_sp500_vals, start = c(2015, 1), freq = 12) 
 for_sp500_2015_ts
-
 ###Forecast data for 2015 using ARIMA model
 #only getting the information for the year 2015
-
 
 
 #Including lower 95 % CI Lines
@@ -299,26 +311,32 @@ act_sp500_2014_ts
 plot(act_sp500_2014_ts)
 
 #  attributes(for_nasdaq_mod) 
-for_sp500_all <- forecast(auto.arima(sp500_TR1), 24)
-for_sp500_all
-for_sp500_df <- data.frame(for_sp500_all)
-for_sp500_vals <- for_sp500_df$Point.Forecast
-for_sp500_2014_ts <- ts(for_sp500_vals, start = c(2014, 1), freq = 12) 
+for_sp500_all_2014 <- forecast(auto.arima(sp500_TR1), 24)
+for_sp500_all_2014
+# Here we do some residual diagnostics to make sure we have white noise!
+plot(for_sp500_all_2014$residuals, main = "Residual Plots for Forecast")
+acf(for_sp500_all_2014$residuals, main = "ACF plot for Residuals")
+
+# Here we extract the forecast information to create better visual demonstration of the forecast vs actual values!
+for_sp500_2014_df <- data.frame(for_sp500_all_2014)
+for_sp500_2014_vals <- for_sp500_2014_df$Point.Forecast
+for_sp500_2014_ts <- ts(for_sp500_2014_vals, start = c(2014, 1), freq = 12) 
 for_sp500_2014_ts
 plot(for_sp500_2014_ts)
+
 ###Forecast data for 2015 using ARIMA model
 #only getting the information for the year 2015
 
 
 
 #Including lower 95 % CI Lines
-lo <- data.frame(for_sp500_all$lower)
+lo <- data.frame(for_sp500_all_2014$lower)
 lo_df <- lo$X95.
 for_sp500_lo95CI_14ts <- ts(lo_df, start=c(2014, 1), freq = 12)
 for_sp500_lo95CI_14ts
 plot(for_sp500_lo95CI_14ts)
 #including upper 95 % CI Lines
-up <- data.frame(for_sp500_all$upper)
+up <- data.frame(for_sp500_all_2014$upper)
 up_df <- up$X95. 
 for_sp500_up95CI_14ts <- ts(up_df, start = c(2014, 1), freq = 12)
 for_sp500_up95CI_14ts
@@ -337,7 +355,8 @@ ggplot(together_df, aes(date)) +
   geom_line(aes(y = up_df, colour = "Upper 95% Bound"), linetype = 'dotted') +
   scale_color_manual(name="Groups" ,values=c("green", "blue", "red", "red"))
 
-
+# Conclusion for this model: The forecast follows the actual data pretty well. It's able to capture the trend although of course it can't capture the volitaty very well we found this
+# model to be satisfactory, although we will test others and measure their goodness of fit
 
 
 
@@ -354,6 +373,11 @@ ggplot(together_df, aes(date)) +
 lambda <- BoxCox.lambda(sp500_TR)
 fit_sp500_BC <- ar(BoxCox(sp500_TR,lambda))
 fit_sp500_BC
+attributes(fit_sp500_BC)
+# Here we do some residual plots to make sure our residuals are white noise and uncorrelated
+plot(fit_sp500_BC$resid, main = "Residual plot for Box Cox Transformation")
+acf(fit_sp500_BC$resid,  na.action=na.pass, main = "ACF plot for residuals")
+
 plot(forecast(fit_sp500_BC,h=12,lambda=lambda))
 for_sp500_BC <- forecast(fit_sp500_BC,h=12,lambda=lambda)
 attributes(for_sp500_BC)
@@ -382,3 +406,25 @@ ggplot(together_BCdf, aes(date)) +
   geom_line(aes(y = for_sp500_loBC95CI_ts, colour = "Lower 95% Bound"), linetype = 'dotted') +
   geom_line(aes(y = for_sp500_upBC95CI_ts, colour = "Upper 95% Bound"), linetype = 'dotted') +
   scale_color_manual(name="Groups" ,values=c("green", "blue", "red", "red"))
+
+# Conclusions: Box Cox transformations are usually done with data that is heteroskedastic so the forecast didn't perform as well as the ARIMA model, but we wanted to include it just in case
+# anyone wants to use our methodology with data that has a non-constant variance!
+
+#other forecasts
+dev.off()
+plot(forecast(meanf(sp_500, h = 12)))
+plot(forecast(naive(sp_500, h = 12)))
+plot(forecast(snaive(sp_500, h = 12)))
+plot(forecast(ets(sp_500), h = 12))
+#Forecast for the year 2016!!
+plot(forecast(auto.arima(sp_500), h = 12))
+###Measuring accuracy between models 
+accuracy(for_sp500_ts)
+accuracy(for_sp500_all)
+accuracy(for_sp500_BC)
+accuracy(meanf(nasdaq, h = 12))
+accuracy(naive(nasdaq, h = 12))
+accuracy(snaive(nasdaq, h = 12))
+accuracy(forecast(ets(nasdaq), h = 12))
+
+# Thus we concluded that the ARIMA model produced the best forecast!
