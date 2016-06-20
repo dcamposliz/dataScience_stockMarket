@@ -26,8 +26,8 @@
 <script type="text/javascript" src="../js/jquery.isotope.js"></script>
 <script type="text/javascript" src="../js/wow.js"></script>
 <script type="text/javascript" src="../js/classie.js"></script>
-<script src="http://cdn.plot.ly/plotly-latest.min.js"></script>
 <script type="text/javascript" src="../engines/scripts.js"></script>
+<script src="http://cdn.plot.ly/plotly-latest.min.js"></script>
 
 
 <!--[if lt IE 9]>
@@ -39,82 +39,378 @@
 </head>
 </head>
 <body>
-    <section class="header-project xlarge-paragraph">
+
+<!--main-nav-start-->
+<nav class="navbar-fixed-top" style="background-color:white"><!--main-nav-start-->
+    <div class="container-fluid" style="box-shadow:5px 5px 5px #D3D3D3;">
+            <ul class="main-nav">
+                <li class="small-logo large-paragraph"><a href="../index.html"><img src="../img/data_logo.png" alt="" width="100px"> Inertia7</a></li>
+            </ul>
+    </div>
+</nav><!--main-nav-end-->
+
+
+<section class="header-project large-paragraph">
+    <div class="container">
+        <h1><strong>PROJECT</strong>: PREDICTING THE STOCK MARKET</h1>
+        <hr/>
+        <p><strong>TIME-SERIES ANALYSIS OF THE S&amp;P 500 STOCK INDEX WITH R</strong></p>
+    </div>
+</section>
+
+
+<!-- PROJECT SUMMARY -->
+    <section class="main-section xlarge-paragraph">
         <div class="container">
-            <h1>PREDICTING THE STOCK MARKET</h1>
-            <hr/>
-            <p>Time Series Analysis of the S&amp;P 500s with R</p>
-            <p>June 2016</p>
-            <p>David Campos, Raul Eulogio, Nathan Fritter, Kim Specht</p>
+            <h3>
+                Contributors: <strong>David A. Campos, Raul Eulogio, Kim Specht, Nathan Fritter</strong>.
+            </h3>
+            <br/>
+            <h3>
+                Languages: <strong>R, JavaScript</strong>.
+            </h3>
+            <br/>
+            <h3>
+                Published on: <strong>June 2016</strong>.
+            </h3>
         </div>
     </section>
-<!-- PROJECT SUMMARY -->
-    <section class="main-section large-paragraph">
+    <section class="main-section xlarge-paragraph">
         <div class="container">
             <h2>Project Summary</h2>
             <hr/>
             <p>
-                This project focuses on predicting future values of the S&amp;P 500 stock index by conducting a time-series analysis of past data, using the statistical programming language <strong>R</strong>.
+                This project focuses on finding the best statistical-learning model to predict future values of the <strong>S&amp;P 500 Stock Index</strong>.
             </p>
+            <br/>
             <p>
-                Some bullshit about the relevance of the stock market with respect to the US economy, to state why this project is relevant.
+                Understanding the <strong>S&amp;P 500 Stock Index</strong> is highly-relevant in understanding the health of the U.S. economy as it is highly-correlated (statistically) with other U.S. economic indicators such as other stock indices (e.g. the NASDAQ Stock Index and the NYSE Stock Exchange), the U.S. Housing Price Index, and the U.S. Gross Domestic Product (U.S. GDP).
+            </p>
+            <br/>
+            <p>
+                Time-series analysis is a basic concept within the field of statistical-learning, which is appropriate for the analysis of the <strong>S&amp;P 500 Stock Index</strong>. 
+            </p>
+            <br/>
+            <p>
+                In this project, we carry out this statistical analysis with the power of R and deliver some browser-rich visualizations using with the elegance and flare of the JavaScript libraries d3.js, Plotly, and Shiny.
             </p>
         </div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="container large-paragraph">
+            <h3>
+                Steps:
+            </h3>
+            <ul>
+                <li>
+                    Load packages
+                </li>
+                <li>
+                    Get Data
+                </li>
+                <li>
+                    Do Exploratory Analysis
+                </li>
+                <li>
+                    Build Models
+                </li>
+                <li>
+                    Derive Conclusions
+                </li>
+            </ul>
+        </div>
+        <br/>
+        <div class="container large-paragraph">
+            <h3>
+                Requirements:
+            </h3>
+            <ul>
+                <li>
+                    Understanding of time-series analysis.
+                </li>
+                <li>
+                    Basic experience in R.
+                </li>
+                <li>
+                    R software environment.
+                </li>
+            </ul>
+        </div>
     </section>
-<!-- SELECTING, COLLECTING, CLEANING DATA -->
-    <section class="main-section large-paragraph">
+    <!-- LOAD REQUIRED PACKAGES-->
+        <section class="main-section xlarge-paragraph">
+            <div class="container">
+                <h2>Load Packages</h2>
+                <hr/>
+                <p>
+                    First, we want to load the appropriate packages into our R environment.
+                </p>
+                <br/>
+                <p>
+                    For this we use the <code>required()</code> method and include the package names as arguments. Make sure to use the <code>install.packages("")</code> method to install them first if you have not done so already.
+                </p>
+                <br/>
+                <code>
+                    require(data.table)
+                </code>
+                <br/>
+                <code>
+                    require(ggplot)
+                </code>
+                <br/>
+                <code>
+                    require(astsa)
+                </code>
+                <br/>
+                <code>
+                    require(car)
+                </code>
+                <br/>
+                <code>
+                    require(caret)
+                </code>
+                <br/>
+                <code>
+                    require(plotly)
+                </code>
+                <br/>
+            </div>
+        </section>
+<!-- GETTING, SELECTING, COLLECTING, CLEANING DATA -->
+    <section class="main-section xlarge-paragraph">
         <div class="container">
             <h2>Get Data</h2>
             <hr/>
-            <h3>Selecting Data</h3>
-            <p>
-                S&amp;P 500 data is in the form of <a href="https://en.wikipedia.org/wiki/Time_series" target="_blank">time-series</a>. This is because 
-            </p>
-            <br/>
-            <br/>
             <h3>
                 Collecting Data
             </h3>
+            <br/>
             <p>
-                We collected our data from <a href="https://finance.yahoo.com/q/hp?s=%5EGSPC+Historical+Prices">Yahoo Finance</a>. You can do the same too.
+                We collected our S&amp;P 500s data from <a href="https://finance.yahoo.com/q/hp?s=%5EGSPC+Historical+Prices">Yahoo Finance</a>. You can do the same too.
             </p>
             <br/>
             <br/>
             <h3>
                 Cleaning Data
             </h3>
+            <br/>
             <p>
-                We cleaned our data manually using google sheets.
+                We cleaned our data manually using <a href="https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWfolM/edit?usp=sharing">google sheets</a>. Here is our <a href="https://github.com/dcamposliz/dataScience_stockMarket/blob/master/data_1/data_master_1.csv">S&amp;P 500s data</a> along with a bunch of other economic indicators, ready to be used with R.
             </p>
+            <br/>
+            <br/>
+            <h3>
+                Loading Data
+            </h3>
+            <br/>
+            <p>
+                Then we must include our data set within our working R environment. For this we use:
+            </p>
+            <br/>
+            <code>
+                dataMaster <- read.csv(" ...{PATH_TO}... /data_master_1.csv")
+            </code>
+            <br/>
+            <code>
+                attach(dataMaster)
+            </code>
         </div>
     </section>
 
-    <section class="main-section large-paragraph">
+    <section class="main-section xlarge-paragraph">
         <div class="container">
-            <h2>Do exploratory analysis</h2>
+            <h2>
+                Do exploratory analysis
+            </h2>
             <hr/>
+            <p>
+                This stage of the project is also known as 'getting a feel for your data.' It is important to visualize your data at it's 'rawest' form.
+            </p>
+            <br/>
+            <br/>
+            <br/>
+            <h3>
+                Creating time-series data object
+            </h3>
+            <br/>
+            <p>
+                S&amp;P 500 data is in the form of time-series. In R we are able to create a time-series object out of our data vector using the <code>ts()</code> method. For this, we select the vector we would like to use, and tune the start and frequency parameters. Then we output the time-series data to the terminal by calling the object.
+            </p>
+            <br/>
+            <code>
+                sp_500 <- ts(dataMaster$sp_500, start=c(1995, 1), freq=12)
+            </code>
+            <br/>
+            <code>
+                sp_500
+            </code>
+            <br/>
+            <br/>
+            <br/>
+            <img src="../img/timeSeries_stockMarket_img/timSeriesobject.png" alt=""> 
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <h3>
+                Plotting time-series data object
+            </h3>
+            <br/>
+            <p>
+                Below, we are plotting our time series data of the S&amp;P 500 STOCK INDEX using plotly. You can plot this within R using this script:
+            </p>
+            <br/>
+            <code>
+                plot.ts(sp_500)
+            </code>
+            <br/>
             <div id="myDiv">
                 <script type="text/javascript">
                     makeplot();
                 </script>
             </div>
+            <br/>
+            <br/>
+            <br/>
+            <h3>
+                Outputting ACF and PACF PLOTS FOR ORIGINAL TIME-SERIES
+            </h3>
+            <br/>
+            <p>
+                Blah
+            </p>
+            <br/>
+            <code>
+                someCode()
+            </code>
+            <br/>
+            <br/>
+            <br/>
+            <img src="../img/timeSeries_stockMarket_img/acf2.png" alt=""> 
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section xlarge-paragraph">
         <div class="container">
             <h2>Build models</h2>
             <hr/>
-            <p></p>
+            <p>Then we run a bunch of models and test them to see which one is best.</p>
+            <hr/>
         </div>
-
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <!-- ARIMA Model for 2015 -->
+        <div class="container">
+            <hr/>
+            <h3>
+                <strong>ARIMA Model</strong>: Checking residuals to be white noise using histogram (training set size: 240)
+            </h3>
+            <div>
+                <a href="https://plot.ly/~raviolli77/18/" target="_blank" title="Histogram of ARIMA Model Residuals" style="display: block; text-align: center;"><img src="https://plot.ly/~raviolli77/18.png" alt="HISTOGRAM OF ARIMA MODEL RESIDUALS" style="max-width: 100%;width: 1554px;"  width="1554" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+                <script data-plotly="raviolli77:18"  src="https://plot.ly/embed.js" async></script>
+            </div>
+            <hr/>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div class="container">
+            <p>This is some text.</p>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <!-- Forecasted vs Actual plot -->
+        <div class="container">            
+            <hr/>
+            <h3>
+                <strong>ARIMA Model</strong>: One-year Forecast vs. Actual Values of S&amp;P 500 (Jan 2015 - Dec 2015)
+            </h3>
+            <div>
+                <a href="https://plot.ly/~raviolli77/8/?share_key=iDp0M5HdBwbBobMHnQ8s1b" target="_blank" title="ACTUAL VS PREDICTED PLOT" style="display: block; text-align: center;"><img src="https://plot.ly/~raviolli77/8.png?share_key=iDp0M5HdBwbBobMHnQ8s1b" alt="ACTUAL VS PREDICTED PLOT" style="max-width: 100%;width: 1554px;"  width="1554" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+                <script data-plotly="raviolli77:8" sharekey-plotly="iDp0M5HdBwbBobMHnQ8s1b" src="https://plot.ly/embed.js" async></script>
+            </div>
+            <hr/>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <!-- Forecasted vs Actual plot -->
+        <div class="container">            
+            <hr/>
+            <h3>
+                <strong>ARIMA Model</strong>: Checking residuals to be white noise using histogram (training set size: 228)
+            </h3>
+            <div>
+                <a href="https://plot.ly/~raviolli77/21/" target="_blank" title="Histogram of 2014-2015 Residuals for ARIMA Model" style="display: block; text-align: center;"><img src="https://plot.ly/~raviolli77/21.png" alt="Histogram of 2014-2015 Residuals for ARIMA Model" style="max-width: 100%;width: 1554px;"  width="1554" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+                <script data-plotly="raviolli77:21"  src="https://plot.ly/embed.js" async></script>
+            </div>
+            <hr/>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <!-- Forecasted vs Actual plot -->
+        <div class="container">            
+            <hr/>
+            <h3>
+                <strong>ARIMA Model</strong>: Two-year Forecast vs. Actual Values of S&amp;P 500 (Jan 2014 - Dec 2015)
+            </h3>
+            <div>
+                <a href="https://plot.ly/~raviolli77/11/" target="_blank" title="Forecasted Vs. Actual Values for 2014-2015" style="display: block; text-align: center;"><img src="https://plot.ly/~raviolli77/11.png" alt="Forecasted Vs. Actual Values for 2014-2015" style="max-width: 100%;width: 1554px;"  width="1554" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+                <script data-plotly="raviolli77:11"  src="https://plot.ly/embed.js" async></script>
+            </div>
+            <hr/>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <!-- BOX COX for 2015 -->
+        <div class="container">
+            <hr/>
+            <h3>
+                <strong>BOX-COX Model</strong>: Checking residuals to be white noise using histogram (training set size: 240)
+            </h3>
+            <div>
+                <a href="https://plot.ly/~raviolli77/24/" target="_blank" title="Histogram for Box Cox Model Residuals" style="display: block; text-align: center;"><img src="https://plot.ly/~raviolli77/24.png" alt="Histogram for Box Cox Model Residuals" style="max-width: 100%;width: 1554px;"  width="1554" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+                <script data-plotly="raviolli77:24"  src="https://plot.ly/embed.js" async></script>
+            </div>
+            <hr/>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <!-- BOX COX Forecasted vs Actual plot -->
+        <div class="container">
+            <hr/>
+            <h3>
+                <strong>BOX-COX Model</strong>: One-year Forecast vs. Actual Values of S&amp;P 500 (Jan 2015 - Dec 2015)
+            </h3>
+            <div>
+                <a href="https://plot.ly/~raviolli77/15/" target="_blank" title="Forecasted Vs. Actual Values Box Cox Transformation" style="display: block; text-align: center;"><img src="https://plot.ly/~raviolli77/15.png" alt="Forecasted Vs. Actual Values Box Cox Transformation" style="max-width: 100%;width: 1554px;"  width="1554" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+                <script data-plotly="raviolli77:15"  src="https://plot.ly/embed.js" async></script>
+            </div>
+        </div>
     </section>
 
-    <section class="main-section">
+    <section class="main-section xlarge-paragraph">
         <div class="container">
-            <h2>Conclusions</h2>
+            <h2>Derive Conclusions</h2>
             <hr/>
-            <p></p>
+            <p>Our conclusion is that the ARIMA model is the best fit for our S&amp;P 500 data set, and yields the best prediction for future values.</p>
         </div>
     </section>
 </body>

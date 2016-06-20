@@ -47,7 +47,7 @@
         <ul class="we-create animated fadeInUp delay-1s">
             <li>We code <strong>data science</strong> projects, and publish them so you can learn too!</li>
         </ul>
-        <a class="link animated fadeInUp delay-1s" href="#projects">LEARN NOW</a>
+        <a class="link animated fadeInUp delay-1s" href="#test">LEARN NOW</a>
     </div>
 </div>
 </header><!--header-end-->
@@ -58,7 +58,7 @@
         <ul class="main-nav">
             <li><a href="#projects">Projects</a></li>
             <li><a href="#purpose">Why Learn Data Science?</a></li>
-            <li class="small-logo"><a href="#header"><img src="img/data_logo.png" alt="" width="150px"></a></li>
+            <li class="small-logo large-paragraph"><a href="#header"><img src="img/data_logo.png" alt="" width="100px">  Inertia7</a></li>
             <li><a href="#team">Team</a></li>
             <li><a href="#sayHi">Publish your Project!</a></li>
         </ul>
@@ -72,7 +72,7 @@
 <section class="main-section paddind" id="projects"><!--main-section-start-->
 	<div class="container">
     	<h2>Projects</h2>
-    	<h6>Explore data science projects written in R and Python!</h6>
+    	<h6>Explore, learn, and re-produce data science projects written in R and Python!</h6>
       
                     <!--
                           <div class="portfolioFilter">  
@@ -89,7 +89,7 @@
 	</div>
     <div class="portfolioContainer wow fadeInUp delay-04s">
             	<div class="Portfolio-box printdesign">
-                	<a href="projects/timeSeries_stockMarket.html"><img src="img/wallStreet.jpg" alt=""></a>	
+                	<a href="projects/timeSeries_stockMarket.html" target="_blank"><img src="img/wallStreet.jpg" alt=""></a>	
                 	<h3>Predicting the Stock Market</h3>
                     <p>TIME SERIES ANALYSIS OF THE S&amp;P 500s WITH <strong>R</strong></p>
                 </div>
@@ -163,7 +163,7 @@
 
 <section class="purpose" id="sayHi"><!--purpose-start-->
 	<div class="container">
-        <h2>Publish your project too!</h2>
+        <h2>Then publish your own projects too!</h2>
     </div>
 </section><!--purpose-end-->
 <div class="container">
@@ -220,7 +220,6 @@
     -->
 </footer>
 
-
 <script type="text/javascript">
     $(document).ready(function(e) {
         $('#test').scrollToFixed();
@@ -229,21 +228,18 @@
             return false    
             
         });
-        
     });
 </script>
 
-  <script>
-    wow = new WOW(
-      {
-        animateClass: 'animated',
-        offset:       100
-      }
-    );
-    wow.init();
- 
-  </script>
-
+<script>
+wow = new WOW(
+  {
+    animateClass: 'animated',
+    offset:       100
+  }
+);
+wow.init();
+</script>
 
 <script type="text/javascript">
 	$(window).load(function(){
@@ -266,16 +262,13 @@
 </script>
 
 <script type="text/javascript">
-
 $(window).load(function(){
-  
   
   var $container = $('.portfolioContainer'),
       $body = $('body'),
       colW = 375,
       columns = null;
-
-  
+ 
   $container.isotope({
     // disable window resizing
     resizable: true,
@@ -307,7 +300,6 @@ $(window).load(function(){
          });
          return false;
     });
-  
 });
 
 </script>
