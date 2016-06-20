@@ -84,7 +84,6 @@ require(car)
 library(caret)
 require(plotly)
 
-
 # outputting work
 
 pdf("timeSeries_sp_500.pdf")
@@ -167,7 +166,7 @@ seasonplot(sp_500,ylab="S&P Closing Values", xlab="Year",
 
 # the plot following plot decomposes the time series into its seasonal, trend and irregular components!
 plot(stl(sp_500, s.window = "periodic"), main = "Decomposition for S&P 500")
-hist(for_sp500_all$residuals)
+
 # Notice that this plot is not stationary so an appropriate transformation must be made
 # The variability can not be seen at first glance but one the transformation is made, we can see if the model
 # is heteroskedastic
@@ -184,10 +183,12 @@ plot(for_sp500_ts)
 # CSV file for residuals 
 resARIMA <- for_sp500_ts$residuals
 write.csv(resARIMA, file = "Residuals.csv")
-
+# Here we plot the histogram along with the line that best fit!
+hist(resARIMA, prob = TRUE)
+lines(density(resARIMA))
 # declaring act_sp500_2015 vector with actual sp500 values for year 2015, for comparison purposes
-dataMaster_TS <- dataMaster_df[-c(1:240),]
-dataMaster_2014df <- dataMaster_df[-c(241:252),]
+dataMaster_TS <- dataMaster[-c(1:240),]
+dataMaster_2014df <- dataMaster[-c(241:252),]
 dataMaster_TR <- ts(dataMaster_2014df, start = c(1995, 1), freq = 12) 
 sp500_TR <- dataMaster_TR[, 'sp_500']
 sp500_TR
@@ -201,10 +202,13 @@ for_sp500_all
 # Here we do some residual diagnostics to make sure we have white noise!
 plot(for_sp500_all$residuals, main = "Residual Plots for Forecast")
 acf(for_sp500_all$residuals, main = "ACF plot for Residuals")
+resARIMA_all <- for_sp500_all$residuals
+hist(resARIMA_all, prob = TRUE, main = "Histogram of ARIMA Training Set")
+lines(density(resARIMA_all))
 # From these two plots we see that the residuals look like white noise so we're good to go on forecasting
 
 # Here we extract the forecast information to create better visual demonstration of the forecast vs actual values!
-for_sp500_df <- data.table(for_sp500_all)
+for_sp500_df <- data.frame(for_sp500_all)
 for_sp500_vals <- for_sp500_df$Point.Forecast
 for_sp500_2015_ts <- ts(for_sp500_vals, start = c(2015, 1), freq = 12) 
 for_sp500_2015_ts
@@ -254,9 +258,9 @@ ggplot(together_df, aes(Date)) +
 ##
 
 
-dataMaster_TS1 <- dataMaster_df[-c(1:228),]
+dataMaster_TS1 <- dataMaster[-c(1:228),]
 dataMaster_TS1
-dataMaster_2014df <- dataMaster_df[-c(229:252),]
+dataMaster_2014df <- dataMaster[-c(229:252),]
 dataMaster_TR1 <- ts(dataMaster_2014df, start = c(1995, 1), freq = 12) 
 sp500_TR1 <- dataMaster_TR1[, 'sp_500']
 sp500_TR1
@@ -275,8 +279,8 @@ write.csv(res, file = "resids2014.csv")
 # Here we do some residual diagnostics to make sure we have white noise!
 plot(for_sp500_all_2014$residuals, main = "Residual Plots for Forecast")
 acf(for_sp500_all_2014$residuals, main = "ACF plot for Residuals")
-
-
+hist(res, prob = TRUE)
+lines(density(res))
 # Here we extract the forecast information to create better visual demonstration of the forecast vs actual values!
 for_sp500_2014_df <- data.frame(for_sp500_all_2014)
 for_sp500_2014_vals <- for_sp500_2014_df$Point.Forecast
@@ -343,12 +347,16 @@ attributes(fit_sp500_BC)
 plot(fit_sp500_BC$resid, main = "Residual plot for Box Cox Transformation")
 acf(fit_sp500_BC$resid,  na.action=na.pass, main = "ACF plot for residuals")
 
+
+
 plot(forecast(fit_sp500_BC,h=12,lambda=lambda))
 for_sp500_BC <- forecast(fit_sp500_BC,h=12,lambda=lambda)
 attributes(for_sp500_BC)
 
 # CSV File for residuals of BC model
 resBC <- for_sp500_BC$residuals
+hist(resBC, prob = TRUE)
+lines(density(resBC))
 write.csv(resBC, file = "resBC.csv")
 #Creating the predicted values for the Box Cox model for 2015
 for_sp500_BCdf <- data.frame(for_sp500_BC)
@@ -398,9 +406,9 @@ plot(forecast(auto.arima(sp_500), h = 12))
 accuracy(for_sp500_ts)
 accuracy(for_sp500_all)
 accuracy(for_sp500_BC)
-accuracy(meanf(nasdaq, h = 12))
-accuracy(naive(nasdaq, h = 12))
-accuracy(snaive(nasdaq, h = 12))
-accuracy(forecast(ets(nasdaq), h = 12))
+accuracy(meanf(sp_500, h = 12))
+accuracy(naive(sp_500, h = 12))
+accuracy(snaive(sp_500, h = 12))
+accuracy(forecast(ets(sp_500), h = 12))
 
 # Thus we concluded that the ARIMA model produced the best forecast!
