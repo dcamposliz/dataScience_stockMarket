@@ -41,7 +41,7 @@
 <body>
 
 <!--main-nav-start-->
-<nav class="navbar-fixed-top" style="background-color:white"><!--main-nav-start-->
+<nav class="navbar navbar-fixed-top" role="navigation" style="background-color:white"><!--main-nav-start-->
     <div class="container-fluid" style="box-shadow:5px 5px 5px #D3D3D3;">
             <ul class="main-nav">
                 <li class="small-logo large-paragraph"><a href="../index.html"><img src="../img/data_logo.png" alt="" width="100px"> Inertia7</a></li>
@@ -80,7 +80,7 @@
             <h2>Project Summary</h2>
             <hr/>
             <p>
-                This project focuses on finding the best statistical-learning model to predict future values of the <strong>S&amp;P 500 Stock Index</strong>.
+                This project focuses on finding the best statistical-learning model to predict future values for the <strong>S&amp;P 500 Stock Index</strong>.
             </p>
             <br/>
             <p>
@@ -93,6 +93,10 @@
             <br/>
             <p>
                 In this project, we carry out this statistical analysis with the power of R and deliver some browser-rich visualizations using with the elegance and flare of the JavaScript libraries d3.js, Plotly, and Shiny.
+            </p>
+            <br/>
+            <p>
+                We encourage you to try replicating this project and make your own contributions! You can fork this project on <a href="https://github.com/dcamposliz/dataScience_stockMarket">GitHub</a>.
             </p>
         </div>
         <br/>
@@ -127,10 +131,7 @@
             </h3>
             <ul>
                 <li>
-                    Understanding of time-series analysis.
-                </li>
-                <li>
-                    Basic experience in R.
+                    Basic working knowledge of the R programming language, statistics (including time-series analysis), and economics (finance).
                 </li>
                 <li>
                     R software environment.
@@ -148,7 +149,7 @@
                 </p>
                 <br/>
                 <p>
-                    For this we use the <code>required()</code> method and include the package names as arguments. Make sure to use the <code>install.packages("")</code> method to install them first if you have not done so already.
+                    For this we use the <code>required()</code> method and include the package names as arguments. Make sure to first install the packages using the <code>install.packages("")</code> method if you haven't done so already.
                 </p>
                 <br/>
                 <code>
@@ -175,6 +176,10 @@
                     require(plotly)
                 </code>
                 <br/>
+                <br/>
+                <p>
+                    !!!!! -----> TALK ABOUT THE RELEVANCE OF THESE PACKAGES.
+                </p>
             </div>
         </section>
 <!-- GETTING, SELECTING, COLLECTING, CLEANING DATA -->
@@ -187,7 +192,7 @@
             </h3>
             <br/>
             <p>
-                We collected our S&amp;P 500s data from <a href="https://finance.yahoo.com/q/hp?s=%5EGSPC+Historical+Prices">Yahoo Finance</a>. You can do the same too.
+                Now we collect our data. We want to use reliable sources of complete and accurate data. We collected 21 years (1995-2015) of S&amp;P 500 Stock Index data at a monthly frequency (a total of 252 observations) from <a href="https://finance.yahoo.com/q/hp?s=%5EGSPC+Historical+Prices">Yahoo Finance</a>. You can do the same too.
             </p>
             <br/>
             <br/>
@@ -196,7 +201,11 @@
             </h3>
             <br/>
             <p>
-                We cleaned our data manually using <a href="https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWfolM/edit?usp=sharing">google sheets</a>. Here is our <a href="https://github.com/dcamposliz/dataScience_stockMarket/blob/master/data_1/data_master_1.csv">S&amp;P 500s data</a> along with a bunch of other economic indicators, ready to be used with R.
+                We cleaned our data manually using <a href="https://docs.google.com/spreadsheets/d/1STR_wkkIUQVZT-PK0XAdEtmQQnjOzn0DkUPhTyWfolM/edit?usp=sharing">google sheets</a>. For this we made sure that all fields contained data (i.e. no missing values) and that the headers (i.e. column names) were labeled appropriately. This can be done programmatically with R, but this is outside of the scope of this project.
+            </p>
+            <br/>
+            <p>
+                 We also included a bunch of other variables (for exploratory analysis) such as the NASDAQ Stock Index, the NYSE Stock Exchange, the U.S. Housing Price Index, and the U.S. Gross Domestic Product. Here is our data in file <a href="https://github.com/dcamposliz/dataScience_stockMarket/blob/master/data_1/data_master_1.csv">data_master_1.csv</a>, which is ready to be used with R.
             </p>
             <br/>
             <br/>
@@ -215,6 +224,11 @@
             <code>
                 attach(dataMaster)
             </code>
+            <br/>
+            <br/>
+            <p>
+                Now we can call our S&amp;P 500 Stock Index data by typing <code>dataMaster$sp_500</code> into our terminal.
+            </p>
         </div>
     </section>
 
@@ -225,9 +239,12 @@
             </h2>
             <hr/>
             <p>
-                This stage of the project is also known as 'getting a feel for your data.' It is important to visualize your data at it's 'rawest' form.
+                Before trying to run any models we want to get a feel for our data. For this we do some exploratory analysis.
             </p>
             <br/>
+            <p>
+                !!!!! -----> LIST QUICK SUMMARY OF EXPLORATORY ANALYSIS METHODS.
+            </p>
             <br/>
             <br/>
             <h3>
@@ -235,7 +252,7 @@
             </h3>
             <br/>
             <p>
-                S&amp;P 500 data is in the form of time-series. In R we are able to create a time-series object out of our data vector using the <code>ts()</code> method. For this, we select the vector we would like to use, and tune the start and frequency parameters. Then we output the time-series data to the terminal by calling the object.
+                S&amp;P 500 data is in the form of time-series. In R we are able to create time-series objects for our data vectors using the <code>ts()</code> method. For this, we select the vector we would like to use as the first argument, and tune the <code>start</code> and <code>freq</code> (frequency) parameters. Then we output the time-series data to the terminal by calling our newly-created time-series object.
             </p>
             <br/>
             <code>
@@ -249,7 +266,6 @@
             <br/>
             <br/>
             <img src="../img/timeSeries_stockMarket_img/timSeriesobject.png" alt=""> 
-            <br/>
             <br/>
             <br/>
             <br/>
@@ -278,11 +294,11 @@
             </h3>
             <br/>
             <p>
-                Blah
+                !!!!! -----> WHAT IS THE RELEVANCE OF THE ACF AND PACF PLOTS? 
             </p>
             <br/>
             <code>
-                someCode()
+                someCode() !!!!! -----> LIST CODE FOR RUNNING ACF AND PACF
             </code>
             <br/>
             <br/>
@@ -290,6 +306,9 @@
             <img src="../img/timeSeries_stockMarket_img/acf2.png" alt=""> 
             <br/>
             <br/>
+            <p>
+                !!!!! -----> WHAT DO THE ACF AND PACF TELL US ABOUT NEXT STEPS IN OUR EXPLORATORY ANALYSIS AND/OR STATISTICAL-MODELING?
+            </p>
             <br/>
             <br/>
         </div>
@@ -299,11 +318,18 @@
         <div class="container">
             <h2>Build models</h2>
             <hr/>
-            <p>Then we run a bunch of models and test them to see which one is best.</p>
+            <p>
+                !!!!! -----> HOW DO WE START OUR STATISTICAL MODELING FROM WHAT WE LEARNED IN THE EARLIER STAGE?
+            </p>
             <hr/>
         </div>
         <br/>
         <br/>
+        <div class="container">
+            <code>
+                someCode() !!!!! -----> WHAT CODE DO WE USE TO RUN THIS MODEL?
+            </code>
+        </div>
         <br/>
         <br/>
         <!-- ARIMA Model for 2015 -->
