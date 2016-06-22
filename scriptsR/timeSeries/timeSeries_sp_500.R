@@ -24,10 +24,18 @@
 ####
 ##
 print("Time Series Model for S&P 500")
+# Add the directory path of data_1/data_master_1.csv file
+wd <- getwd()
+setwd("../../")
+parent <- getwd()
+setwd(wd)
+print(parent)
+# Load the data file
+dataMaster <- read.csv(file.path(parent, "data_1/data_master_1.csv"))
 
-dataMaster <- read.csv("/home/rxe/myProjects/dataScience/timeSeries/data_master_1.csv")
 
 attach(dataMaster)
+
 
 # here is a snapshot of our variables
 # tons of financial data:
@@ -68,15 +76,14 @@ attach(dataMaster)
 # install.packages("MTS")
 
 # load the packages
-
+require(data.table)
 require(ggplot2)
 require(forecast)
 require(astsa)
 require(car)
 library(caret)
-# required for cross-validation
-require(caret)
-require(DAAG)
+require(plotly)
+
 
 # outputting work
 
@@ -124,24 +131,8 @@ print(" ")
 ####
 ##
 
-m1 <- ts((dataMaster$m1)*(dataMaster$billion), start=c(1995, 1), freq=12)
-m2 <- ts((dataMaster$m2)*(dataMaster$billion), start=c(1995, 1), freq=12)
-consumerSentiment <- ts(dataMaster$consumerSentiment, start=c(1995, 1), freq=12)
-imports <- ts(dataMaster$imports, start=c(1995, 1), freq=12)
-inflation <- ts(dataMaster$inflation, start=c(1995, 1), freq=12)
-oilPrices <- ts(dataMaster$oilPrices, start=c(1995, 1), freq=12)
-ppi <- ts(dataMaster$ppi, start=c(1995, 1), freq=12)
-exports <- ts(dataMaster$exports, start=c(1995, 1), freq=12)
-cpi <- ts(dataMaster$cpi, start=c(1995, 1), freq=12)
-unemploymentRate <- ts(dataMaster$unemploymentRate, start=c(1995, 1), freq=12)
-fedFunds <- ts(dataMaster$fedFunds, start=c(1995, 1), freq=12)
-capUtilization <- ts(dataMaster$capUtilization, start=c(1995, 1), freq=12)
-sp_500Dividends <- ts(dataMaster$sp_500Dividends, start=c(1995, 1), freq=12)
-nasdaq <- ts(dataMaster$nasdaq, start=c(1995, 1), freq=12)
-nyse <- ts(dataMaster$nyse, start=c(1995, 1), freq=12)
+
 sp_500 <- ts(dataMaster$sp_500, start=c(1995, 1), freq=12)
-gdp_us <- ts((dataMaster$gdp_us)*(dataMaster$trillion), start=c(1995, 1), freq=12)
-housingIndex <- ts(dataMaster$housingIndex, start=c(1995, 1), freq=12)
 
 
 ###########################################################
@@ -150,50 +141,8 @@ print(" ")
 print(" ")
 ###########################################################
 
-##
-####
-######
-#     PLOTTING FINANCIAL DATA
-######
-####
-##
-
-plot.ts(m1)
-plot.ts(m2)
-plot.ts(consumerSentiment)
-plot.ts(inflation)
-plot.ts(imports)
-plot.ts(oilPrices)
-plot.ts(ppi)
-plot.ts(exports)
-plot.ts(cpi)
-plot.ts(unemploymentRate)
-plot.ts(fedFunds)
-plot.ts(capUtilization)
-plot.ts(sp_500Dividends)
-plot.ts(nasdaq)
-plot.ts(nyse)
-plot.ts(sp_500)
-plot.ts(gdp_us)
-plot.ts(housingIndex)
-
-##
-####
-######
-#     MAKING DATA.FRAME WITH FINANCIAL DATA OBJECTS
-######
-####
-##
-
-dataMaster_df <- data.frame(m1, m2, consumerSentiment, imports, inflation, oilPrices, ppi, exports, cpi, unemploymentRate, fedFunds, capUtilization , sp_500Dividends, nasdaq, nyse, sp_500, gdp_us, housingIndex)
 
 
-# printing out structure of our new data frame
-
-str(dataMaster_df)
-
-
-###########################################################
 print(" ")
 print(" ")
 print(" ")
@@ -210,7 +159,6 @@ sp_500
 # First we plot the time series plot to get an understanding of the necessary modeling
 plot.ts(sp_500)
 acf2(sp_500)
-
 # Next we created some plots to get a "feel" for our data 
 # This next plot takes a closer look at the seasonal components of our time series
 seasonplot(sp_500,ylab="S&P Closing Values", xlab="Year",
@@ -218,8 +166,8 @@ seasonplot(sp_500,ylab="S&P Closing Values", xlab="Year",
            year.labels=TRUE, year.labels.left=TRUE, col=1:20, pch=19)
 
 # the plot following plot decomposes the time series into its seasonal, trend and irregular components!
-plot(stl(sp_500, s.window = "periodic"))
-
+plot(stl(sp_500, s.window = "periodic"), main = "Decomposition for S&P 500")
+hist(for_sp500_all$residuals)
 # Notice that this plot is not stationary so an appropriate transformation must be made
 # The variability can not be seen at first glance but one the transformation is made, we can see if the model
 # is heteroskedastic
@@ -232,6 +180,10 @@ plot(stl(sp_500, s.window = "periodic"))
 auto.arima(sp_500)
 for_sp500_ts <- forecast(auto.arima(sp_500))
 plot(for_sp500_ts) 
+
+# CSV file for residuals 
+resARIMA <- for_sp500_ts$residuals
+write.csv(resARIMA, file = "Residuals.csv")
 
 # declaring act_sp500_2015 vector with actual sp500 values for year 2015, for comparison purposes
 dataMaster_TS <- dataMaster_df[-c(1:240),]
@@ -252,7 +204,7 @@ acf(for_sp500_all$residuals, main = "ACF plot for Residuals")
 # From these two plots we see that the residuals look like white noise so we're good to go on forecasting
 
 # Here we extract the forecast information to create better visual demonstration of the forecast vs actual values!
-for_sp500_df <- data.frame(for_sp500_all)
+for_sp500_df <- data.table(for_sp500_all)
 for_sp500_vals <- for_sp500_df$Point.Forecast
 for_sp500_2015_ts <- ts(for_sp500_vals, start = c(2015, 1), freq = 12) 
 for_sp500_2015_ts
@@ -275,17 +227,20 @@ plot(for_sp500_up95CI_ts)
 #real time data for 2015
 plot.ts(act_sp500_2015_ts)
 together_df <- data.frame(for_sp500_2015_ts, act_sp500_2015_ts, for_sp500_lo95CI_ts, for_sp500_up95CI_ts, date = seq.Date(as.Date("2015-01-01"), by="1 month", length.out=12))
-together_df
+colnames(together_df) <- c("forecastedValues2015", "actualValues2015", "lower95CI", "upper95CI", "Date")
+head(together_df)
 
+# CSV file outputting all four values: Forecasted, actual, lower 95 and upper 95. (Includes the dates as well)
+write.csv(together_df, file = "myData.csv")
 
 
 par(mar = rep(2, 4))
-ggplot(together_df, aes(date)) + 
-  geom_ribbon(aes(x=date, ymax= up_df, ymin= lo_df), fill="gray", alpha=.5) +
-  geom_line(aes(y = for_sp500_2015_ts, colour = "Forecasted Values for 2015")) + 
-  geom_line(aes(y = act_sp500_2015_ts, colour = "Actual Values for 2015")) +
-  geom_line(aes(y = lo_df, colour = "Lower 95% Bound"), linetype = 'dotted') +
-  geom_line(aes(y = up_df, colour = "Upper 95% Bound"), linetype = 'dotted') +
+ggplot(together_df, aes(Date)) + 
+  geom_ribbon(aes(x=Date, ymax= up_df, ymin= lo_df), fill="gray", alpha=.5) +
+  geom_line(aes(y = forecastedValues2015, colour = "Forecasted Values for 2015")) + 
+  geom_line(aes(y = actualValues2015, colour = "Actual Values for 2015")) +
+  geom_line(aes(y = lower95CI, colour = "Lower 95% Bound"), linetype = 'dotted') +
+  geom_line(aes(y = upper95CI, colour = "Upper 95% Bound"), linetype = 'dotted') +
   scale_color_manual(name="Groups" ,values=c("green", "blue", "red", "red"))
 
 
@@ -313,9 +268,14 @@ plot(act_sp500_2014_ts)
 #  attributes(for_nasdaq_mod) 
 for_sp500_all_2014 <- forecast(auto.arima(sp500_TR1), 24)
 for_sp500_all_2014
+
+# CSV file for residual values
+res <- for_sp500_all_2014$residuals
+write.csv(res, file = "resids2014.csv")
 # Here we do some residual diagnostics to make sure we have white noise!
 plot(for_sp500_all_2014$residuals, main = "Residual Plots for Forecast")
 acf(for_sp500_all_2014$residuals, main = "ACF plot for Residuals")
+
 
 # Here we extract the forecast information to create better visual demonstration of the forecast vs actual values!
 for_sp500_2014_df <- data.frame(for_sp500_all_2014)
@@ -343,16 +303,21 @@ for_sp500_up95CI_14ts
 plot(for_sp500_up95CI_14ts)
 #real time data for 2014-15
 plot.ts(act_sp500_2014_ts)
-together_df <- data.frame(for_sp500_2014_ts, act_sp500_2014_ts, for_sp500_lo95CI_14ts, for_sp500_up95CI_14ts, date = seq.Date(as.Date("2014-01-01"), by="1 month", length.out=24))
-together_df
+together_df2 <- data.frame(for_sp500_2014_ts, act_sp500_2014_ts, for_sp500_lo95CI_14ts, for_sp500_up95CI_14ts, date = seq.Date(as.Date("2014-01-01"), by="1 month", length.out=24))
+colnames(together_df2) <- c("forecastedValues", "actualValues", "lowerCI", "upperCI", "Date")
+head(together_df2)
+
+# CSV file doing the same as mentioned for the model done before this one
+write.csv(together_df2, file = "sp500_2014.csv")
+
 
 par(mar = rep(2, 4))
-ggplot(together_df, aes(date)) + 
-  geom_ribbon(aes(x=date, ymax= up_df, ymin= lo_df), fill="gray", alpha=.5) +
-  geom_line(aes(y = for_sp500_2014_ts, colour = "Forecasted Values for 2015")) + 
-  geom_line(aes(y = act_sp500_2014_ts, colour = "Actual Values for 2015")) +
-  geom_line(aes(y = lo_df, colour = "Lower 95% Bound"), linetype = 'dotted') +
-  geom_line(aes(y = up_df, colour = "Upper 95% Bound"), linetype = 'dotted') +
+ggplot(together_df2, aes(Date)) + 
+  geom_ribbon(aes(x=Date, ymax= upperCI, ymin= lowerCI), fill="gray", alpha=.5) +
+  geom_line(aes(y = forecastedValues, colour = "Forecasted Values for 2015")) + 
+  geom_line(aes(y = actualValues, colour = "Actual Values for 2015")) +
+  geom_line(aes(y = lowerCI, colour = "Lower 95% Bound"), linetype = 'dotted') +
+  geom_line(aes(y = upperCI, colour = "Upper 95% Bound"), linetype = 'dotted') +
   scale_color_manual(name="Groups" ,values=c("green", "blue", "red", "red"))
 
 # Conclusion for this model: The forecast follows the actual data pretty well. It's able to capture the trend although of course it can't capture the volitaty very well we found this
@@ -381,6 +346,10 @@ acf(fit_sp500_BC$resid,  na.action=na.pass, main = "ACF plot for residuals")
 plot(forecast(fit_sp500_BC,h=12,lambda=lambda))
 for_sp500_BC <- forecast(fit_sp500_BC,h=12,lambda=lambda)
 attributes(for_sp500_BC)
+
+# CSV File for residuals of BC model
+resBC <- for_sp500_BC$residuals
+write.csv(resBC, file = "resBC.csv")
 #Creating the predicted values for the Box Cox model for 2015
 for_sp500_BCdf <- data.frame(for_sp500_BC)
 for_sp500_BCvals <- for_sp500_BCdf$Point.Forecast
@@ -399,6 +368,8 @@ plot(for_sp500_upBC95CI_ts)
 together_BCdf <- data.frame(for_sp500_BC2015_ts, act_sp500_2015_ts, for_sp500_loBC95CI_ts, for_sp500_upBC95CI_ts, date = seq.Date(as.Date("2015-01-01"), by="1 month", length.out=12))
 together_BCdf
 
+write.csv(together_BCdf, file = "sp500_BC.csv")
+
 ggplot(together_BCdf, aes(date)) + 
   geom_ribbon(aes(x=date, ymax= for_sp500_upBC95CI_ts, ymin= for_sp500_loBC95CI_ts), fill="gray", alpha=.5) +
   geom_line(aes(y = for_sp500_BC2015_ts, colour = "Forecasted Values for 2015")) + 
@@ -410,12 +381,17 @@ ggplot(together_BCdf, aes(date)) +
 # Conclusions: Box Cox transformations are usually done with data that is heteroskedastic so the forecast didn't perform as well as the ARIMA model, but we wanted to include it just in case
 # anyone wants to use our methodology with data that has a non-constant variance!
 
-#other forecasts
+# Here we're plotting other forecasts that aren't as good predictors for this data so we are keeping them as simple plots the same steps would be followed as done before if you wanted a 
+# detailed plot of these methods
 dev.off()
-plot(forecast(meanf(sp_500, h = 12)))
-plot(forecast(naive(sp_500, h = 12)))
-plot(forecast(snaive(sp_500, h = 12)))
-plot(forecast(ets(sp_500), h = 12))
+plot(forecast(meanf(sp500_TR, h = 12)), main = "Forecasts Using Mean Methods", xlim = c(2015, 2016))
+lines(act_sp500_2015_ts, col = "red")
+plot(forecast(naive(sp500_TR, h = 12)),  xlim = c(2015, 2016), ylim = c(1500, 2400))
+lines(act_sp500_2015_ts, col = "red")
+plot(forecast(snaive(sp500_TR, h = 12)), xlim = c(2015, 2016))
+lines(act_sp500_2015_ts, col = "red")
+plot(forecast(ets(sp500_TR), h = 12), xlim = c(2015, 2016), ylim = c(1500, 2700))
+lines(act_sp500_2015_ts, col = "red")
 #Forecast for the year 2016!!
 plot(forecast(auto.arima(sp_500), h = 12))
 ###Measuring accuracy between models 
